@@ -15,14 +15,14 @@
 
             <div class="wrapper">
                 <nav>
-                    <RouterLink to="/">Home</RouterLink>
-                    <RouterLink to="/Boutique">Boutique</RouterLink>
-                    <RouterLink to="/Contact">Contact</RouterLink>
+                    <Router-Link to="/">Home</Router-Link>
+                    <Router-Link to="/Boutique">Boutique</Router-Link>
+                    <Router-Link to="/Contact">Contact</Router-Link>
                 </nav>
             </div>
             <div class="img-user">
                 <img  src="../assets/images/pexels-brett-jordan-9074993.jpg" alt="">
-                <RouterLink to="/Login"><button>Login</button></RouterLink>
+                <Router-Link to="/Login"><button>Login</button></Router-Link>
             </div>
         </header>
     </div>
@@ -31,14 +31,13 @@
 
 <style lang="scss" scoped>
 @import "../assets/Scss/variable";
-*{
-    font-family: $fonts;
-}
+
 .piblisite {
     font-size: 13px;
     height: 2.5rem;
     display: flex;
     justify-content: center;
+    align-items: center;
     background-color: $button-color;
 }
 .navbar {
@@ -46,7 +45,7 @@
 }
 header {
     height: 3.5rem;
-    margin: 0rem 5rem;
+    padding: 0rem 5rem;
     display: flex;
     justify-content: space-between;
 
@@ -62,7 +61,6 @@ header {
         }
     }
     button{
-        margin: 1rem auto;
         font-size: 14px;
         width: 4rem;
         height: 1.6rem;
@@ -72,6 +70,7 @@ header {
         background-color: $button-color;
     }
      .img-user {
+        //  margin-left: 1.5rem;
          display: flex;
          gap: 1rem;
          align-items: center;
@@ -82,5 +81,9 @@ header {
         }
     }
 }
-
+.router-link-active {
+  color: #fff;
+  background-color: #00a65a;
+  border: solid 1px #00a65a;
+}
 </style>

@@ -6,14 +6,17 @@
 
 <template>
     <div class="first">
-        <div>
-            <h1>MaisonDatty</h1>
-        </div>
-        <div>
-            <p>UN DÉLICE POUR LES PAPILLES -</p>
-        </div>
-        <div>
-            <button>Button</button>
+        <img src="../../assets/images/pexels-eberhard-grossgasteiger-572897.jpg" alt="" />
+        <div class="content">
+            <div>
+                <h1>MaisonDatty</h1>
+            </div>
+            <div>
+                <p>UN DÉLICE POUR LES PAPILLES -</p>
+            </div>
+            <div>
+                <button>Button</button>
+            </div>
         </div>
     </div>
 </template>
@@ -21,19 +24,23 @@
 <style lang="scss" scoped>
 @import "../../assets/Scss/variable";
 
-*{
-    font-family: $fonts;
-}
 .first {
-    color: white;
-    background-image: url(https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg);
-    height: 30rem;
     width: 100%;
+    height: 88vh;
+    color: white;
+
+    img {
+        position: absolute;
+        width: 100%;
+        height: 85vh;
+    }
+}
+.content{
+    padding: 5rem;
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 4rem 0;
-
     p {
         padding: 3rem 0;
     }

@@ -6,30 +6,109 @@ export default {
 
 <template>
   <div class="produits">
-    <div class="produit">
-      <img
-        src="../../assets/images/pexels-brett-jordan-9074993.jpg" alt="" style="width: 100%" />
-      <div class="top-right">
-        <button>Nouveauté</button>
+      <div class="produit">
+        <div class="image">
+          <img
+            src="../../assets/images/pexels-brett-jordan-9074993.jpg" alt="" style="width: 100%" />
+          <div class="top-right">
+            <button>Nouveauté</button>
+          </div>
+        </div>
+        <div class="description">
+          <div class="a">
+            <div>
+              <p>hhhhhhhhhhhhhhhhhhhhhhh</p>
+            </div>
+            <div class="bb">
+              <img src="../../assets/images/shopping-cart-svgrepo-com (1).svg" alt="">
+            </div>
+          </div>
+          <div>
+            <h1>200$</h1>
+          </div>
+        </div>
       </div>
-    </div>
+
+      <div class="produit">
+        <div class="image">
+          <img
+            src="../../assets/images/pexels-brett-jordan-9074993.jpg" alt="" style="width: 100%" />
+          <div class="top-right">
+            <button>Nouveauté</button>
+          </div>
+        </div>
+        <div class="description">
+          <div class="a">
+            <div>
+              <p>hhhhhhhhhhhhhhhhhhhhhhh</p>
+            </div>
+            <div class="bb">
+              <img src="../../assets/images/shopping-cart-svgrepo-com (1).svg" alt="">
+            </div>
+          </div>
+          <div>
+            <h1>200$</h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="produit">
+        <div class="image">
+          <img
+            src="../../assets/images/pexels-brett-jordan-9074993.jpg" alt="" style="width: 100%" />
+          <div class="top-right">
+            <button>Nouveauté</button>
+          </div>
+        </div>
+        <div class="description">
+          <div class="a">
+            <div>
+              <p>hhhhhhhhhhhhhhhhhhhhhhh</p>
+            </div>
+            <div class="bb">
+              <img src="../../assets/images/shopping-cart-svgrepo-com (1).svg" alt="">
+            </div>
+          </div>
+          <div>
+            <h1>200$</h1>
+          </div>
+        </div>
+      </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 @import "../../assets/Scss/variable";
-*{
-    font-family: $fonts;
-}
+@import "../../assets/Scss/media";
+
 .produits {
-    margin: 5rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+
+  @include desktop {
+  margin: 1rem 8rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+  }
 }
 .produit {
-    position: relative;
-    text-align: center;
-    color: white;
-    width: 20rem;
-    height: 25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  height: 33rem;
+
+}
+.image {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-align: center;
+  color: white;
+  border-radius: 0.3rem;
 
     img {
         width: 100%;
@@ -51,5 +130,25 @@ export default {
         border: none;
         border-radius: 0.3rem;
     }
+}
+.description{
+  height: 8rem;
+  background-color: #E5E5E5;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+
+  h1{
+    padding: 1rem 0 0 0;
+    font-size: 14px;
+  }
+  .a{
+    display: flex;
+    align-items: center;
+
+    .bb {
+      width: 2rem;
+      margin-left: auto;
+    }
+  }
 }
 </style>

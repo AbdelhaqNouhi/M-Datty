@@ -1,24 +1,22 @@
 <script>
 // import { RouterLink, RouterView } from 'vue-router'
-import NavBar from './components/NavBar.vue'
-import FirstPart from './components/Home/FirstPart.vue'
-import Produit from './components/Home/Produit.vue'
+import    NavBar from './components/NavBar.vue';
+import Footer from './components/Footer.vue';
 
 export default{
   components: {
     NavBar,
-    FirstPart,
-    Produit,
+    Footer,
   }
 }
 </script>
 
 <template>
   <NavBar />
-  <FirstPart />
-  <Produit />
   <RouterView />
+  <Footer />
 </template>
+
 
 <style lang="scss" scoped>
 

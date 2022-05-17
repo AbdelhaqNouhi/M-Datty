@@ -3,6 +3,7 @@ $fonts: Gilroy, Arial, sans-serif, Serif;
 $button-color: #D4C7A0;
 $header-color: #4E4A42;
 
+$secondary-bg-color: rgba(212, 199, 160, 0.1);
 
 
 
@@ -13,9 +14,10 @@ $header-color: #4E4A42;
 
 
 
-// *{
-//     font-family: $fonts;
-//     box-sizing: border-box;
-//     padding: 0;
-//     margin: 0;
-//   }
+
+*{
+    font-family: $fonts;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
