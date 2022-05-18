@@ -4,6 +4,7 @@ import Boutique from '../components/Boutique.vue'
 import Contact from '../components/Home/Contact.vue'
 import Login from '../components/Login.vue'
 import Register from '../components/Register.vue'
+import PageUser from '../components/PageUser.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -36,7 +37,13 @@ const router = createRouter({
       path: '/Register',
       name: 'Register',
       component: Register,
-    }
+    },
+
+    {
+      path: '/PageUser',
+      name: 'PageUser',
+      component: PageUser,
+    },
   ]
 });
 

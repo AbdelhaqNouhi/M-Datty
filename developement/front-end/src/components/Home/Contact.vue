@@ -56,7 +56,7 @@
     display: flex;
     flex-direction: column-reverse;
     border-radius: 0.5rem;
-    margin: 2.5rem auto;
+    margin: 1rem 1rem;
     background-color: rgba(212, 199, 160, 0.1);
 
     @include desktop {
@@ -68,6 +68,7 @@
     }
 }
 .info {
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -78,7 +79,7 @@
 }
 
 .help {
-    width: 30rem;
+    width: 100%;
     display: flex;
     gap: 4rem;
     padding: 1rem 2rem;
@@ -107,19 +108,23 @@
     }
 
      input {
+         width: 100%;
         padding: 0.5rem;
         border: none;
         border-radius: 0.2rem;
-        width: 100%;
     }
     button {
+        width: 100%;
         border: none;
         border-radius: 0.2rem;
         background-color: $header-color;
         color: white;
         padding: 0.8rem;
-        width: 100%;
-        margin-left: auto;
+
+        @include desktop {
+            width: 46%;
+            margin-left: auto;
+        }
     }
 }
 
@@ -147,9 +152,9 @@
         border-radius: 0.2rem;  
 
         @include desktop {
-            max-width: 40rem;
-            min-width: 40rem;
-            height: 5rem;
+            // max-width: 40rem;
+            // min-width: 40rem;
+            // height: 5rem;
             
         }
     }

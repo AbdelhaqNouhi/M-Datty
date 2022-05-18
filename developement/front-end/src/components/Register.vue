@@ -35,19 +35,24 @@ export default {
 
 <style lang="scss" scoped>
 @import "../assets/Scss/variable";
+@import "../assets/Scss/media";
 .login {
-    padding: 5rem;
+    padding: 2rem;
     display: flex;
     justify-content: center;
 }
 .info {
     padding: 1.5rem;
-    width: 40%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 3rem;
     background-color: $secondary-bg-color;
     border-radius: 0.5rem;
+    
+    @include desktop {
+        width: 50%;
+    }
 
     h1 {
         font-weight: normal;

@@ -18,6 +18,8 @@ export default{
 </template>
 
 
-<style lang="scss" scoped>
-
+<style lang="scss">
+    html{
+      scroll-behavior: smooth;
+    }
 </style>

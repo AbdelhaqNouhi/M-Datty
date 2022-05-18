@@ -38,14 +38,16 @@
     .about {
         display: flex;
         flex-direction: column;
-        gap: 2rem;
         border-radius: 0.5rem;
         background-color: $secondary-bg-color;
+        margin: 0 1rem;
+
 
         @include desktop {
             margin: 0 8rem;
             display: flex;
             flex-direction: row;
+            gap: 2rem;
             gap: 5rem;
         }
     }
@@ -53,15 +55,19 @@
 .img {
     img {
         width: 100%;
+        height: 100%;
     }
 }
     .para {
+        flex-direction: column;
+        display: flex;
+        align-items: center;
 
         .title {
             display: flex;
             flex-direction: column;
             gap: 2rem;
-            padding: 1rem;
+            padding: 2rem;
             color: $button-color;
             text-align: center;
         }
@@ -72,6 +78,10 @@
             flex-direction: column;
             gap: 3rem;
             padding: 2rem;
+            
+            @include desktop {
+                font-size: 16px;
+            }
         }
     }
 </style>

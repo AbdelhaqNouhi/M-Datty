@@ -32,7 +32,7 @@
     img {
         position: absolute;
         width: 100%;
-        height: 85vh;
+        height: 86vh;
     }
 }
 .content{

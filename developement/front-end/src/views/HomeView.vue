@@ -18,14 +18,16 @@ export default {
 </script>
 
 <template>
-  <main>
+  <main id="body">
     <FirstPart />
     <Produit />
     <Servese />
     <AboutUs />
-    <Contact />
+    <Contact id="Contact" />
   </main>
 </template>
 
 <style lang="scss" scoped>
+
+
 </style>

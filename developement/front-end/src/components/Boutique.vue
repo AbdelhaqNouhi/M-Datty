@@ -152,9 +152,10 @@ export default{
 
 <style lang="scss" scoped>
 @import "../assets/Scss/variable";
+@import "../assets/Scss/media";
 
 .parent{
-    padding: 5rem;
+    padding: 5rem 0;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -162,7 +163,17 @@ export default{
 .produits {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   gap: 2rem;
+  margin: 0 1rem;
+
+  @include desktop {
+  margin: 1rem 8rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+  }
 }
 .produit {
   display: flex;

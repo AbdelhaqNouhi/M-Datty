@@ -86,6 +86,7 @@ export default {
   justify-content: center;
   flex-direction: column;
   gap: 2rem;
+  margin: 0 1rem;
 
   @include desktop {
   margin: 1rem 8rem;
