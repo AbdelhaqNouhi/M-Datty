@@ -67,7 +67,7 @@
     margin: 2.5rem auto;
 
     @include desktop {
-        margin: 5rem 8rem;
+        margin: 2rem 8rem;
     }
 }
 .servese {
@@ -83,9 +83,13 @@
 }
 .our {
     font-size: 12px;
-    padding: 4rem 0;
+    padding: 8rem 0;
     display: flex;
     justify-content: center;
+
+    @include desktop {
+        padding: 4rem 0;
+    }
 }
 .icone {
     text-align: center;

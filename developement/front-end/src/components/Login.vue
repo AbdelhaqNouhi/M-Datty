@@ -28,7 +28,7 @@ export default {
 @import "../assets/Scss/variable";
 @import "../assets/Scss/media";
 .login {
-    padding: 2rem;
+    padding: 4rem 2rem;
     display: flex;
     justify-content: center;
 }

@@ -56,7 +56,7 @@
     display: flex;
     flex-direction: column-reverse;
     border-radius: 0.5rem;
-    margin: 1rem 1rem;
+    margin: 2rem 1rem;
     background-color: rgba(212, 199, 160, 0.1);
 
     @include desktop {

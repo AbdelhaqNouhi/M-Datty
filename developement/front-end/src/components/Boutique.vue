@@ -158,7 +158,6 @@ export default{
     padding: 5rem 0;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
 }
 .produits {
   display: flex;
@@ -166,6 +165,11 @@ export default{
   flex-direction: column;
   gap: 2rem;
   margin: 0 1rem;
+
+  @include tablet {
+    display: flex;
+    gap: 8rem;
+  }
 
   @include desktop {
   margin: 1rem 8rem;
@@ -193,6 +197,7 @@ export default{
         width: 100%;
         height: 100%;
         border-radius: 0.3rem;
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
     }
 }
 .top-right {
@@ -215,6 +220,8 @@ export default{
   background-color: #E5E5E5;
   padding: 0.5rem;
   border-radius: 0.3rem;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+
 
   h1{
     padding: 1rem 0 0 0;
