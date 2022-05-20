@@ -141,7 +141,7 @@ export default {
 .description{
   height: 8rem;
   background-color: #E5E5E5;
-  padding: 0.5rem;
+  padding: 1rem;
   border-radius: 0.3rem;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
 
