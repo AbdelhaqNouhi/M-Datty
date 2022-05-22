@@ -30,7 +30,7 @@ export default {
       <nav class="menu">
         <Router-Link to="/">Home</Router-Link>
         <Router-Link to="/Boutique">Boutique</Router-Link>
-        <Router-Link to="/PageAdmin">PageAdmin</Router-Link>
+        <!-- <Router-Link to="/PageAdmin">PageAdmin</Router-Link> -->
         <a href="/#Contact">Contact</a>
       </nav>
       <nav :class="menuIcon">
