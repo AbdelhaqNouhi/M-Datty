@@ -44,3 +44,45 @@ $app->DELETE('/DeleteProduct', function ($data) {
   $product = new Product();
   $product->Delete($data);
 });
+
+// Commande
+$app->GET('/GetCommande', function () {
+  $commande = new Commande();
+  $commande->all();
+});
+
+$app->POST('/AddCommande', function ($data) {
+  $commande = new Commande();
+  $commande->add($data);
+});
+
+$app->PUT('/UpdateCommande', function ($data) {
+  $commande = new Commande();
+  $commande->update($data);
+});
+
+$app->DELETE('/DeleteCommande', function ($data) {
+  $commande = new Commande();
+  $commande->delete($data);
+});
+
+// Basket
+$app->GET('/GetBasket', function () {
+  $basket = new Basket();
+  $basket->all();
+});
+
+$app->POST('/AddBasket', function ($data) {
+  $basket = new Basket();
+  $basket->add($data);
+});
+
+$app->PUT('/UpdateBasket', function ($data) {
+  $basket = new Basket();
+  $basket->update($data);
+});
+
+$app->DELETE('/DeleteBasket', function ($data) {
+  $basket = new Basket();
+  $basket->delete($data);
+});
