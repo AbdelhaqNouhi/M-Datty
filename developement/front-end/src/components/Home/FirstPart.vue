@@ -6,7 +6,7 @@
 
 <template>
     <div class="first">
-        <img src="../../assets/images/pexels-eberhard-grossgasteiger-572897.jpg" alt="" />
+        <img src="../../assets/images/Produit/277161929.jpg" alt="" />
         <div class="content">
             <div>
                 <h1>MaisonDatty</h1>

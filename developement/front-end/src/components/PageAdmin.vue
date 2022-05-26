@@ -1,7 +1,53 @@
 <script>
     export default {
         name: "PageAdmin",
+
+        data () {
+            return {
+                Box: [],
+                Product: {
+                    image: "",
+                    name: "",
+                    description: "",
+                    price: "",
+                }
+            }
+        },
+        methods: {
+            async AddProduct () {
+                const res = await fetch ('http://localhost:8000/api/AddProduct',{
+                    method: 'POST',
+                    body: JSON.stringify({
+                        image: this.Product.image,
+                        name: this.Product.name,
+                        description: this.Product.description,
+                        price: this.Product.price,
+                }),
+            });
+                const data = await res.json();
+                if (data) {
+                    console.log(data);
+                }else{
+                    console.log("error");
+                }
+        },
+
+        async GetProduct () {
+            const res = await fetch ('http://localhost:8000/api/GetProduct', {
+                method: 'GET',  
+            });
+            const data = await res.json();
+            if(data){
+                this.Box = data;
+            }else{
+                console.log('please add a product')
+            }
+        }
+    },
+    mounted () {
+        this.GetProduct ();
     }
+}
 </script>
 
 <template>
@@ -24,12 +70,12 @@
                 <th>Id</th>
                 <th>More</th>
             </tr>
-            <tr class="list">
-                <td>aaaaaa</td>
-                <td>aaaaaa</td>
-                <td>aaaaaa</td>
-                <td>aaaaaa</td>
-                <td>aaaaaa</td>
+            <tr v-for="box in Box" :key="i" class="list">
+                <td>{{box.image}}</td>
+                <td>{{box.name}}</td>
+                <td>{{box.description}}</td>
+                <td>{{box.price}}</td>
+                <td>{{box.product_id}}</td>
                  <td>
                     <a data-bs-toggle="dropdown"
                                     ><svg
@@ -50,7 +96,7 @@
             </tr>
         </table>
     </div>
-            <div class="modal fade" id="staticBackdrops" data-bs-backdrop="static" aria-labelledby="staticBackdropLabel">
+            <!-- <div class="modal fade" id="staticBackdrops" data-bs-backdrop="static" aria-labelledby="staticBackdropLabel">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -74,33 +120,35 @@
                     </div>
             </div>
             </div>
-            </div>
-            <!-- --------------------------------------------- -->
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" aria-labelledby="staticBackdropLabel">
+            </div> -->
+            <!-- ---------------------Add------------------------ -->
+            <form @submit.prevent="AddProduct">
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" aria-labelledby="staticBackdropLabel">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                     <h2 class="modal-title" id="staticBackdropLabel">Add Produit</h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                    <div class="modal-body">
-                        <input type="text" name="image" placeholder="Image">
                     </div>
                     <div class="modal-body">
-                        <input type="text" name="nome" placeholder="Nome">
+                        <input type="text" name="image" placeholder="Image" v-model="this.Product.image">
                     </div>
                     <div class="modal-body">
-                        <input type="text" name="description" placeholder="descriptions">
+                        <input type="text" name="nome" placeholder="Nome" v-model="this.Product.name">
                     </div>
                     <div class="modal-body">
-                        <input type="text" name="prix" placeholder="Prix">
+                        <input type="text" name="description" placeholder="descriptions" v-model="this.Product.description">
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" name="prix" placeholder="Prix" v-model="this.Product.price">
                     </div>
                     <div class="modal-footer">
                         <input class="btn w-100" type="Submit" name="add" value="Add" data-bs-dismiss="modal">
                     </div>
-            </div>
-            </div>
-            </div>
+                </div>
+                </div>
+                </div>
+            </form>
 </template>
 
 <style lang="scss" scoped>

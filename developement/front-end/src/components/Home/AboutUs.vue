@@ -44,7 +44,7 @@
 
 
         @include desktop {
-            margin: 0 8rem;
+            margin: 5rem 8rem;
             display: flex;
             flex-direction: row;
             gap: 2rem;

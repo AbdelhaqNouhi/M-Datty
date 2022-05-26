@@ -9,7 +9,7 @@ export default {
       <div class="produit">
         <div class="image">
           <img
-            src="../../assets/images/pexels-brett-jordan-9074993.jpg" alt="" style="width: 100%" />
+            src="../../assets/images/Produit/277771940.jpg" alt="" style="width: 100%" />
           <div class="top-right">
             <button>Nouveauté</button>
           </div>
@@ -32,7 +32,7 @@ export default {
       <div class="produit">
         <div class="image">
           <img
-            src="../../assets/images/pexels-brett-jordan-9074993.jpg" alt="" style="width: 100%" />
+            src="../../assets/images/Produit/272811481.jpg" alt="" style="width: 100%" />
           <div class="top-right">
             <button>Nouveauté</button>
           </div>
@@ -55,7 +55,7 @@ export default {
       <div class="produit">
         <div class="image">
           <img
-            src="../../assets/images/pexels-brett-jordan-9074993.jpg" alt="" style="width: 100%" />
+            src="../../assets/images/Produit/277539106.jpg" alt="" style="width: 100%" />
           <div class="top-right">
             <button>Nouveauté</button>
           </div>

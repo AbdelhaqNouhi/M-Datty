@@ -1,32 +1,65 @@
 <script>
+
+
 export default {
     name: "Register",
+
+    data() {
+        return {
+            first_name: "",
+            last_name: "",
+            phone: "",
+            email: "",
+            password: "",
+        };
+    },
+    
+    methods: {
+         async register() {
+            const res = await fetch('http://localhost:8000/api/Register', {
+                method: 'POST',
+                body: JSON.stringify({
+                    first_name: this.first_name,
+                    last_name: this.last_name,
+                    phone: this.phone,
+                    email: this.email,
+                    password: this.password,
+                }),
+            });
+            const data = await res.json();
+            if (data.success) {
+                console.log('success');
+            }else{
+                console.log('error');   
+            }
+        }
+    }
 }
 </script>
 
 <template>
-    <form class="login" action="">
+    <form @click.prevent="register" class="register" action="">
         <div class="info">
             <h1>S'inscrire</h1>
             <div class="input">
                 <label>Nome</label>
-                <input type="text" name="" placeholder="Nome">
+                <input type="text" name="" placeholder="Nome" v-model="first_name">
             </div>
             <div class="input">
                 <label>Prenome</label>
-                <input type="text" name="" placeholder="Prenome">
+                <input type="text" name="" placeholder="Prenome" v-model="last_name">
             </div>
             <div class="input">
                 <label>Phone</label>
-                <input type="number" name="" placeholder="Phone">
+                <input type="number" name="" placeholder="Phone" v-model="phone">
             </div>
             <div class="input">
                 <label>E-mail</label>
-                <input type="email" name="" placeholder="E-mail">
+                <input type="email" name="" placeholder="E-mail" v-model="email">
             </div>
             <div class="input">
                 <label>Password</label>
-                <input type="password" name="" placeholder="Password">
+                <input type="password" name="" placeholder="Password" v-model="password">
             </div>
             <input type="button" name="" value="S'inscrire">
         </div>
@@ -36,7 +69,7 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/Scss/variable";
 @import "../assets/Scss/media";
-.login {
+.register {
     padding: 2rem;
     display: flex;
     justify-content: center;

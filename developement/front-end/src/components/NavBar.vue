@@ -30,22 +30,23 @@ export default {
       <nav class="menu">
         <Router-Link to="/">Home</Router-Link>
         <Router-Link to="/Boutique">Boutique</Router-Link>
-        <!-- <Router-Link to="/PageAdmin">PageAdmin</Router-Link> -->
+        <Router-Link to="/PageAdmin">PageAdmin</Router-Link>
         <a href="/#Contact">Contact</a>
       </nav>
       <nav :class="menuIcon">
         <Router-Link to="/">Home</Router-Link>
         <Router-Link to="/Boutique">Boutique</Router-Link>
         <a href="#Contact">Contact</a>
-        <Router-Link to="/Login"
-          ><button class="loginMobile">Login</button></Router-Link
-        >
+        <Router-Link to="/Login"><button class="loginMobile">Login</button></Router-Link>
       </nav>
       <div class="img-user">
-        <img src="../assets/images/pexels-brett-jordan-9074993.jpg" alt="" />
-        <Router-Link to="/Login"
-          ><button class="login">Login</button></Router-Link
-        >
+        <div class="cart">
+          <img src="../assets/images/Shopping Cart.svg" alt="">
+        </div>
+        <div class="user">
+          <img src="../assets/images/pexels-brett-jordan-9074993.jpg" alt="" />
+          <Router-Link to="/Login"><button class="login">Login</button></Router-Link>
+        </div>
       </div>
       <button @click="openMenu">
         <img src="../assets/images/menu.svg" alt="" />
@@ -152,34 +153,52 @@ header {
 }
 .img-user {
   display: flex;
-  gap: 1rem;
+  gap: 3rem;
   align-items: center;
-  img {
-    display: none;
-    border-radius: 5rem;
-    width: 1.6rem;
-    height: 1.6rem;
+  margin-left: auto;
 
-    @include desktop {
-      display: block;
+  @include desktop {
+    margin: 0;
+  }
+
+  .cart {
+
+    img {
+      width: 1.6rem;
+      height: 1.6rem;
     }
   }
-  button {
-    display: none;
-    font-size: 14px;
-    width: 4rem;
-    height: 1.6rem;
-    border: none;
-    border-radius: 0.2rem;
-    color: white;
-    background-color: $button-color;
-
-    @include desktop {
-      display: block;
+  .user {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    img {
+      display: none;
+      border-radius: 5rem;
+      width: 1.6rem;
+      height: 1.6rem;
+  
+      @include desktop {
+        display: block;
+      }
     }
-  }
-  a {
-    text-decoration: none;
+    button {
+      display: none;
+      font-size: 14px;
+      width: 4rem;
+      height: 1.6rem;
+      border: none;
+      border-radius: 0.2rem;
+      color: white;
+      background-color: $button-color;
+  
+      @include desktop {
+        display: block;
+      }
+    }
+    a {
+      text-decoration: none;
+    }
   }
 }
 .loginMobile {

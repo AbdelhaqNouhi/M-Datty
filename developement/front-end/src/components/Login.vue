@@ -1,6 +1,32 @@
 <script>
 export default {
     name: "Login",
+
+    data () {
+        return {
+            email: "",
+            password: "",
+            check: false
+        }
+    },
+
+    methods: {
+        async login() {
+            const res = await fetch('http://localhost:8000/api/Login', {
+                method: 'POST',
+                body: JSON.stringify({
+                    email: this.email,
+                    password: this.password,
+                }),
+            });
+            const data = await res.json();
+            if (!data.error) {
+                console.log(data);
+            }else{
+                this.check = true;
+            }
+        }
+    }
 }
 </script>
 
@@ -10,13 +36,16 @@ export default {
         <h1>Connexion</h1>
         <div class="input">
             <label>E-mail</label>
-            <input type="email" name="" placeholder="E-mail">
+            <input type="email" name="" placeholder="E-mail" v-model="email">
         </div>
         <div class="input">
             <label>Password</label>
-            <input type="password" name="" placeholder="Password">
+            <input type="password" name="" placeholder="Password" v-model="password">
+            <div v-if="check" class="check">
+                E-mail Or Password ivalide
+            </div>
         </div>
-        <input type="button" name="" value="Connexion">
+        <input @click.prevent="login" type="submit" name="" value="Connexion">
         <div class="register">
             <router-link to="/Register">S'inscrire</router-link>
         </div>
@@ -89,5 +118,8 @@ export default {
         font-weight: bold;
         color: $header-color;
     }
+}
+.check {
+    color: red;
 }
 </style>
