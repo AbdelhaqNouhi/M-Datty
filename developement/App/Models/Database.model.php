@@ -5,7 +5,12 @@ class Database
 
   function __construct()
   {
-    $connection = new mysqli($_ENV['DB_HOST'], $_ENV['DB_USER'], $_ENV['DB_PASS'], $_ENV['DB_NAME']);
+    $dsn = "mysql:host=".$_ENV['DB_HOST'].";dbname=".$_ENV['DB_NAME'];
+
+    
+    $connection = new PDO($dsn, $_ENV['DB_USER'], $_ENV['DB_PASS']);
+    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
     $this->connection = $connection;
   }
 

@@ -2,11 +2,23 @@
 
 class User
 {
-  
-  public function all()
+  public function login($data)
   {
+    $log =  [
+      'email' => $data['email'],
+      'password' => $data['password']
+    ];
     $this->model = new UserModel();
-    echo json_encode($this->model->fetch());
+    $res = $this->model->login($log);
+
+    if($res && password_verify($data['password'], $res['password']))
+    {
+      echo json_encode($res);
+    }
+    else
+    {
+      echo json_encode(['error' => 'Wrong password']);
+    }
   }
 
   public function add($data)
@@ -16,7 +28,7 @@ class User
       'last_name' => $data['last_name'],
       'email' => $data['email'],
       'phone' => $data['phone'],
-      'password' => hash('sha256', $data['password'])
+      'password' => password_hash($data['password'], PASSWORD_DEFAULT)
     ];
     $this->model = new UserModel();
     $this->model->add($add);

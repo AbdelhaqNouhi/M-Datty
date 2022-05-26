@@ -1,12 +1,15 @@
 <?php
 class UserModel extends Database
 {
-  function fetch()
+  function login($data)
   {
-    $query = 'SELECT * from users';
-    $stmnt = $this->execStatement($query);
-    $result = $stmnt->get_result();
-    return $result->fetch_all(MYSQLI_ASSOC);
+    $query = 'SELECT * from users WHERE email = ?';
+    $check = array (
+      $data['email']
+    );
+    $stmnt = $this->execStatement($query, $check);
+    $res = $stmnt->fetch(PDO::FETCH_ASSOC);
+    return $res;
   }
 
   function add($add)

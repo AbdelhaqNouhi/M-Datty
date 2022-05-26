@@ -6,8 +6,7 @@ class CommandeModel extends Database
     {
         $query = 'SELECT * from commandes';
         $stmnt = $this->execStatement($query);
-        $result = $stmnt->get_result();
-        return $result->fetch_all(MYSQLI_ASSOC);
+        return $stmnt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     function  add($data)

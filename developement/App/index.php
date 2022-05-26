@@ -3,13 +3,17 @@ require_once 'loader.php';
 
 $app = new Router();
 
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: POST");
+
 // Users
-$app->GET('/GetUser', function () {
+$app->POST('/Login', function ($data) {
   $user = new User();
-  $user->all();
+  $user->login($data);
 });
 
-$app->POST('/AddUser', function ($data) {
+$app->POST('/Register', function ($data) {
   $user = new User();
   $user->add($data);
 });
