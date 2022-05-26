@@ -1,14 +1,14 @@
 classDiagram
 direction LR
-Clien <|-- Produit
-Clien <|-- Admin
 Admin "1" --> "1..*" Produit
-Produit "1..*" --> "1" Admin
+Admin "1" --> "1..*" Clien
+Admin "1" --> "1..*" demande
+Clien "1" --> "1..*" demande
+Clien "1" --> "1" Basket
 Clien: +String Nom
 Clien: +String Prenom
 Clien: +String email
 Clien: +String phone
-Clien: +data birthday
 Clien: +String adress
 Clien: +int id
 Clien: sing up()
@@ -21,6 +21,20 @@ class Admin{
     +deleteProduit(id)
 }
 class Produit{
+    +String image
+    +String nome de produit
+    +string descriptions
+    +int prix
+    +int id
+}
+class demande{
+    +String image
+    +String nome de produit
+    +string descriptions
+    +int prix
+    +int id
+}
+class Basket{
     +String image
     +String nome de produit
     +string descriptions
