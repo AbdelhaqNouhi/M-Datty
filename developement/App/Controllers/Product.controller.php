@@ -47,12 +47,12 @@ class Product
     }
   }
 
-  public function delete($data)
+  public function delete($id)
   {
     $this->model = new ProductModel();
-    $this->model->delete($data);
+    $this->model->delete($id);
 
-    if ($data) {
+    if ($id) {
       echo json_encode(['message' => 'Product delete successfully']);
     } else {
       echo json_encode(['message' => 'Product not deleted']);

@@ -5,7 +5,7 @@ $app = new Router();
 
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Methods: *");
 
 // Users
 $app->POST('/Login', function ($data) {
@@ -44,9 +44,9 @@ $app->PUT('/UpdateProduct', function ($data) {
   $product->Update($data);
 });
 
-$app->DELETE('/DeleteProduct', function ($data) {
+$app->DELETE('/DeleteProduct', function ($id) {
   $product = new Product();
-  $product->Delete($data);
+  $product->Delete($id);
 });
 
 // Commande
