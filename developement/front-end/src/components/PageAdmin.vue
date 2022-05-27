@@ -5,6 +5,7 @@
         data () {
             return {
                 Box: [],
+                Update: [],
                 Product: {
                     image: "",
                     name: "",
@@ -42,8 +43,44 @@
             }else{
                 console.log('please add a product')
             }
+        },
+
+        async DeleteProduct (id) {
+            const product_id = id;
+            const res = await fetch ('http://localhost:8000/api/DeleteProduct', {
+                method: 'DELETE',
+                body: JSON.stringify({
+                    id: product_id,
+                    done: this.Update,
+                })
+            });
+            const data = await res.json();
+            if(data){
+                console.log('product deleted');
+            }else {
+                console.log('error');
+            }
+        },
+
+        async UpdateProduct (id) {
+            const product_id = id;
+            const res = await fetch ('http://localhost:8000/api/UpdateProduct', {
+                method: 'PUT',
+                body: JSON.stringify({
+                    id: product_id,
+                    é
+                    
+                }),
+            });
+            const data = await res.json();
+            if(data){
+                console.log('product updated');
+            }else {
+                console.log('error');
+            }
         }
     },
+
     mounted () {
         this.GetProduct ();
     }
@@ -71,7 +108,7 @@
                 <th>More</th>
             </tr>
             <tr v-for="box in Box" :key="i" class="list">
-                <td>{{box.image}}</td>
+                <td class="img"><img :src="box.image" alt=""></td>
                 <td>{{box.name}}</td>
                 <td>{{box.description}}</td>
                 <td>{{box.price}}</td>
@@ -89,14 +126,15 @@
                                 ></a>
 
                                 <ul class="dropdown-menu">
-                                    <button class="dropdown-item" name="delete">Delete</button>
-                                    <button class="dropdown-item" name="update" data-bs-toggle="modal" data-bs-target="#staticBackdrops">Update</button>
+                                    <button class="dropdown-item" name="delete" @click="DeleteProduct(box.product_id)">Delete</button>
+                                    <button @click="UpdateProduct(Box.product_id)" class="dropdown-item" name="update" data-bs-toggle="modal" data-bs-target="#staticBackdrops">Update</button>
                                 </ul>
                 </td>
             </tr>
         </table>
     </div>
-            <!-- <div class="modal fade" id="staticBackdrops" data-bs-backdrop="static" aria-labelledby="staticBackdropLabel">
+           <form @submit.prevent="UpdateProduct">
+                <div class="modal fade" id="staticBackdrops" data-bs-backdrop="static" aria-labelledby="staticBackdropLabel">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -104,23 +142,24 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                     <div class="modal-body">
-                        <input type="text" name="image" placeholder="Image">
+                        <input type="text" name="image" placeholder="Image" v-model="Update.image">
                     </div>
                     <div class="modal-body">
-                        <input type="text" name="nome" placeholder="Nome">
+                        <input type="text" name="nome" placeholder="Nome" v-model="Update.name">
                     </div>
                     <div class="modal-body">
-                        <input type="text" name="description" placeholder="descriptions">
+                        <input type="text" name="description" placeholder="descriptions" v-model="Update.description">
                     </div>
                     <div class="modal-body">
-                        <input type="text" name="prix" placeholder="Prix">
+                        <input type="text" name="prix" placeholder="Prix" v-model="Update.price">
                     </div>
                     <div class="modal-footer">
                         <input class="btn w-100" type="Submit" name="update" value="Update" data-bs-dismiss="modal">
                     </div>
             </div>
             </div>
-            </div> -->
+            </div>
+           </form>
             <!-- ---------------------Add------------------------ -->
             <form @submit.prevent="AddProduct">
                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" aria-labelledby="staticBackdropLabel">
@@ -205,19 +244,28 @@ table {
 td, th {
     border: 1px solid #dddddd;
     text-align: left;
+    padding-left: 1rem;
+
+    img {
+        width: 120px;
+        height: 100px;
+    }
+}
+
+th {
+    border: 1px solid #dddddd;
+    text-align: left;
     padding: 1rem;
 }
 
-tr {
+tr,th {
     background-color: $secondary-bg-color;
 }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
 td:last-child {
     width: 2rem;
     height: 2rem;
+    padding: 1rem;
 
     ul {
         padding: 0.5rem;
