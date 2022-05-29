@@ -2,31 +2,27 @@
 
 class AdminModel extends Database
 {
-    function fetch()
+    function login($data)
     {
-        $query = 'select * from users';
-        $stmnt = $this->execStatement($query);
-        return $stmnt->fetchAll(PDO::FETCH_ASSOC);
+        $query = 'SELECT * from Admin WHERE email = ?';
+        $check = array(
+            $data['email']
+        );
+        $stmnt = $this->execStatement($query, $check);
+        $res = $stmnt->fetch(PDO::FETCH_ASSOC);
+        return $res;
     }
 
-    function add()
+    function add($add)
     {
-        $query = 'INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)';
-        $stmnt = $this->execStatement($query);
-        return $stmnt;
-    }
-
-    function update()
-    {
-        $query = 'UPDATE users SET first_name = ?, last_name = ?, email = ?, password = ? WHERE id = ?';
-        $stmnt = $this->execStatement($query);
-        return $stmnt;
-    }
-
-    function delete ()
-    {
-        $query = 'DELETE FROM users WHERE id = ?';
-        $stmnt = $this->execStatement($query);
+        $query = 'INSERT INTO admin (first_name, last_name, email, password) VALUES (?, ?, ?, ?)';
+        $data = array(
+            $add['first_name'],
+            $add['last_name'],
+            $add['email'],
+            $add['password']
+        );
+        $stmnt = $this->execStatement($query, $data);
         return $stmnt;
     }
 }

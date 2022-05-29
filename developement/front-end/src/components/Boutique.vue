@@ -1,16 +1,40 @@
 <script>
 export default{
   name: "Boutique",
+
+  data () {
+    return {
+      Box: [],
+    }
+  },
+  methods: {
+    async GetBoutique () {
+      const res = await fetch ('http://localhost:8000/api/GetProduct', {
+        method: 'GET',
+      });
+      const data = await res.json()
+      if(data){
+        this.Box = data;
+        console.log(this.Box);
+      } else {
+        console.log('error');
+      }
+    }
+  },
+
+  mounted () {
+    this.GetBoutique ();
+  }
 }
 </script>
 
 <template>
 <div class="parent">
   <div class="produits">
-      <div class="produit">
+      <div v-for="box in Box" class="produit">
         <div class="image">
           <img
-            src="../assets/images/Produit/271996255.jpg" alt="" style="width: 100%" />
+            :src="box.image" alt="" style="width: 100%" />
           <div class="top-right">
             <button>Nouveauté</button>
           </div>
@@ -18,135 +42,18 @@ export default{
         <div class="description">
           <div class="a">
             <div>
-              <p>hhhhhhhhhhhhhhhhhhhhhhh</p>
+              <p>{{box.name}}</p>
             </div>
             <div class="bb">
               <img src="../assets/images/shopping-cart-svgrepo-com (1).svg" alt="">
             </div>
           </div>
           <div>
-            <h1>200$</h1>
+            <h1>{{box.price}}</h1>
           </div>
         </div>
       </div>
-
-      <div class="produit">
-        <div class="image">
-          <img
-            src="../assets/images/Produit/277771940.jpg" alt="" style="width: 100%" />
-          <div class="top-right">
-            <button>Nouveauté</button>
-          </div>
-        </div>
-        <div class="description">
-          <div class="a">
-            <div>
-              <p>hhhhhhhhhhhhhhhhhhhhhhh</p>
-            </div>
-            <div class="bb">
-              <img src="../assets/images/shopping-cart-svgrepo-com (1).svg" alt="">
-            </div>
-          </div>
-          <div>
-            <h1>200$</h1>
-          </div>
-        </div>
-      </div>
-
-      <div class="produit">
-        <div class="image">
-          <img
-            src="../assets/images/Produit/272811481.jpg" alt="" style="width: 100%" />
-          <div class="top-right">
-            <button>Nouveauté</button>
-          </div>
-        </div>
-        <div class="description">
-          <div class="a">
-            <div>
-              <p>hhhhhhhhhhhhhhhhhhhhhhh</p>
-            </div>
-            <div class="bb">
-              <img src="../assets/images/shopping-cart-svgrepo-com (1).svg" alt="">
-            </div>
-          </div>
-          <div>
-            <h1>200$</h1>
-          </div>
-        </div>
-      </div>
-  </div>
-  <!-- -------------------- -->
-  <div class="produits">
-      <div class="produit">
-        <div class="image">
-          <img
-            src="../assets/images/Produit/271996255.jpg" alt="" style="width: 100%" />
-          <div class="top-right">
-            <button>Nouveauté</button>
-          </div>
-        </div>
-        <div class="description">
-          <div class="a">
-            <div>
-              <p>hhhhhhhhhhhhhhhhhhhhhhh</p>
-            </div>
-            <div class="bb">
-              <img src="../assets/images/shopping-cart-svgrepo-com (1).svg" alt="">
-            </div>
-          </div>
-          <div>
-            <h1>200$</h1>
-          </div>
-        </div>
-      </div>
-
-      <div class="produit">
-        <div class="image">
-          <img
-            src="../assets/images/Produit/277771940.jpg" alt="" style="width: 100%" />
-          <div class="top-right">
-            <button>Nouveauté</button>
-          </div>
-        </div>
-        <div class="description">
-          <div class="a">
-            <div>
-              <p>hhhhhhhhhhhhhhhhhhhhhhh</p>
-            </div>
-            <div class="bb">
-              <img src="../assets/images/shopping-cart-svgrepo-com (1).svg" alt="">
-            </div>
-          </div>
-          <div>
-            <h1>200$</h1>
-          </div>
-        </div>
-      </div>
-
-      <div class="produit">
-        <div class="image">
-          <img
-            src="../assets/images/Produit/272811481.jpg" alt="" style="width: 100%" />
-          <div class="top-right">
-            <button>Nouveauté</button>
-          </div>
-        </div>
-        <div class="description">
-          <div class="a">
-            <div>
-              <p>hhhhhhhhhhhhhhhhhhhhhhh</p>
-            </div>
-            <div class="bb">
-              <img src="../assets/images/shopping-cart-svgrepo-com (1).svg" alt="">
-            </div>
-          </div>
-          <div>
-            <h1>200$</h1>
-          </div>
-        </div>
-      </div>
-  </div>
+    </div>
 </div>
 </template>
 
@@ -160,22 +67,23 @@ export default{
     flex-direction: column;
 }
 .produits {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2rem;
   gap: 2rem;
   margin: 0 1rem;
 
+
   @include tablet {
-    display: flex;
-    gap: 8rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
   }
 
   @include desktop {
   margin: 1rem 8rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   }
 }

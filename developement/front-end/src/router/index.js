@@ -6,6 +6,8 @@ import Login from '../components/Login.vue'
 import Register from '../components/Register.vue'
 import PageUser from '../components/PageUser.vue'
 import PageAdmin from '../components/PageAdmin.vue'
+import Command from '../components/Command.vue'
+import LoginAdmin from '../components/LoginAdmin.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -47,10 +49,22 @@ const router = createRouter({
     },
 
     {
+      path: '/LoginAdmin',
+      name: 'LoginAdmin',
+      component: LoginAdmin,
+    },
+
+    {
       path: '/PageAdmin',
       name: 'PageAdmin',
       component: PageAdmin,
     },
+
+    {
+      path: '/Command',
+      name: 'Command',
+      component: Command,
+    }
   ]
 });
 

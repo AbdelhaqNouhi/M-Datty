@@ -30,7 +30,6 @@ export default {
       <nav class="menu">
         <Router-Link to="/">Home</Router-Link>
         <Router-Link to="/Boutique">Boutique</Router-Link>
-        <Router-Link to="/PageAdmin">PageAdmin</Router-Link>
         <a href="/#Contact">Contact</a>
       </nav>
       <nav :class="menuIcon">
@@ -41,11 +40,14 @@ export default {
       </nav>
       <div class="img-user">
         <div class="cart">
-          <img src="../assets/images/Shopping Cart.svg" alt="">
+          <button><img src="../assets/images/Shopping Cart.svg" alt=""></button>
         </div>
         <div class="user">
           <img src="../assets/images/pexels-brett-jordan-9074993.jpg" alt="" />
           <Router-Link to="/Login"><button class="login">Login</button></Router-Link>
+        </div>
+        <div class="admin">
+          <Router-link to="LoginAdmin"><img src="../assets/images/login-admin.svg" alt=""></Router-link>
         </div>
       </div>
       <button @click="openMenu">
@@ -160,14 +162,6 @@ header {
   @include desktop {
     margin: 0;
   }
-
-  .cart {
-
-    img {
-      width: 1.6rem;
-      height: 1.6rem;
-    }
-  }
   .user {
     display: flex;
     gap: 1rem;
@@ -213,5 +207,23 @@ header {
 .router-link-active {
   color: $button-color;
   border-bottom: solid 2px white;
+}
+
+.cart {
+    button {
+      display: block;
+    }
+    img {
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+  }
+.admin {
+  display: none;
+  width: 1rem;
+
+  @include desktop {
+    display: block;
+  }
 }
 </style>

@@ -21,7 +21,7 @@ class User
     }
   }
 
-  public function add($data)
+public function add($data)
  {
    $add = [
       'first_name' => $data['first_name'],

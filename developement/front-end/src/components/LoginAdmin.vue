@@ -1,6 +1,6 @@
 <script>
 export default {
-    name: "Login",
+    name: "LoginAdmin",
 
     data () {
         return {
@@ -12,7 +12,7 @@ export default {
 
     methods: {
         async login() {
-            const res = await fetch('http://localhost:8000/api/Login', {
+            const res = await fetch('http://localhost:8000/api/LoginAdmin', {
                 method: 'POST',
                 body: JSON.stringify({
                     email: this.email,
@@ -21,7 +21,7 @@ export default {
             });
             const data = await res.json();
             if (!data.error) {
-                this.$router.push('/');
+                this.$router.push('/PageAdmin');
             }else{
                 this.check = true;
             }
@@ -33,7 +33,7 @@ export default {
 <template>
 <form class="login" action="">
     <div class="info">
-        <h1>Connexion</h1>
+        <h1>Connexion Admin</h1>
         <div class="input">
             <label>E-mail</label>
             <input type="email" name="" placeholder="E-mail" v-model="email">
@@ -46,9 +46,6 @@ export default {
             </div>
         </div>
         <input @click.prevent="login" type="submit" name="" value="Connexion">
-        <div class="register">
-            <router-link to="/Register">S'inscrire</router-link>
-        </div>
     </div>
 </form>
 </template>

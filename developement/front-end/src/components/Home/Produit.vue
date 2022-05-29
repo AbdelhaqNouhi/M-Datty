@@ -1,6 +1,31 @@
 <script>
 export default {
   name: "Produit",
+
+  data () {
+    return {
+      Box: [],
+    }
+  },
+
+  methods: {
+    async GetBoutique () {
+      const res = await fetch ('http://localhost:8000/api/GetProduct', {
+        method: 'GET',
+      });
+      const data = await res.json()
+      if(data){
+        this.Box = data;
+        console.log(this.Box);
+      } else {
+        console.log('error');
+      }
+    }
+  },
+
+  mounted () {
+    this.GetBoutique ();
+  }
 };
 </script>
 
