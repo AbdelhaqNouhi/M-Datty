@@ -2,9 +2,18 @@
 
 class ProductModel extends Database 
 {
-    function fetch()
+    function getThre()
     {
-        $query = 'SELECT * from products';
+        $query = 'SELECT * from products
+        order by products.product_id desc LIMIT 3';
+        $stmnt = $this->execStatement($query);
+        return $stmnt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    function getAll()
+    {
+        $query = 'SELECT * from products
+        order by products.product_id desc';
         $stmnt = $this->execStatement($query);
         return $stmnt->fetchAll(PDO::FETCH_ASSOC);
     }

@@ -29,9 +29,15 @@ $app->DELETE('/DeleteUser', function ($data) {
 });
 
 // Prudact
+
+$app->GET('/ThreProduct', function () {
+  $product = new Product();
+  $product->getThre();
+});
+
 $app->GET('/GetProduct', function () {
   $product = new Product();
-  $product->all();
+  $product->getAll();
 });
 
 $app->POST('/AddProduct', function ($data) {

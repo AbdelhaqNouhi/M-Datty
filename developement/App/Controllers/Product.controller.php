@@ -2,10 +2,16 @@
 
 class Product
 {
-  public function all()
+  public function getThre()
   {
     $this->model = new ProductModel();
-    echo json_encode($this->model->fetch());
+    echo json_encode($this->model->getThre());
+  }
+
+  public function getAll()
+  {
+    $this->model = new ProductModel();
+    echo json_encode($this->model->getAll());
   }
 
   public function add($data)

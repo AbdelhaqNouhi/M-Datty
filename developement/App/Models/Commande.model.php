@@ -4,7 +4,8 @@ class CommandeModel extends Database
 {
     function fetch()
     {
-        $query = 'SELECT * from commandes';
+        $query = 'SELECT * from commandes
+        order by commandes.commande_id desc';
         $stmnt = $this->execStatement($query);
         return $stmnt->fetchAll(PDO::FETCH_ASSOC);
     }
