@@ -33,11 +33,10 @@ export default{
   <div class="produits">
       <div v-for="box in Box" class="produit">
         <div class="image">
-          <img
-            :src="box.image" alt="" style="width: 100%" />
-          <div class="top-right">
+          <Router-Link to=""><img :src="box.image" alt="" style="width: 100%" /></Router-Link>
+          <!-- <div class="top-right">
             <button>Nouveauté</button>
-          </div>
+          </div> -->
         </div>
         <div class="description">
           <div class="a">

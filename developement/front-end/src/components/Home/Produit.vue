@@ -9,8 +9,8 @@ export default {
   },
 
   methods: {
-    async GetBoutique () {
-      const res = await fetch ('http://localhost:8000/api/GetProduct', {
+    async GetThreProduct () {
+      const res = await fetch ('http://localhost:8000/api/ThreProduct', {
         method: 'GET',
       });
       const data = await res.json()
@@ -24,17 +24,18 @@ export default {
   },
 
   mounted () {
-    this.GetBoutique ();
+    this.GetThreProduct ();
   }
-};
+}
+
 </script>
 
 <template>
+<div class="parent">
   <div class="produits">
-      <div class="produit">
+      <div v-for="box in Box" class="produit">
         <div class="image">
-          <img
-            src="../../assets/images/Produit/277771940.jpg" alt="" style="width: 100%" />
+          <Router-Link to=""><img :src="box.image" alt="" style="width: 100%" /></Router-Link>
           <div class="top-right">
             <button>Nouveauté</button>
           </div>
@@ -42,87 +43,47 @@ export default {
         <div class="description">
           <div class="a">
             <div>
-              <p>hhhhhhhhhhhhhhhhhhhhhhh</p>
+              <p>{{box.name}}</p>
             </div>
             <div class="bb">
-              <img src="../../assets/images/shopping-cart-svgrepo-com (1).svg" alt="">
+              <img src="../assets/images/shopping-cart-svgrepo-com (1).svg" alt="">
             </div>
           </div>
           <div>
-            <h1>200$</h1>
+            <h1>{{box.price}}</h1>
           </div>
         </div>
       </div>
-
-      <div class="produit">
-        <div class="image">
-          <img
-            src="../../assets/images/Produit/272811481.jpg" alt="" style="width: 100%" />
-          <div class="top-right">
-            <button>Nouveauté</button>
-          </div>
-        </div>
-        <div class="description">
-          <div class="a">
-            <div>
-              <p>hhhhhhhhhhhhhhhhhhhhhhh</p>
-            </div>
-            <div class="bb">
-              <img src="../../assets/images/shopping-cart-svgrepo-com (1).svg" alt="">
-            </div>
-          </div>
-          <div>
-            <h1>200$</h1>
-          </div>
-        </div>
-      </div>
-
-      <div class="produit">
-        <div class="image">
-          <img
-            src="../../assets/images/Produit/277539106.jpg" alt="" style="width: 100%" />
-          <div class="top-right">
-            <button>Nouveauté</button>
-          </div>
-        </div>
-        <div class="description">
-          <div class="a">
-            <div>
-              <p>hhhhhhhhhhhhhhhhhhhhhhh</p>
-            </div>
-            <div class="bb">
-              <img src="../../assets/images/shopping-cart-svgrepo-com (1).svg" alt="">
-            </div>
-          </div>
-          <div>
-            <h1>200$</h1>
-          </div>
-        </div>
-      </div>
-  </div>
+    </div>
+</div>
 </template>
 
 <style lang="scss" scoped>
 @import "../../assets/Scss/variable";
 @import "../../assets/Scss/media";
 
+.parent{
+    display: flex;
+    flex-direction: column;
+}
 .produits {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2rem;
   gap: 2rem;
   margin: 0 1rem;
 
+
   @include tablet {
-    display: flex;
-    grid-gap: 8rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
   }
 
   @include desktop {
   margin: 1rem 8rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   }
 }
@@ -131,7 +92,6 @@ export default {
   flex-direction: column;
   gap: 0.8rem;
   height: 33rem;
-
 }
 .image {
   width: 100%;
@@ -169,6 +129,7 @@ export default {
   padding: 1rem;
   border-radius: 0.3rem;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+
 
   h1{
     padding: 1rem 0 0 0;
