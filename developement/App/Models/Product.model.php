@@ -18,18 +18,30 @@ class ProductModel extends Database
         return $stmnt->fetchAll(PDO::FETCH_ASSOC);
     }
     
-    function add($data)
+    function add($image, $name, $description, $price)
     {
-        $query = 'INSERT INTO products (image, name, description, price) VALUES (?, ?, ?, ?)';
-        $add = array (
-            $data['image'],
-            $data['name'],
-            $data['description'],
-            $data['price']
-        );
-        $stmnt = $this->execStatement($query, $add);
+        $query = 'INSERT INTO products (image, name, description, price)
+        VALUES (:image, :name, :description, :price)';
+        $stmnt = $this->execStatement($query, [
+            'image' => $image,
+            'name' => $name,
+            'description' => $description,
+            'price' => $price
+        ]);
         return $stmnt;
     }
+    // {
+     
+    //     $query = 'INSERT INTO products (image, name, description, price) VALUES (:image, :name, :description, :price)';
+    //     // $add = array (
+    //     //     $data['name'],
+    //     //     $data['description'],
+    //     //     $data['price']
+    //     // );
+    //     //bin
+    //     $stmnt = $this->execStatement($query, $add, $image);
+    //     return $stmnt;
+    // }
     
     function update($data)
     {
