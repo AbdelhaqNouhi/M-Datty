@@ -43,7 +43,7 @@ export default {
           <button><img src="../assets/images/Shopping Cart.svg" alt=""></button>
         </div>
         <div class="user">
-          <img src="../assets/images/pexels-brett-jordan-9074993.jpg" alt="" />
+          <img src="../assets/images/aboutus.jpg" alt="" />
           <Router-Link to="/Login"><button class="login">Login</button></Router-Link>
         </div>
         <div class="admin">
