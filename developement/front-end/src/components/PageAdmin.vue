@@ -117,7 +117,7 @@ export default {
         <th>More</th>
       </tr>
       <tr v-for="box in Box" :key="i" class="list">
-        <td class="img"><img :src="box.image" alt="" /></td>
+        <td class="img"><img :src="`http://localhost:8000/uploads/` + box.image" alt="" /></td>
         <td>{{ box.name }}</td>
         <td>{{ box.description }}</td>
         <td>{{ box.price }}</td>
