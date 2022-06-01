@@ -50,9 +50,9 @@ $app->PUT('/UpdateProduct', function ($data) {
   $product->Update($data);
 });
 
-$app->DELETE('/DeleteProduct', function ($id) {
+$app->POST('/DeleteProduct', function ($data) {
   $product = new Product();
-  $product->Delete($id);
+  $product->Delete($data);
 });
 
 // Commande

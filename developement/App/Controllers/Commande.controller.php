@@ -6,6 +6,12 @@ class Commande
     {
         $this->model = new CommandeModel();
         echo json_encode($this->model->fetch());
+
+        if ($this->model->fetch()) {
+            echo json_encode(['message' => 'Commande fetched successfully']);
+        } else {
+            echo json_encode(['message' => 'Commande not fetched']);
+        }
     }
 
     public function add($data)

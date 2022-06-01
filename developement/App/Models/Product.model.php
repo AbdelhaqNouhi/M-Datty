@@ -59,9 +59,11 @@ class ProductModel extends Database
     
     function delete ($data)
     {
-        $id = $data->id;
         $query = 'DELETE FROM products WHERE product_id = ?';
-        $stmnt = $this->execStatement($query,[$id]);
+        $delete = array (
+            $data['id']
+        );
+        $stmnt = $this->execStatement($query, $delete);
         return $stmnt;
     }   
 }
