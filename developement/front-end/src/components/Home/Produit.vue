@@ -1,4 +1,5 @@
 <script>
+import axios from 'axios';
 export default {
   name: "Produit",
 
@@ -9,17 +10,14 @@ export default {
   },
 
   methods: {
-    async GetThreProduct () {
-      const res = await fetch ('http://localhost:8000/api/ThreProduct', {
-        method: 'GET',
-      });
-      const data = await res.json()
-      if(data){
-        this.Box = data;
-        console.log(this.Box);
-      } else {
-        console.log('error');
-      }
+    GetThreProduct() {
+      axios.get('http://localhost:8000/api/ThreProduct')
+        .then(response => {
+          this.Box = response.data;
+        })
+        .catch(error => {
+          console.log(error);
+        })
     }
   },
 

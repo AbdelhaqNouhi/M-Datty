@@ -1,4 +1,5 @@
 <script>
+import axios from 'axios';
 export default{
   name: "Boutique",
 
@@ -8,17 +9,14 @@ export default{
     }
   },
   methods: {
-    async GetBoutique () {
-      const res = await fetch ('http://localhost:8000/api/GetProduct', {
-        method: 'GET',
-      });
-      const data = await res.json()
-      if(data){
-        this.Box = data;
-        console.log(this.Box);
-      } else {
-        console.log('error');
-      }
+    GetBoutique () {
+      axios.get('http://localhost:8000/api/GetProduct')
+        .then(response => {
+          this.Box = response.data;
+        })
+        .catch(error => {
+          console.log(error);
+        })
     }
   },
 

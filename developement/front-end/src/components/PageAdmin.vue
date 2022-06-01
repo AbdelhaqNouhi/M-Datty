@@ -43,18 +43,12 @@ export default {
           console.log(response);
         });
     },
-    
-    async GetProduct() {
-      const res = await fetch("http://localhost:8000/api/GetProduct", {
-        method: "GET",
+
+    GetProduct() {
+      axios.get("http://localhost:8000/api/GetProduct")
+      .then((response) => {
+        this.Box = response.data;
       });
-      const data = await res.json();
-      if (data) {
-        this.Box = data;
-        console.log(this.Box);
-      } else {
-        console.log("please add a product");
-      }
     },
 
     async DeleteProduct(id) {

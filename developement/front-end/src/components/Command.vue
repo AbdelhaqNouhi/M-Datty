@@ -1,4 +1,5 @@
 <script>
+import axios from 'axios';
 import NavAdmin from './NavAdmin.vue'
 export default {
     name: "Command",
@@ -14,18 +15,15 @@ export default {
     },
 
     methods: {
-        async GetCommande () {
-            console.log(this.Box);
-            const res = await fetch ('http://localhost:8000/api/GetCommande', {
-                method: 'GET',
-            });
-            const data = await res.json();
-            if(data){
-                this.Box = data;
-            }else{
-                console.log('please add a product')
-            }
-        }
+        GetCommande () {
+            axios.get('http://localhost:8000/api/GetCommande')
+                .then(response => {
+                    this.Box = response.data;
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        },
     },
 
     mounted () {
