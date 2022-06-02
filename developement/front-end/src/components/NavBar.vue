@@ -46,9 +46,6 @@ export default {
           <img src="../assets/images/aboutus.jpg" alt="" />
           <Router-Link to="/Login"><button class="login">Login</button></Router-Link>
         </div>
-        <div class="admin">
-          <Router-link to="LoginAdmin"><img src="../assets/images/login-admin.svg" alt=""></Router-link>
-        </div>
       </div>
       <button @click="openMenu">
         <img src="../assets/images/menu.svg" alt="" />

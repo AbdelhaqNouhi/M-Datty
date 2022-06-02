@@ -5,7 +5,7 @@
 </script>
 
 <template>
-<div class="aboutus">
+<div class="aboutus" id="about">
     <div class="about">
         <div class="img">
             <img src="../../assets/images/aboutus.jpg" alt="">

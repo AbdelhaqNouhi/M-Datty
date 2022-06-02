@@ -31,7 +31,7 @@ export default{
   <div class="produits">
       <div v-for="box in Box" class="produit">
         <div class="image">
-          <Router-Link to="/ProductItems"><img :src="`http://localhost:8000/uploads/` + box.image" alt="" style="width: 100%" /></Router-Link>
+          <Router-Link to="/ProductItems"><img :src="`http://localhost:8000/uploads/` + box.image" alt="" /></Router-Link>
           <!-- <div class="top-right">
             <button>Nouveauté</button>
           </div> -->
@@ -41,8 +41,8 @@ export default{
             <div>
               <p>{{box.name}}</p>
             </div>
-            <div class="bb">
-              <img src="../assets/images/shopping-cart-svgrepo-com (1).svg" alt="">
+            <div class="card">
+              <img src="../assets/images/shopping-cart-svgrepo.svg" alt="">
             </div>
           </div>
           <div>
@@ -136,9 +136,11 @@ export default{
     display: flex;
     align-items: center;
 
-    .bb {
+    .card {
       width: 2rem;
       margin-left: auto;
+      border: none;
+      background-color: #E5E5E5;
     }
   }
 }

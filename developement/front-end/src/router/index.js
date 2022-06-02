@@ -9,6 +9,7 @@ import PageAdmin from '../components/PageAdmin.vue'
 import Command from '../components/Command.vue'
 import LoginAdmin from '../components/LoginAdmin.vue'
 import ProductItems from '../components/ProductItems.vue'
+import AboutUs from '../components/Home/AboutUs.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,6 +30,12 @@ const router = createRouter({
       path: '/Contact',
       name: 'Contact',
       component: Contact,
+    },
+
+    {
+      path: '/AboutUs',
+      name: 'AboutUs',
+      component: AboutUs,
     },
 
     {
