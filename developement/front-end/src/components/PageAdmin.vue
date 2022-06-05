@@ -34,11 +34,7 @@ export default {
       formData.append("description", this.Product.description);
       formData.append("price", this.Product.price);
 
-      axios
-        .post("http://localhost:8000/api/AddProduct", formData)
-        .then(function (response) {
-          console.log(response);
-        })
+      axios.post("http://localhost:8000/api/AddProduct", formData)
         .then((response) => {
           console.log(response);
         });
@@ -53,10 +49,11 @@ export default {
 
     async DeleteProduct(id) {
       const product_id = id;
+      console.log(product_id);
       const res = await fetch("http://localhost:8000/api/DeleteProduct", {
-        method: "DELETE",
+        method: "POST",
         body: JSON.stringify({
-          id: product_id,
+          data: product_id,
         }),
       });
       const data = await res.json();
@@ -233,7 +230,8 @@ export default {
             ></button>
           </div>
           <div class="modal-body">
-            <input type="file" name="image" @change="selectimage" />
+            <label for="pic">choice image</label>
+            <input type="file" id="pic" name="image" hidden @change="selectimage" />
             <!-- <input type="text" name="image" placeholder="Image" v-model="this.Product.image"> -->
           </div>
           <div class="modal-body">
@@ -337,13 +335,23 @@ td:last-child {
   padding: 1rem 0rem;
 }
 .modal-body {
+  text-align: center;
   padding: 1rem 0;
 
-  input {
+  label {
+    background-color: white;
+    text-align: center;
     padding: 0.5rem;
-    border-radius: 0.2rem;
-    border: 1px solid #dddddd;
     width: 100%;
+    border-radius: 0.3;
+    // color: white;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    border: 1px solid #ffffff;
   }
 }
 .modal-footer {

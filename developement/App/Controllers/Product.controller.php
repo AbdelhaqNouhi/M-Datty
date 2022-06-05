@@ -66,11 +66,6 @@ class Product
   }
   public function add($data)
   {
-    // $add = [
-    //   'name' => $data['name'],
-    //   'description' => $data['description'],
-    //   'price' => $data['price']
-    // ];
     $name = $_POST['name'];
     $description = $_POST['description'];
     $price = $_POST['price'];

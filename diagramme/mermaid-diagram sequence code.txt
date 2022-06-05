@@ -5,6 +5,19 @@ participant server
 participant database
 
 Note over User: enters site
+User ->>+ site: visit
+site ->> server: fetch page home
+site ->> server: fetch all produit
+server ->>+ database: get all produits
+server -->> site: send all produit
+site ->> User: show all produit
+
+Note over User: register
+User ->>+ site: entre info
+site ->>+ server: sent info
+server ->>+ database: register user
+database -->> server: succees
+
 Note over User: click on login
 
 User ->>+ site: login
@@ -14,11 +27,14 @@ site ->>+ server: verify credentials
 
 alt is credentials valid
 server -->> site: credentials ok
-site ->> server: fetch all produit
-server ->>+ database: get all produits
-database -->>- server: all produits
-server -->> site: send all produit
-site ->> User: show all produit
+site ->> server: add to basket
+site ->> server: commande
+site ->> server: paiment
+
+server ->>+ database: get info
+database -->>- server: all info
+server -->> site: send all info
+site ->> User: show all info
 
 else is credentials invalid
 server -->>- site: credentials invalid
@@ -28,7 +44,7 @@ end
 %% reserve une produit
 Note over User: click on reserve produit
 User ->>+ site: reserve produit
-site ->> User: request form  info
+site ->> User: request form info
 User ->> site: enter info
 
 alt detials reservation valid

@@ -113,6 +113,10 @@ export default {
     a {
       text-decoration: none;
       color: $button-color;
+      }
+
+      a:hover {
+        color: white;
     }
   }
 

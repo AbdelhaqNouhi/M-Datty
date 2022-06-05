@@ -50,7 +50,7 @@ $app->PUT('/UpdateProduct', function ($data) {
   $product->Update($data);
 });
 
-$app->POST('/DeleteProduct', function ($data) {
+$app->post('/DeleteProduct', function ($data) {
   $product = new Product();
   $product->Delete($data);
 });
@@ -72,6 +72,8 @@ $app->PUT('/UpdateCommande', function ($data) {
 });
 
 $app->DELETE('/DeleteCommande', function ($data) {
+  var_dump($data);
+  die;
   $commande = new Commande();
   $commande->delete($data);
 });
