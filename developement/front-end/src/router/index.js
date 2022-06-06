@@ -10,6 +10,7 @@ import Command from '../components/Command.vue'
 import LoginAdmin from '../components/LoginAdmin.vue'
 import ProductItems from '../components/ProductItems.vue'
 import AboutUs from '../components/Home/AboutUs.vue'
+import Panier from '../components/Panier.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -48,7 +49,7 @@ const router = createRouter({
       path: '/Register',
       name: 'Register',
       component: Register,
-    },
+    }, 
 
     {
       path: '/PageUser',
@@ -78,7 +79,13 @@ const router = createRouter({
       path: '/ProductItems',
       name: 'ProductItems',
       component: ProductItems,
-    }
+    },
+    
+    {
+      path: '/Panier',
+      name: 'Panier',
+      component: Panier,
+    },
   ]
 });
 

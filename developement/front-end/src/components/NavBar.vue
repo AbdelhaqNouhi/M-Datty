@@ -40,7 +40,7 @@ export default {
       </nav>
       <div class="img-user">
         <div class="cart">
-          <button><img src="../assets/images/Shopping Cart.svg" alt=""></button>
+          <Router-Link to="/Panier"><img src="../assets/images/Shopping Cart.svg" alt=""></Router-Link>
         </div>
         <div class="user">
           <img src="../assets/images/aboutus.jpg" alt="" />
