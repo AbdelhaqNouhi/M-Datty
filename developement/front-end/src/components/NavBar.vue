@@ -4,16 +4,22 @@ export default {
   data() {
     return {
       menuIcon: "close",
+      check: true,
     };
   },
   methods: {
     openMenu() {
-      if (this.menuIcon == "close") {
+        this.check = false;
         this.menuIcon = "open";
-      } else {
+      },
+    closeMenu() {
+        this.check = true;
         this.menuIcon = "close";
-      }
     },
+
+    ShowPaier () {
+      const panier = useCounterStore ();
+    }
   },
 };
 </script>
@@ -25,7 +31,7 @@ export default {
     </div> -->
     <header class="navbar">
       <div class="logo">
-        <img alt="Vue logo" class="logo" src="../assets/images/logo 2.png" />
+        <img alt="Vue logo" class="logo" src="../assets/images/icone/logo 2.png" />
       </div>
       <nav class="menu">
         <Router-Link to="/">Home</Router-Link>
@@ -39,17 +45,22 @@ export default {
         <Router-Link to="/Login"><button class="loginMobile">Login</button></Router-Link>
       </nav>
       <div class="img-user">
-        <div class="cart">
-          <Router-Link to="/Panier"><img src="../assets/images/Shopping Cart.svg" alt=""></Router-Link>
+        <div @click="ShowPaier" class="cart">
+          <img src="../assets/images/icone/Shopping Cart.svg" alt="">
         </div>
         <div class="user">
           <img src="../assets/images/aboutus.jpg" alt="" />
           <Router-Link to="/Login"><button class="login">Login</button></Router-Link>
         </div>
       </div>
-      <button @click="openMenu">
-        <img src="../assets/images/menu.svg" alt="" />
-      </button>
+      <!-- <div class="mune-close"> -->
+        <button v-if="check" @click="openMenu">
+          <img src="../assets/images/icone/menu.svg" alt="" />
+        </button>
+        <button v-if="!check" @click="closeMenu" >
+          <img class="drop" src="../assets/images/icone/close.svg" alt="">
+        </button>
+      <!-- </div> -->
     </header>
   </div>
 </template>
@@ -152,7 +163,7 @@ header {
 }
 .img-user {
   display: flex;
-  gap: 3rem;
+  gap: 2rem;
   align-items: center;
   margin-left: auto;
 
@@ -161,17 +172,13 @@ header {
   }
   .user {
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
     align-items: center;
     img {
-      display: none;
+      // display: none;
       border-radius: 5rem;
       width: 1.6rem;
       height: 1.6rem;
-  
-      @include desktop {
-        display: block;
-      }
     }
     button {
       display: none;
@@ -192,6 +199,10 @@ header {
     }
   }
 }
+
+  .drop {
+    width: 2rem;
+  }
 .loginMobile {
   font-size: 14px;
   width: 4rem;

@@ -1,4 +1,17 @@
 <script>
+import { ref } from 'vue';
+
+// const panier = useCounterStore ();
+
+const count = ref(0);
+
+const increment = () => {
+  count.value++;
+}
+const decrement = () => {
+  count.value--;
+}
+
 export default {
   name: "Panier",
 
@@ -21,8 +34,11 @@ export default {
             <p>Product Name</p>
           </div>
           <div class="count">
-            <button>-</button>
-            <button>+</button>
+            <button @click="decrement">-</button>
+
+              {{ count.value }}
+
+            <button @click="increment">+</button>
           </div>
         </div>
         <div class="price">
@@ -50,12 +66,20 @@ export default {
   width: 100%;
   margin-left: auto;
   padding: 1rem;
-  background-color: white;
+  background-color: $secondary-bg-color;
+
+
+  @include tablet {
+    width: 70%;
+  }
 
   @include desktop {
     width: 50%;
   }
+
+  // :
   .title {
+    padding: 1rem;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -66,6 +90,7 @@ export default {
   }
 
   .product {
+    color: white;
     padding: 0.5rem;
     display: flex;
     align-items: center;
@@ -75,20 +100,19 @@ export default {
 
 
     .product_img {
-      width: 22%;
-
 
       img {
         border-radius: 0.2rem;
-        width: 100%;
+        height: 5rem;
       }
 
     }
 
     .product_info {
+      margin-top: auto;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.5rem;
     }
 
     .count {
@@ -126,10 +150,13 @@ export default {
       width: 4rem;
       border-radius: 0.3rem;
       text-align: center;
-      background-color: aqua;
-      margin-left: auto;
+      align-items: center;
+      background-color: $header_color;
+      color: white;
+      // margin-left: auto;
       margin-top: auto;
     }
+
   }
 }
 </style>

@@ -42,7 +42,7 @@ export default{
               <p>{{box.name}}</p>
             </div>
             <div class="card">
-              <img src="../assets/images/shopping-cart-svgrepo.svg" alt="">
+              <img src="../assets/images/icone/shopping-cart-svgrepo.svg" alt="">
             </div>
           </div>
           <div>
