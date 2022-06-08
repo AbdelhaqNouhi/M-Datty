@@ -1,17 +1,24 @@
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
 
-export const useStore = defineStore({
-  id: 'counter',
+export const useStore = defineStore( 'store', {
   state: () => ({
-     
+    Panier: false,
   }),
 
-  getters: {
-    doubleCount: (state) => state.counter * 2
-  },
   actions: {
-    increment() {
-      this.counter++
+    showPanier() {
+      this.Panier = !this.Panier;
+      return this.Panier;
+    },
+    closePanier () {
+      
+    },
+    lecturepanier(){
+      return this.Panier;
     }
+  },
+
+  getters: {
+    //  
   }
 })

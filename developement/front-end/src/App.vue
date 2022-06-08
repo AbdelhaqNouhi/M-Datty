@@ -1,22 +1,16 @@
-<script>
-import { useStore } from './stores/counter';
-import    NavBar from './components/NavBar.vue';
+<script setup>
+import NavBar from './components/NavBar.vue';
 import Footer from './components/Footer.vue';
+import Panier from './components/Panier.vue';
+import { useStore } from '@/stores/counter';
 
-// useStore();
+const store = useStore()
 
-export default{
-  name: 'App',
-  
-  components: {
-    NavBar,
-    Footer,
-  }
-}
 </script>
 
 <template>
   <NavBar />
+  <Panier v-if="store.Panier" />
   <Router-View />
   <Footer />
 </template>

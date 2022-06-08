@@ -12,7 +12,7 @@ export default {
     Produit,
     Servese,
     AboutUs,
-    Contact
+    Contact,
   },
 }
 </script>

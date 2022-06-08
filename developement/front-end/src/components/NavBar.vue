@@ -1,5 +1,14 @@
 <script>
+import { useStore } from "@/stores/counter";
+let check = false ;
 export default {
+  setup() {
+    const store = useStore();
+    return {
+      Panier : store.Panier,
+      showPanier: store.showPanier,
+    };
+  },
   name: "NavBar",
   data() {
     return {
@@ -9,16 +18,21 @@ export default {
   },
   methods: {
     openMenu() {
-        this.check = false;
+        if(!check) {
         this.menuIcon = "open";
-      },
-    closeMenu() {
-        this.check = true;
-        this.menuIcon = "close";
+        this.check = false;
+      }
     },
-
-    ShowPaier () {
-      const panier = useCounterStore ();
+    closeMenu() {
+      this.check = true;
+      this.menuIcon = "close";
+    },
+    openstore(){
+      if(this.menuIcon=="close"){
+        this.showPanier();
+        check=!check;
+      }
+      
     }
   },
 };
@@ -31,7 +45,11 @@ export default {
     </div> -->
     <header class="navbar">
       <div class="logo">
-        <img alt="Vue logo" class="logo" src="../assets/images/icone/logo 2.png" />
+        <img
+          alt="Vue logo"
+          class="logo"
+          src="../assets/images/icone/logo 2.png"
+        />
       </div>
       <nav class="menu">
         <Router-Link to="/">Home</Router-Link>
@@ -42,24 +60,28 @@ export default {
         <Router-Link to="/">Home</Router-Link>
         <Router-Link to="/Boutique">Boutique</Router-Link>
         <a href="#Contact">Contact</a>
-        <Router-Link to="/Login"><button class="loginMobile">Login</button></Router-Link>
+        <Router-Link to="/Login"
+          ><button class="loginMobile">Login</button></Router-Link
+        >
       </nav>
       <div class="img-user">
-        <div @click="ShowPaier" class="cart">
-          <img src="../assets/images/icone/Shopping Cart.svg" alt="">
+        <div @click="openstore" class="cart">
+          <img src="../assets/images/icone/Shopping Cart.svg" alt="" />
         </div>
         <div class="user">
           <img src="../assets/images/aboutus.jpg" alt="" />
-          <Router-Link to="/Login"><button class="login">Login</button></Router-Link>
+          <Router-Link to="/Login"
+            ><button class="login">Login</button></Router-Link
+          >
         </div>
       </div>
       <!-- <div class="mune-close"> -->
-        <button v-if="check" @click="openMenu">
-          <img src="../assets/images/icone/menu.svg" alt="" />
-        </button>
-        <button v-if="!check" @click="closeMenu" >
-          <img class="drop" src="../assets/images/icone/close.svg" alt="">
-        </button>
+      <button v-if="check" @click="openMenu">
+        <img src="../assets/images/icone/menu.svg" alt="" />
+      </button>
+      <button v-if="!check" @click="closeMenu">
+        <img class="drop" src="../assets/images/icone/close.svg" alt="" />
+      </button>
       <!-- </div> -->
     </header>
   </div>
@@ -189,7 +211,7 @@ header {
       border-radius: 0.2rem;
       color: white;
       background-color: $button-color;
-  
+
       @include desktop {
         display: block;
       }
@@ -200,9 +222,9 @@ header {
   }
 }
 
-  .drop {
-    width: 2rem;
-  }
+.drop {
+  width: 2rem;
+}
 .loginMobile {
   font-size: 14px;
   width: 4rem;
@@ -218,14 +240,15 @@ header {
 }
 
 .cart {
-    button {
-      display: block;
-    }
-    img {
-      width: 1.6rem;
-      height: 1.6rem;
-    }
+  // transition: all 0.5s ease;
+  button {
+    display: block;
   }
+  img {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+}
 .admin {
   display: none;
   width: 1rem;

@@ -1,28 +1,18 @@
-<script>
-import { ref } from 'vue';
+<script setup>
+// import { ref } from 'vue';
+import { useStore } from '@/stores/counter'
 
-// const panier = useCounterStore ();
+const store = useStore()
+const showPanier = store.showPanier;
 
-const count = ref(0);
-
-const increment = () => {
-  count.value++;
-}
-const decrement = () => {
-  count.value--;
-}
-
-export default {
-  name: "Panier",
-
-};
 </script>
 <template>
 
+<div class="containerPanier">
 <div class="parent">
   <div class="panier">
       <div class="title">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M9.375 233.4l128-128c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L109.3 224H480c17.69 0 32 14.31 32 32s-14.31 32-32 32H109.3l73.38 73.38c12.5 12.5 12.5 32.75 0 45.25c-12.49 12.49-32.74 12.51-45.25 0l-128-128C-3.125 266.1-3.125 245.9 9.375 233.4z"/></svg>
+        <svg  @click="showPanier" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M9.375 233.4l128-128c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L109.3 224H480c17.69 0 32 14.31 32 32s-14.31 32-32 32H109.3l73.38 73.38c12.5 12.5 12.5 32.75 0 45.25c-12.49 12.49-32.74 12.51-45.25 0l-128-128C-3.125 266.1-3.125 245.9 9.375 233.4z"/></svg>
         <h1>Panier</h1>
       </div>
       <div class="product">
@@ -34,11 +24,9 @@ export default {
             <p>Product Name</p>
           </div>
           <div class="count">
-            <button @click="decrement">-</button>
+            <button>-</button>
 
-              {{ count.value }}
-
-            <button @click="increment">+</button>
+            <button>+</button>
           </div>
         </div>
         <div class="price">
@@ -50,16 +38,32 @@ export default {
       </div>
   </div>
 </div>
-
+</div>
 </template>
 
 <style lang="scss" scoped>
 @import "../assets/Scss/variable";
 @import "../assets/Scss/media";
 
+
+.containerPanier{
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: end;
+}
+
 .parent {
   display: flex;
   justify-content: center;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  background: white;
+
+  @include desktop {
+    width: 50%;
+  }
 }
 
 .panier {
@@ -74,7 +78,7 @@ export default {
   }
 
   @include desktop {
-    width: 50%;
+    width: 100%;
   }
 
   // :
