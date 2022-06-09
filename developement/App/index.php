@@ -30,6 +30,11 @@ $app->DELETE('/DeleteUser', function ($data) {
 
 // Prudact
 
+$app->GET('/GetOneProduct', function ($data) {
+  $product = new Product();
+  $product->GetOneProduct($data["id"]);
+});
+
 $app->GET('/ThreProduct', function () {
   $product = new Product();
   $product->getThre();

@@ -1,14 +1,17 @@
 <script>
 import { useStore } from "@/stores/counter";
+
 let check = false ;
 export default {
   setup() {
+  
     const store = useStore();
     return {
       Panier : store.Panier,
       showPanier: store.showPanier,
     };
   },
+  
   name: "NavBar",
   data() {
     return {

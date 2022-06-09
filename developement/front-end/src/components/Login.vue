@@ -1,5 +1,16 @@
 <script>
+import { useStore } from '@/stores/counter'
+
+
+
 export default {
+    setup() {
+        const store = useStore();
+        return {
+            admin: store.admin,
+        };
+    },
+
     name: "Login",
 
     data () {

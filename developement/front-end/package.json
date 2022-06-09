@@ -11,6 +11,7 @@
     "pinia": "^2.0.14",
     "sass": "^1.51.0",
     "vue": "^3.2.33",
+    "vue-cookies": "^1.8.1",
     "vue-router": "^4.0.14"
   },
   "devDependencies": {

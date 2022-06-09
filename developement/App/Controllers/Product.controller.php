@@ -2,6 +2,11 @@
 
 class Product
 {
+  public function GetOneProduct($id) {
+    $this->model = new ProductModel();
+    $this->model->GetOneProduct($id);
+  }
+
   public function getThre()
   {
     $this->model = new ProductModel();

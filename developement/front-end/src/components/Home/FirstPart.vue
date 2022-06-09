@@ -30,9 +30,10 @@
     color: white;
 
     img {
+        object-fit: cover;
         position: absolute;
         width: 100%;
-        height: 86vh;
+        height: 88vh;
     }
 }
 .content{

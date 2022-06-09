@@ -2,6 +2,16 @@
 
 class ProductModel extends Database 
 {
+    public function GetOneProduct($id)
+    {
+        $query = "SELECT * FROM products WHERE product_id = ?";
+        $one = [
+             $id
+        ];
+        $stmnt = $this->execStatement($query, $one);
+        echo json_encode($stmnt->fetch(PDO::FETCH_ASSOC));
+    }
+    
     function getThre()
     {
         $query = 'SELECT * from products

@@ -6,6 +6,7 @@ export default{
   data () {
     return {
       Box: [],
+
     }
   },
   methods: {
@@ -31,7 +32,9 @@ export default{
   <div class="produits">
       <div v-for="box in Box" class="produit">
         <div class="image">
-          <Router-Link to="/ProductItems"><img :src="`http://localhost:8000/uploads/` + box.image" alt="" /></Router-Link>
+          <Router-Link :to="{ name: 'ProductItems', params: { id: box.product_id }}" ><img :src="`http://localhost:8000/uploads/` + box.image" alt="" /></Router-Link>
+          <!-- <Router-Link to="/ProductItems"><img :src="`http://localhost:8000/uploads/` + box.image" alt="" /></Router-Link> -->
+          <!-- <router-link class="text-white hover:cursor-pointer bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center" >read more</router-link> -->
           <!-- <div class="top-right">
             <button>Nouveauté</button>
           </div> -->

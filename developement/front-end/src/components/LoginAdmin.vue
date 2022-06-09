@@ -1,7 +1,17 @@
 <script>
-export default {
-    name: "LoginAdmin",
+import { VueCookies } from 'vue-cookies';
+import { useStore } from '../stores/counter';
 
+export default {
+
+    setup () {
+        const store = useStore();
+        return {
+            id: store.Storage,
+        };
+    },
+
+    name: "LoginAdmin",
     data () {
         return {
             email: "",
@@ -21,6 +31,7 @@ export default {
             });
             const data = await res.json();
             if (!data.error) {
+                this.id =  data.admin_id;
                 this.$router.push('/PageAdmin');
             }else{
                 this.check = true;
