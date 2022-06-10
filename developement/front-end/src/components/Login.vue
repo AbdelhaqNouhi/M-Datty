@@ -1,77 +1,67 @@
-<script>
-import { useStore } from '@/stores/counter'
+<script setup>
+import { useStore } from '@/stores/counter';
+import Cookies from 'js-cookie';
+import { useRouter } from 'vue-router';
+import { ref } from 'vue';
 
 
+const store = useStore();
+const setUser = store.setUser;
 
-export default {
-    setup() {
-        const store = useStore();
-        return {
-            admin: store.admin,
-        };
-    },
+const email = ref('');
+const password = ref("");
+const check = ref(false);
+const router = useRouter();
 
-    name: "Login",
-
-    data () {
-        return {
-            email: "",
-            password: "",
-            check: false
-        }
-    },
-
-    methods: {
-        async login() {
-            const res = await fetch('http://localhost:8000/api/Login', {
-                method: 'POST',
-                body: JSON.stringify({
-                    email: this.email,
-                    password: this.password,
-                }),
-            });
-            const data = await res.json();
-            if (!data.error) {
-                this.$router.push('/');
-            }else{
-                this.check = true;
-            }
-        }
+const login =  async function () {
+    const res = await fetch('http://localhost:8000/api/Login', {
+        method: 'POST',
+        body: JSON.stringify({
+            email: email.value,
+            password: password.value,
+        }),
+    });
+    const data = await res.json();
+    if (!data.error) {
+        setUser(data);
+        router.push('/');
+    } else {
+        check.value = true;
     }
 }
 </script>
 
 <template>
-<form class="login" action="">
-    <div class="info">
-        <h1>Connexion</h1>
-        <div class="input">
-            <label>E-mail</label>
-            <input type="email" name="" placeholder="E-mail" v-model="email">
-        </div>
-        <div class="input">
-            <label>Password</label>
-            <input type="password" name="" placeholder="Password" v-model="password">
-            <div v-if="check" class="check">
-                E-mail Or Password ivalide?
+    <form class="login" action="">
+        <div class="info">
+            <h1>Connexion</h1>
+            <div class="input">
+                <label>E-mail</label>
+                <input type="email" name="" placeholder="E-mail" v-model="email" />
+            </div>
+            <div class="input">
+                <label>Password</label>
+                <input type="password" name="" placeholder="Password" v-model="password" />
+                <div v-if="check" class="check">E-mail Or Password ivalide?</div>
+            </div>
+            <input @click.prevent="login" type="submit" name="" value="Connexion" />
+            <div class="register">
+                <router-link to="/Register">S'inscrire</router-link>
             </div>
         </div>
-        <input @click.prevent="login" type="submit" name="" value="Connexion">
-        <div class="register">
-            <router-link to="/Register">S'inscrire</router-link>
-        </div>
-    </div>
-</form>
+    </form>
 </template>
 
 <style lang="scss" scoped>
 @import "../assets/Scss/variable";
 @import "../assets/Scss/media";
+
 .login {
     padding: 4rem 2rem;
     display: flex;
     justify-content: center;
 }
+
 .info {
     padding: 1.5rem;
     width: 100%;
@@ -90,10 +80,12 @@ export default {
         margin: 0;
         text-align: center;
     }
+
     p {
         margin: 0;
         text-align: center;
     }
+
     input {
         font-weight: bold;
         padding: 0.8em;
@@ -101,15 +93,16 @@ export default {
         border-radius: 0.3rem;
         background-color: $header-color;
         color: white;
-        
     }
 }
+
 .input {
     font-size: 14px;
     font-weight: bold;
     display: flex;
     flex-direction: column;
     gap: 1rem;
+
     input {
         font-weight: normal;
         color: black;
@@ -121,6 +114,7 @@ export default {
         background-color: transparent;
     }
 }
+
 .register {
     a {
         display: flex;
@@ -130,6 +124,7 @@ export default {
         color: $header-color;
     }
 }
+
 .check {
     color: red;
 }

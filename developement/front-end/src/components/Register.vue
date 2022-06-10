@@ -1,36 +1,31 @@
-<script>
-export default {
-    name: "Register",
+<script setup>
+import { useRouter } from 'vue-router';
+import { ref } from 'vue';
 
-    data() {
-        return {
-            first_name: "",
-            last_name: "",
-            phone: "",
-            email: "",
-            password: "",
-        };
-    },
-    
-    methods: {
-         async register() {
-            const res = await fetch('http://localhost:8000/api/Register', {
-                method: 'POST',
-                body: JSON.stringify({
-                    first_name: this.first_name,
-                    last_name: this.last_name,
-                    phone: this.phone,
-                    email: this.email,
-                    password: this.password,
-                }),
-            });
-            const data = await res.json();
-            if (data.success) {
-                console.log('success');
-            }else{
-                console.log('error');   
-            }
-        }
+const first_name = ref('');
+const last_name = ref('');
+const phone = ref('');
+const email = ref('');
+const password = ref('');
+
+
+const register = async function () {
+    const res = await fetch('http://localhost:8000/api/Register', {
+        method: 'POST',
+        body: JSON.stringify({
+            first_name: first_name.value,
+            last_name: last_name.value,
+            phone: phone.value,
+            email: email.value,
+            password: password.value,
+        }),
+    });
+    const data = await res.json();
+    if (!data.error) {
+        // router.push('/');
+        console.log('ok');
+    } else {
+        console.log('error');
     }
 }
 </script>

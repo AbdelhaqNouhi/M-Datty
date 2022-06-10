@@ -1,44 +1,48 @@
-<script>
+<script setup>
+// import { computed } from '@vue/reactivity';
 import { useStore } from "@/stores/counter";
+import {useRouter} from 'vue-router';
+// import Cookies from 'js-cookie';
+import { ref } from 'vue';
 
-let check = false ;
-export default {
-  setup() {
-  
-    const store = useStore();
-    return {
-      Panier : store.Panier,
-      showPanier: store.showPanier,
-    };
-  },
-  
-  name: "NavBar",
-  data() {
-    return {
-      menuIcon: "close",
-      check: true,
-    };
-  },
-  methods: {
-    openMenu() {
-        if(!check) {
-        this.menuIcon = "open";
-        this.check = false;
-      }
-    },
-    closeMenu() {
-      this.check = true;
-      this.menuIcon = "close";
-    },
-    openstore(){
-      if(this.menuIcon=="close"){
-        this.showPanier();
-        check=!check;
-      }
-      
+
+// const cookie = Cookies.get('user');
+const store = useStore();
+const Panier = store.Panier;
+const showPanier = store.showPanier;
+const setUser = store.setUser;
+
+
+// data
+const show = ref(false);
+const menuIcon = ref('close');
+const check = ref(true);
+
+
+const logout = function () {
+  setUser(null);
+  Router.push('/');
+}
+
+const openMenu = function () {
+  if(!show.value){
+    menuIcon.value = 'open';
+    check.value = false;
+  }
+}
+
+const closeMenu = function () {
+    menuIcon.value = 'close';
+    check.value = true;
+}
+
+const openstore = function () {
+    if(menuIcon.value === 'close'){
+        showPanier();
+        show.value =! show.value;
     }
-  },
-};
+}
+
 </script>
 
 <template>
@@ -63,19 +67,20 @@ export default {
         <Router-Link to="/">Home</Router-Link>
         <Router-Link to="/Boutique">Boutique</Router-Link>
         <a href="#Contact">Contact</a>
-        <Router-Link to="/Login"
-          ><button class="loginMobile">Login</button></Router-Link
-        >
+        <Router-Link to="/Login"><button v-if="!store.user" class="loginMobile">Login</button></Router-Link>
+        <button v-if="store.user" @click="logout" class="login">Log Out</button>
       </nav>
       <div class="img-user">
         <div @click="openstore" class="cart">
           <img src="../assets/images/icone/Shopping Cart.svg" alt="" />
         </div>
         <div class="user">
-          <img src="../assets/images/aboutus.jpg" alt="" />
-          <Router-Link to="/Login"
-            ><button class="login">Login</button></Router-Link
-          >
+          <div class="user_info">
+            <img src="../assets/images/aboutus.jpg" alt="" />
+            <p>{{store.user?.first_name ?? ""}}</p>
+          </div>
+          <Router-Link to="/Login"><button v-if="!store.user" class="login">Login</button></Router-Link>
+          <button v-if="store.user" @click="logout" class="login">Log Out</button>
         </div>
       </div>
       <!-- <div class="mune-close"> -->
@@ -196,8 +201,9 @@ header {
     margin: 0;
   }
   .user {
+    color: white;
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
     align-items: center;
     img {
       // display: none;
@@ -222,6 +228,16 @@ header {
     a {
       text-decoration: none;
     }
+  }
+}
+.user_info {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+
+  p {
+    font-size: 12px;
+    color: white;
   }
 }
 

@@ -1,14 +1,17 @@
-<script>
-export default {
-    name: "NavAdmin",
-}
+<script setup>
+import { useStore } from "@/stores/counter";
+import {useRouter} from 'vue-router';
+
+
+const store = useStore();
+const setAdmin = store.setAdmin;
 </script>
 
 <template>
       <div class="nav">
         <div class="username">
-            <img src="../assets/images/pexels-eberhard-grossgasteiger-572897.jpg" alt="...">
-            <h1>Abdelhaq Nouhi</h1>
+            <img src="../assets/images/img_about.svg" alt="...">
+            <h1>{{store.admin?.last_name ?? ""}} {{store.admin?.first_name ?? ""}}</h1>
         </div>
         <div class="button">
             <div class="add">

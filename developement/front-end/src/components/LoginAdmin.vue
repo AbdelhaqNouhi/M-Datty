@@ -1,44 +1,35 @@
-<script>
-import { VueCookies } from 'vue-cookies';
-import { useStore } from '../stores/counter';
+<script setup>
+import router from '../router';
+import Cookies from 'js-cookie';
+import { useStore } from '@/stores/counter';
+import { ref } from 'vue';
 
-export default {
 
-    setup () {
-        const store = useStore();
-        return {
-            id: store.Storage,
-        };
-    },
+const store = useStore();
+const setAdmin = store.setAdmin;
 
-    name: "LoginAdmin",
-    data () {
-        return {
-            email: "",
-            password: "",
-            check: false
-        }
-    },
+const email = ref('');
+const password = ref("");
+const check = ref(false);
 
-    methods: {
-        async login() {
-            const res = await fetch('http://localhost:8000/api/LoginAdmin', {
-                method: 'POST',
-                body: JSON.stringify({
-                    email: this.email,
-                    password: this.password,
-                }),
-            });
-            const data = await res.json();
-            if (!data.error) {
-                this.id =  data.admin_id;
-                this.$router.push('/PageAdmin');
-            }else{
-                this.check = true;
-            }
-        }
+
+const login = async function () {
+    const res = await fetch('http://localhost:8000/api/LoginAdmin', {
+        method: 'POST',
+        body: JSON.stringify({
+            email: email.value,
+            password: password.value,
+        }),
+    });
+    const data = await res.json();
+    if (!data.error) {
+        setAdmin(data);
+        router.push('/PageAdmin');
+    } else {
+        check.value = true;
     }
 }
+
 </script>
 
 <template>

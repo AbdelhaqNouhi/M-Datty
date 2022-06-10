@@ -1,9 +1,11 @@
 <script setup>
-// import { ref } from 'vue';
+import { ref } from 'vue';
+import axios from 'axios';
 import { useStore } from '@/stores/counter'
 
 const store = useStore()
 const showPanier = store.showPanier;
+
 
 </script>
 <template>
@@ -61,8 +63,12 @@ const showPanier = store.showPanier;
   width: 100%;
   background: white;
 
-  @include desktop {
-    width: 50%;
+  @include  tablet {
+    width: 60%;
+  }
+
+  @include  lg-desktop {
+    width: 40%;
   }
 }
 
@@ -74,7 +80,7 @@ const showPanier = store.showPanier;
 
 
   @include tablet {
-    width: 70%;
+    width: 100%;
   }
 
   @include desktop {
@@ -113,10 +119,10 @@ const showPanier = store.showPanier;
     }
 
     .product_info {
-      margin-top: auto;
+      // margin-top: auto;
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 2rem;
     }
 
     .count {

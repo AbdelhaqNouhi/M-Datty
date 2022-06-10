@@ -1,23 +1,26 @@
+import Cookies from 'js-cookie';
 import { defineStore } from 'pinia';
 
 export const useStore = defineStore( 'store', {
   state: () => ({
     Panier: false,
-    admin: '',
+    user: JSON.parse(Cookies.get('user') ?? '{}'),
+    admin: JSON.parse(Cookies.get('admin') ?? '{}'),
   }),
   actions: {
-    Cookies () {
-      localStorage.setItem('admin', 'admin');
-      this.state.admin = localStorage.getItem('admin');
-      return this.state.admin;
+    setUser (user) {
+      Cookies.set('user', JSON.stringify(user));
+      this.user = user;
+    },
+
+    setAdmin (admin) {
+      Cookies.set('admin', JSON.stringify(admin));
+      this.admin = admin;
     },
 
     showPanier() {
       this.Panier = !this.Panier;
       return this.Panier;
-    },
-    closePanier () {
-      
     },
     lecturepanier(){
       return this.Panier;
