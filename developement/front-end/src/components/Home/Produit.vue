@@ -20,9 +20,8 @@ const GetThreProduct = async function () {
 }
 
 const takeId = async function (data) {
-  // const Data = data.push(user)
-  console.log(data);
-  const res = await axios.post('http://localhost:8000/api/AddBasket', data );
+  const all = user.push(data);
+  const res = await axios.post('http://localhost:8000/api/AddBasket', all);
   const data2 = await res.data;
   if (data2) {
     console.log(data2);
