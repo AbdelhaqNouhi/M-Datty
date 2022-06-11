@@ -9,8 +9,8 @@ export const useStore = defineStore( 'store', {
   }),
   actions: {
     setUser (user) {
-      Cookies.set('user', JSON.stringify(user));
-      this.user = user;
+          Cookies.set('user', JSON.stringify(user));
+          this.user = user;
     },
 
     setAdmin (admin) {

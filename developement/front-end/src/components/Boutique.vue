@@ -1,7 +1,9 @@
 <script setup>
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
+import { useStore } from '@/stores/counter';
 
+const store = useStore();
 
 const Box = ref([]);
 
@@ -13,6 +15,20 @@ const GetProduct = async function () {
     } else {
         console.log("error");
     }
+}
+
+const takeId = async function (data) {
+  // if(!store.user.user_id) {
+  //   alert("please go to Login");
+  // }
+    data.user_id = store.user.user_id;
+  const res = await axios.post('http://localhost:8000/api/AddBasket', data);
+  const data2 = await res.data;
+  if (data2) {
+    console.log(data2);
+  } else {
+    console.log("error");
+  }
 }
 
 onMounted (() => {
@@ -38,7 +54,7 @@ onMounted (() => {
             <div>
               <p>{{box.name}}</p>
             </div>
-            <div class="card">
+            <div @click="takeId(box)" class="card">
               <img src="../assets/images/icone/shopping-cart-svgrepo.svg" alt="">
             </div>
           </div>

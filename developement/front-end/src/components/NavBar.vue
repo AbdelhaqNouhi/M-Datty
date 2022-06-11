@@ -77,7 +77,7 @@ const openstore = function () {
         <div class="user">
           <div class="user_info">
             <img src="../assets/images/aboutus.jpg" alt="" />
-            <p>{{store.user?.first_name ?? ""}}</p>
+            <p>Bonjour {{store.user?.first_name ?? ""}}</p>
           </div>
           <Router-Link to="/Login"><button v-if="!store.user" class="login">Login</button></Router-Link>
           <button v-if="store.user" @click="logout" class="login">Log Out</button>
