@@ -1,30 +1,40 @@
-<script>
+<script setup>
 import axios from 'axios';
-export default {
-  name: "Produit",
+import { onMounted, ref } from 'vue';
+import { useStore } from '@/stores/counter';
 
-  data () {
-    return {
-      Box: [],
+const store = useStore();
+const user = store.user.user_id;
+console.log(user);
+
+const Box = ref([]);
+
+const GetThreProduct = async function () {
+    const res = await axios.get('http://localhost:8000/api/ThreProduct');
+    const data = await res.data;
+    if (data) {
+        Box.value = data;
+    } else {
+        console.log("error");
     }
-  },
+}
 
-  methods: {
-    GetThreProduct() {
-      axios.get('http://localhost:8000/api/ThreProduct')
-        .then(response => {
-          this.Box = response.data;
-        })
-        .catch(error => {
-          console.log(error);
-        })
-    }
-  },
-
-  mounted () {
-    this.GetThreProduct ();
+const takeId = async function (data) {
+  // const Data = data.push(user)
+  console.log(data);
+  const res = await axios.post('http://localhost:8000/api/AddBasket', data );
+  const data2 = await res.data;
+  if (data2) {
+    console.log(data2);
+  } else {
+    console.log("error");
   }
 }
+
+onMounted (() => {
+    GetThreProduct();
+});
+
 
 </script>
 
@@ -33,7 +43,7 @@ export default {
   <div class="produits">
       <div v-for="box in Box" class="produit">
         <div class="image">
-          <Router-Link to="/ProductItems"><img :src="`http://localhost:8000/uploads/` + box.image" alt="" /></Router-Link>
+          <Router-Link :to="{ name: 'ProductItems', params: { id: box.product_id }}" ><img :src="`http://localhost:8000/uploads/` + box.image" alt="" /></Router-Link>
           <div class="top-right">
             <button>Nouveauté</button>
           </div>
@@ -43,7 +53,7 @@ export default {
             <div>
               <p>{{box.name}}</p>
             </div>
-            <div class="card">
+            <div @click="takeId(box)" class="card">
                 <img src="../../assets/images/icone/shopping-cart-svgrepo.svg" alt="">
             </div>
           </div>

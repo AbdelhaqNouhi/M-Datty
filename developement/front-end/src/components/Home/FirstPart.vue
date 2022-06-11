@@ -1,7 +1,6 @@
-<script>
-    export default {
-        name: "FirsPart",
-    }
+<script setup>
+ 
+ 
 </script>
 
 <template>

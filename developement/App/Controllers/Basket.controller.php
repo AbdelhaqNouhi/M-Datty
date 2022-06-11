@@ -14,7 +14,9 @@ class Basket
             'image' => $data['image'],
             'name' => $data['name'],
             'description' => $data['description'],
-            'price' => $data['price']
+            'price' => $data['price'],
+            'product_id' => $data['product_id'],
+            'user_id' => $data['user_id']
         ];
 
         $this->model = new BasketModel();

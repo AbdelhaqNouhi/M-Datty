@@ -1,35 +1,25 @@
-<script>
+<script setup>
 import axios from 'axios';
+import { onMounted } from 'vue';
 import NavAdmin from './NavAdmin.vue'
-export default {
-    name: "Command",
 
-    data () {
-        return {
-            Box: "",
-        }
-    },
 
-    components: {
-        NavAdmin
-    },
+const Box = ref([]);
 
-    methods: {
-        GetCommande () {
-            axios.get('http://localhost:8000/api/GetCommande')
-                .then(response => {
-                    this.Box = response.data;
-                })
-                .catch(error => {
-                    console.log(error);
-                })
-        },
-    },
-
-    mounted () {
-        this.GetCommande ();
+const GetCommande = async function () {
+    const res = await axios.get('http://localhost:8000/api/GetCommande');
+    const data = await res.data;
+    if (data) {
+        Box.value = data;
+    } else {
+        console.log("error");
     }
 }
+
+onMounted (() => {
+    GetCommande();
+});
+
 </script>
 
 <template>

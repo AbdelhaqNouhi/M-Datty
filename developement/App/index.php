@@ -3,9 +3,18 @@ require_once 'loader.php';
 
 $app = new Router();
 
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: *");
+header('Access-Control-Allow-Origin: *');
+header('Content-Type: application/json');
+header('Access-Control-Allow-Methods: *');
+
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+  if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
+    header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+  if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
+    header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+}
+if ($_SERVER["REQUEST_METHOD"] == "OPTIONS") return true;
+
 
 // Users
 $app->POST('/Login', function ($data) {
@@ -90,6 +99,8 @@ $app->GET('/GetBasket', function () {
 });
 
 $app->POST('/AddBasket', function ($data) {
+  // var_dump($data);
+  // die;
   $basket = new Basket();
   $basket->add($data);
 });

@@ -1,30 +1,24 @@
-<script>
+<script setup>
 import axios from 'axios';
-export default{
-  name: "Boutique",
+import { onMounted, ref } from 'vue';
 
-  data () {
-    return {
-      Box: [],
 
+const Box = ref([]);
+
+const GetProduct = async function () {
+    const res = await axios.get('http://localhost:8000/api/GetProduct');
+    const data = await res.data;
+    if (data) {
+        Box.value = data;
+    } else {
+        console.log("error");
     }
-  },
-  methods: {
-    GetBoutique () {
-      axios.get('http://localhost:8000/api/GetProduct')
-        .then(response => {
-          this.Box = response.data;
-        })
-        .catch(error => {
-          console.log(error);
-        })
-    }
-  },
-
-  mounted () {
-    this.GetBoutique ();
-  }
 }
+
+onMounted (() => {
+    GetProduct();
+});
+
 </script>
 
 <template>

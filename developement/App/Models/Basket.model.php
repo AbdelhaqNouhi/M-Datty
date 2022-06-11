@@ -11,12 +11,14 @@ class BasketModel extends Database
 
     function add($data)
     {
-        $query = 'INSERT INTO basket (image, name, description, price) VALUES (?, ?, ?, ?)';
+        $query = 'INSERT INTO basket (image, name, description, price, product_id, user_id) VALUES (?, ?, ?, ?, ?, ?)';
         $add = array (
             $data['image'],
             $data['name'],
             $data['description'],
-            $data['price']
+            $data['price'],
+            $data['product_id'],
+            $data['user_id']
         );
         $stmnt = $this->execStatement($query, $add);
         return $stmnt;
