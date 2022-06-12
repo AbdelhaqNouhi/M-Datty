@@ -108,7 +108,7 @@ $app->PUT('/UpdateBasket', function ($data) {
   $basket->update($data);
 });
 
-$app->DELETE('/DeleteBasket', function ($data) {
+$app->POST('/DeleteBasket', function ($data) {
   $basket = new Basket();
   $basket->delete($data);
 });

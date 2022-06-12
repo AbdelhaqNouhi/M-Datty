@@ -43,9 +43,11 @@ class BasketModel extends Database
 
     function delete ($data)
     {
-        $id = $data->id;
-        $query = 'DELETE FROM basket WHERE basket_id = ?';
-        $stmnt = $this->execStatement($query,[$id]);
+        $query = 'DELETE FROM basket WHERE product_id = ?';
+        $delete = array (
+            $data['id']
+        );
+        $stmnt = $this->execStatement($query, $delete);
         return $stmnt;
     }   
 }

@@ -20,8 +20,9 @@ const GetBasket = async function () {
   }
 }
 
-const DeletePanier = async function () {
-  const res = await axios.get('http://localhost:8000/api/DeleteBasket?id=' + id);
+const DeletePanier = async function (id) {
+  console.log(id);
+  const res = await axios.post('http://localhost:8000/api/DeleteBasket', { id: id });
   const data = await res.data;
   if (data) {
     console.log(data);
