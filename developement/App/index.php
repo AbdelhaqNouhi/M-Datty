@@ -86,8 +86,6 @@ $app->PUT('/UpdateCommande', function ($data) {
 });
 
 $app->DELETE('/DeleteCommande', function ($data) {
-  var_dump($data);
-  die;
   $commande = new Commande();
   $commande->delete($data);
 });

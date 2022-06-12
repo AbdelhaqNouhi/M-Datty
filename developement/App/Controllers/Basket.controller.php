@@ -4,14 +4,9 @@ class Basket
 {
     public function Get($id)
     {
+
         $this->model = new BasketModel();
         $this->model->fetch($id);
-
-        if ($id) {
-            echo json_encode(['message' => 'Basket Get successfully']);
-        } else {
-            echo json_encode(['message' => 'Basket Get failed']);
-        }
     }
 
     public function add($data)

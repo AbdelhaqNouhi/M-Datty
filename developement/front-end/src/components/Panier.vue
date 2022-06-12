@@ -11,11 +11,20 @@ const id = store.user.user_id;
 const Box = ref([]);
 
 const GetBasket = async function () {
-  console.log(id);
-  const res = await axios.get('http://localhost:8000/api/GetBasket', id);
+  const res = await axios.get('http://localhost:8000/api/GetBasket?id=' + id);
   const data = await res.data;
   if (data) {
     Box.value = data;
+  } else {
+    console.log("error");
+  }
+}
+
+const DeletePanier = async function (data) {
+  const res = await axios.get('http://localhost:8000/api/DeleteBasket?id=' + id);
+  const data = await res.data;
+  if (data) {
+    console.log(data);
   } else {
     console.log("error");
   }
@@ -36,24 +45,23 @@ onMounted (() => {
         <svg  @click="showPanier" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc.<path d="M9.375 233.4l128-128c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L109.3 224H480c17.69 0 32 14.31 32 32s-14.31 32-32 32H109.3l73.38 73.38c12.5 12.5 12.5 32.75 0 45.25c-12.49 12.49-32.74 12.51-45.25 0l-128-128C-3.125 266.1-3.125 245.9 9.375 233.4z"/></svg>
         <h1>Panier</h1>
       </div>
-      <div class="product">
+      <div v-for="box in Box" class="product">
         <div class="product_img">
-          <img src="../assets/images/aboutus.jpg" alt="">
+          <img :src="`http://localhost:8000/uploads/` + box.image" alt="" />
         </div>
         <div class="product_info">
           <div class="name">
-            <p>Product Name</p>
+            <p>{{box.name}}</p>
           </div>
           <div class="count">
             <button>-</button>
-
             <button>+</button>
           </div>
         </div>
         <div class="price">
-          <p>99.00 DH</p>
+          <p>{{box.price }}</p>
         </div>
-        <div class="close">
+        <div @click="DeletePanier(box.product_id)" class="close">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
         </div>
       </div>

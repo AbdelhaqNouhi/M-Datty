@@ -43,7 +43,7 @@ class UserModel extends Database
 
   function delete ($data)
   {
-    $id = $data->user_id;
+   $id = $data->user_id; 
     $query = 'DELETE FROM users WHERE user_id = ?';
     $stmnt = $this->execStatement($query, [$id]);
     return $stmnt;
