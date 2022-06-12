@@ -84,6 +84,7 @@ onMounted (() => {
 }
 
 .parent {
+  border-radius: 0.3rem;
   display: flex;
   justify-content: center;
   position: absolute;
@@ -117,25 +118,30 @@ onMounted (() => {
 
   // :
   .title {
-    padding: 1rem;
+    padding: 0rem 1rem 1rem 1rem;
     width: 100%;
     display: flex;
     justify-content: space-between;
 
     svg {
-      width: 2rem;
+      width: 1.5rem;
     }
+     h1 {
+      font-size: 1.5rem;
+     }
   }
 
   .product {
-    color: white;
+    color: black;
     padding: 0.5rem;
     display: flex;
     align-items: center;
     gap: 1rem;
-    background-color: $button_color;
+    // background-color: $button_color;
+    // border-bottom: 1px solid black;
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.5);
     border-radius: 0.5rem;
-
+    margin: 1rem 0;
 
     .product_img {
 
@@ -147,10 +153,11 @@ onMounted (() => {
     }
 
     .product_info {
-      // margin-top: auto;
+      margin-top: auto;
       display: flex;
       flex-direction: column;
       gap: 2rem;
+      // margin: auto;
     }
 
     .count {
@@ -160,12 +167,10 @@ onMounted (() => {
       button {
         text-align: center;
         align-items: center;
-        width: 1.4rem;
-        height: 1.4rem;
+        width: 1.5rem;
         border: none;
-        background-color: $header_color;
-        color: white;
-        border-radius: 50%;
+        background-color: $button_color;
+        border-radius: 0.3rem;
       }
 
     }
@@ -186,13 +191,10 @@ onMounted (() => {
       font-size: 12px;
       padding: 2px;
       width: 4rem;
-      border-radius: 0.3rem;
       text-align: center;
-      align-items: center;
-      background-color: $header_color;
-      color: white;
-      // margin-left: auto;
       margin-top: auto;
+      background-color: $button_color;
+      border-radius: 0.3rem;
     }
 
   }

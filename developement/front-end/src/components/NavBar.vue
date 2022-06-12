@@ -77,7 +77,7 @@ const openstore = function () {
         <div class="user">
           <div class="user_info">
             <img src="../assets/images/aboutus.jpg" alt="" />
-            <p>Bonjour {{store.user?.first_name ?? ""}}</p>
+            <p>{{store.user?.first_name ?? ""}}</p>
           </div>
           <Router-Link to="/Login"><button v-if="!store.user" class="login">Login</button></Router-Link>
           <button v-if="store.user" @click="logout" class="login">Log Out</button>
@@ -166,8 +166,12 @@ header {
     text-decoration: none;
   }
   button {
-    width: 8rem;
-    height: 2rem;
+    width: 6rem;
+    height: 1.6rem;
+    color: white;
+    background-color: #D4C7A0;
+    border: none;
+    border-radius: 0.2rem;
   }
 }
 .close {
@@ -193,7 +197,7 @@ header {
 }
 .img-user {
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
   align-items: center;
   margin-left: auto;
 
@@ -206,10 +210,15 @@ header {
     gap: 1rem;
     align-items: center;
     img {
-      // display: none;
       border-radius: 5rem;
-      width: 1.6rem;
-      height: 1.6rem;
+      border: 2px solid white;
+      width: 1.3rem;
+      height: 1.3rem;
+      
+      @include desktop {
+        width: 1.6rem;
+        height: 1.6rem;
+      }
     }
     button {
       display: none;
@@ -276,4 +285,5 @@ header {
     display: block;
   }
 }
+
 </style>
