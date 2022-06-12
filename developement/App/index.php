@@ -93,9 +93,9 @@ $app->DELETE('/DeleteCommande', function ($data) {
 });
 
 // Basket
-$app->GET('/GetBasket', function () {
+$app->GET('/GetBasket', function ($id) {
   $basket = new Basket();
-  $basket->all();
+  $basket->Get($id);
 });
 
 $app->POST('/AddBasket', function ($data) {

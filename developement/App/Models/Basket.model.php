@@ -2,11 +2,20 @@
 
 class BasketModel extends Database
 {
-    function fetch()
+    function fetch($id)
     {
-        $query = 'SELECT * from basket';
-        $stmnt = $this->execStatement($query);
-        return $stmnt->fetchAll(PDO::FETCH_ASSOC);
+        var_dump('gggggggggggg');
+        $query = 'SELECT * From basket
+        INNER JOIN users
+        ON basket.user_id = users.user_id
+        order by basket.id desc';
+        
+        $get = [
+            $id
+        ];
+
+        $stmnt = $this->execStatement($query, $get);
+        var_dump( $stmnt->fetchAll(PDO::FETCH_ASSOC));
     }
 
     function add($data)

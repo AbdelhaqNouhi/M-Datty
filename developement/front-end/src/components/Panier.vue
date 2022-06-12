@@ -1,10 +1,29 @@
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import axios from 'axios';
 import { useStore } from '@/stores/counter'
 
 const store = useStore()
 const showPanier = store.showPanier;
+const id = store.user.user_id;
+
+
+const Box = ref([]);
+
+const GetBasket = async function () {
+  console.log(id);
+  const res = await axios.get('http://localhost:8000/api/GetBasket', id);
+  const data = await res.data;
+  if (data) {
+    Box.value = data;
+  } else {
+    console.log("error");
+  }
+}
+
+onMounted (() => {
+  GetBasket();
+});
 
 
 </script>
