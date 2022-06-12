@@ -33,9 +33,9 @@
           <a href=""><img src="../assets/images/footer/facebook.svg" alt="" /></a>
           <a href=""><img src="../assets/images/footer/twiter.svg" alt="" /></a>
         </div>
-        <div class="admin">
+        <!-- <div class="admin">
           <Router-link to="LoginAdmin"><img src="../assets/images/icone/login-admin.svg" alt=""/></Router-link>
-        </div>
+        </div> -->
       </div>
   </div>
 </template>

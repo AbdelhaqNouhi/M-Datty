@@ -78,8 +78,8 @@ onMounted (() => {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 2rem;
-  gap: 2rem;
-  margin: 0 1rem;
+    gap: 2rem;
+    margin: 2rem 1rem;
 
 
   @include tablet {
@@ -89,7 +89,7 @@ onMounted (() => {
   }
 
   @include desktop {
-  margin: 1rem 8rem;
+  margin: 2rem 8rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
