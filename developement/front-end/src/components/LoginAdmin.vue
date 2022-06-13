@@ -14,7 +14,7 @@ const check = ref(false);
 
 
 const login = async function () {
-    const res = await fetch('http://localhost:8000/api/LoginAdmin', {
+    const res = await fetch('http://localhost/api/LoginAdmin', {
         method: 'POST',
         body: JSON.stringify({
             email: email.value,

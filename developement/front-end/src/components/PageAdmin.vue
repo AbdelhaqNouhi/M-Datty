@@ -34,14 +34,14 @@ export default {
       formData.append("description", this.Product.description);
       formData.append("price", this.Product.price);
 
-      axios.post("http://localhost:8000/api/AddProduct", formData)
+      axios.post("http://localhost/api/AddProduct", formData)
         .then((response) => {
           console.log(response);
         });
     },
 
     GetProduct() {
-      axios.get("http://localhost:8000/api/GetProduct")
+      axios.get("http://localhost/api/GetProduct")
       .then((response) => {
         this.Box = response.data;
       });
@@ -50,7 +50,7 @@ export default {
     async DeleteProduct(id) {
       const product_id = id;
       console.log(product_id);
-      const res = await fetch("http://localhost:8000/api/DeleteProduct", {
+      const res = await fetch("http://localhost/api/DeleteProduct", {
         method: "POST",
         body: JSON.stringify({
           data: product_id,
@@ -70,7 +70,7 @@ export default {
     },
 
     async UpdateProduct() {
-      const res = await fetch("http://localhost:8000/api/UpdateProduct", {
+      const res = await fetch("http://localhost/api/UpdateProduct", {
         method: "PUT",
         body: JSON.stringify({
           image: this.Update.image,
@@ -108,7 +108,7 @@ export default {
         <th>More</th>
       </tr>
       <tr v-for="box in Box" :key="i" class="list">
-        <td class="img"><img :src="`http://localhost:8000/uploads/` + box.image" alt="" /></td>
+        <td class="img"><img :src="`http://localhost/uploads/` + box.image" alt="" /></td>
         <td>{{ box.name }}</td>
         <td>{{ box.description }}</td>
         <td>{{ box.price }}</td>

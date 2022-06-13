@@ -17,6 +17,7 @@ const setUser = store.setUser;
 const show = ref(false);
 const menuIcon = ref('close');
 const check = ref(true);
+const aa = ref('');
 
 
 const logout = function () {
@@ -40,6 +41,8 @@ const openstore = function () {
     if(menuIcon.value === 'close'){
         showPanier();
         show.value =! show.value;
+    } else {
+      aa.value;
     }
 }
 
@@ -47,6 +50,7 @@ const openstore = function () {
 
 <template>
   <div>
+    <h1 v-if="aa">ggggggggggggggggg</h1>
     <!-- <div class="piblisite">
         <p>​En ce moment, livraison par coursier ( sur Toulouse et banlieue) offerte dès 29€ d'achat !</p>
     </div> -->
@@ -55,7 +59,7 @@ const openstore = function () {
         <img
           alt="Vue logo"
           class="logo"
-          src="../assets/images/icone/logo 2.png"
+          src="@/assets/images/icone/logo2.png"
         />
       </div>
       <nav class="menu">
@@ -72,11 +76,11 @@ const openstore = function () {
       </nav>
       <div class="img-user">
         <div @click="openstore" class="cart">
-          <img src="../assets/images/icone/Shopping Cart.svg" alt="" />
+          <img src="@/assets/images/icone/ShoppingCart.svg" alt="" />
         </div>
         <div class="user">
           <div class="user_info">
-            <img src="../assets/images/aboutus.jpg" alt="" />
+            <img src="@/assets/images/aboutus.jpg" alt="" />
             <p>{{store.user?.first_name ?? ""}}</p>
           </div>
           <Router-Link to="/Login"><button v-if="!store.user" class="login">Login</button></Router-Link>
@@ -85,10 +89,10 @@ const openstore = function () {
       </div>
       <!-- <div class="mune-close"> -->
       <button v-if="check" @click="openMenu">
-        <img src="../assets/images/icone/menu.svg" alt="" />
+        <img src="@/assets/images/icone/menu.svg" alt="" />
       </button>
       <button v-if="!check" @click="closeMenu">
-        <img class="drop" src="../assets/images/icone/close.svg" alt="" />
+        <img class="drop" src="@/assets/images/icone/close.svg" alt="" />
       </button>
       <!-- </div> -->
     </header>
@@ -96,8 +100,8 @@ const openstore = function () {
 </template>
 
 <style lang="scss" scoped>
-@import "../assets/Scss/variable";
-@import "../assets/Scss/media";
+@import "@/assets/Scss/variable";
+@import "@/assets/Scss/media";
 
 .piblisite {
   font-size: 13px;

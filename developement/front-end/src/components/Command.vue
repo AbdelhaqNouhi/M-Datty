@@ -7,7 +7,7 @@ import NavAdmin from './NavAdmin.vue'
 const Box = ref([]);
 
 const GetCommande = async function () {
-    const res = await axios.get('http://localhost:8000/api/GetCommande');
+    const res = await axios.get('http://localhost/api/GetCommande');
     const data = await res.data;
     if (data) {
         Box.value = data;

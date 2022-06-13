@@ -14,7 +14,7 @@ const check = ref(false);
 const router = useRouter();
 
 const login =  async function () {
-    const res = await fetch('http://localhost:8000/api/Login', {
+    const res = await fetch('http://localhost/api/Login', {
         method: 'POST',
         body: JSON.stringify({
             email: email.value,

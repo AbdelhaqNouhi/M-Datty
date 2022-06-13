@@ -11,7 +11,7 @@ const id = store.user.user_id;
 const Box = ref([]);
 
 const GetBasket = async function () {
-  const res = await axios.get('http://localhost:8000/api/GetBasket?id=' + id);
+  const res = await axios.get('http://localhost/api/GetBasket?id=' + id);
   const data = await res.data;
   if (data) {
     Box.value = data;
@@ -22,7 +22,7 @@ const GetBasket = async function () {
 
 const DeletePanier = async function (id) {
   console.log(id);
-  const res = await axios.post('http://localhost:8000/api/DeleteBasket', { id: id });
+  const res = await axios.post('http://localhost/api/DeleteBasket', { id: id });
   const data = await res.data;
   if (data) {
     console.log(data);
@@ -48,7 +48,7 @@ onMounted (() => {
       </div>
       <div v-for="box in Box" class="product">
         <div class="product_img">
-          <img :src="`http://localhost:8000/uploads/` + box.image" alt="" />
+          <img :src="`http://localhost/uploads/` + box.image" alt="" />
         </div>
         <div class="product_info">
           <div class="name">

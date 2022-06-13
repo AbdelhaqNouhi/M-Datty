@@ -10,7 +10,7 @@ const password = ref('');
 
 
 const register = async function () {
-    const res = await fetch('http://localhost:8000/api/Register', {
+    const res = await fetch('http://localhost/api/Register', {
         method: 'POST',
         body: JSON.stringify({
             first_name: first_name.value,

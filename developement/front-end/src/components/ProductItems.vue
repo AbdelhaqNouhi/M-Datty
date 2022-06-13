@@ -11,7 +11,7 @@ export default {
 
   methods: {
     GetOneProduct() {
-        axios.get(`http://localhost:8000/api/GetOneProduct?id=${this.id}`)
+        axios.get(`http://localhost/api/GetOneProduct?id=${this.id}`)
         .then(response => {
             this.Box = response.data;
         })
@@ -31,7 +31,7 @@ export default {
   <div class="parent">
     <div class="product">
       <div class="img">
-        <img :src="`http://localhost:8000/uploads/` + Box.image" alt="" />
+        <img :src="`http://localhost/uploads/` + Box.image" alt="" />
       </div>
       <div class="info">
         <div class="name">

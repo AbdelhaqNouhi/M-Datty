@@ -5,11 +5,11 @@
 <template>
   <div class="footer">
     <div class="logo">
-      <img src="../assets/images/icone/logo 2.png" alt="" />
+      <img src="@/assets/images/icone/logo2.png" alt="" />
       <div class="paiment">
-        <img src="../assets/images/footer/Visa.png" alt="">
-        <img src="../assets/images/footer/MasterCard.png" alt="">
-        <img src="../assets/images/footer/PayPal.png" alt="">
+        <img src='@/assets/images/footer/Visa.png' alt="">
+        <img src="@/assets/images/footer/MasterCard.png" alt="">
+        <img src="@/assets/images/footer/PayPal.png" alt="">
       </div>
     </div>
     <div class="group">

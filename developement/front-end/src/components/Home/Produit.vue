@@ -8,7 +8,7 @@ const store = useStore();
 const Box = ref([]);
 
 const GetThreProduct = async function () {
-    const res = await axios.get('http://localhost:8000/api/ThreProduct');
+    const res = await axios.get('http://localhost/api/ThreProduct');
     const data = await res.data;
     if (data) {
         Box.value = data;
@@ -22,7 +22,7 @@ const takeId = async function (data) {
   //   alert("please go to Login");
   // }
     data.user_id = store.user.user_id;
-  const res = await axios.post('http://localhost:8000/api/AddBasket', data);
+  const res = await axios.post('http://localhost/api/AddBasket', data);
   const data2 = await res.data;
   if (data2) {
     console.log(data2);
@@ -43,7 +43,7 @@ onMounted (() => {
   <div class="produits">
       <div v-for="box in Box" class="produit">
         <div class="image">
-          <Router-Link :to="{ name: 'ProductItems', params: { id: box.product_id }}" ><img :src="`http://localhost:8000/uploads/` + box.image" alt="" /></Router-Link>
+          <Router-Link :to="{ name: 'ProductItems', params: { id: box.product_id }}" ><img :src="`http://localhost/uploads/` + box.image" alt="" /></Router-Link>
           <div class="top-right">
             <button>Nouveauté</button>
           </div>

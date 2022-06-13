@@ -82,7 +82,7 @@ class Product
         if (in_array($imageFileType, $extensions_arr)) {
           $file_name = uniqid('', true) . '.' . $imageFileType;
           $target_path = $file_name;
-          move_uploaded_file($_FILES['image']['tmp_name'], 'C:\\Users\\Youcode\\OneDrive\\Desktop\\MaisonDatty\\developement\\App\\uploads\\' . $target_path);
+          move_uploaded_file($_FILES['image']['tmp_name'], '/app/api/uploads/' . $target_path);
           $postsModel =
             new ProductModel();
           $postsModel->add($target_path, $name, $description, $price);

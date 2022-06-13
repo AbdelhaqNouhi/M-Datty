@@ -11,7 +11,7 @@
     <div class="servese">
         <div class="icone">
             <div>
-                <img src="../../assets/images/service/Paiement sécurisé.svg" alt="">
+                <img src="@/assets/images/service/Paiement-sécurisé.svg" alt="">
             </div>
             <div>
                 <h4>Paiement sécurisé</h4>
@@ -22,7 +22,7 @@
         </div>
         <div class="icone">
             <div>
-                <img src="../../assets/images/service/Service Client.svg" alt="">
+                <img src="@/assets/images/service/Service-Client.svg" alt="">
             </div>
             <div>
                 <h4>Service Client</h4>
@@ -33,7 +33,7 @@
         </div>
         <div class="icone">
             <div>
-                <img src="../../assets/images/service/Livraison à domicile.svg" alt="">
+                <img src="@/assets/images/service/Livraison-à-domicile.svg" alt="">
             </div>
             <div>
                 <h4>Livraison à domicile</h4>
@@ -44,7 +44,7 @@
         </div>
          <div class="icone">
              <div>
-                 <img src="../../assets/images/service/Livraison par coursier.svg" alt="">
+                 <img src="@/assets/images/service/Livraison-par-coursier.svg" alt="">
             </div>
             <div>
                 <h4>Livraison par coursier</h4>
@@ -58,8 +58,8 @@
 </template>
 
 <style lang="scss" scoped>
-@import "../../assets/Scss/variable";
-@import "../../assets/Scss/media";
+@import "@/assets/Scss/variable";
+@import "@/assets/Scss/media";
 
 .all {
     margin: 2.5rem auto;
