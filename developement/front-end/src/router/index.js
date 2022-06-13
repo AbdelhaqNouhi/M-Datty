@@ -6,11 +6,12 @@ import Login from '../components/Login.vue'
 import Register from '../components/Register.vue'
 import PageUser from '../components/PageUser.vue'
 import PageAdmin from '../components/PageAdmin.vue'
-import Command from '../components/Command.vue'
+import AdminCommand from '../components/AdminCommand.vue'
 import LoginAdmin from '../components/LoginAdmin.vue'
 import ProductItems from '../components/ProductItems.vue'
 import AboutUs from '../components/Home/AboutUs.vue'
 import Panier from '../components/Panier.vue'
+import Command from '../components/Command.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -70,9 +71,9 @@ const router = createRouter({
     },
 
     {
-      path: '/Command',
-      name: 'Command',
-      component: Command,
+      path: '/AdminCommand',
+      name: 'AdminCommand',
+      component: AdminCommand,
     },
 
     {
@@ -85,6 +86,12 @@ const router = createRouter({
       path: '/Panier',
       name: 'Panier',
       component: Panier,
+    },
+
+    {
+      path: '/Command',
+      name: 'Command',
+      component: Command,
     },
   ]
 });

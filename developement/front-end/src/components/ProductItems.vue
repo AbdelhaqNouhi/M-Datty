@@ -1,30 +1,46 @@
-<script>
+<script setup>
 import axios from 'axios';
-export default {
-  name: "ProductItems",
-  data() {
-      return {
-        Box: [],
-        id: this.$route.params.id,
-    };
-  },
+import { onMounted, ref } from 'vue';
+import { useStore } from '@/stores/counter';
+import { RouterView, useRoute } from 'vue-router';
 
-  methods: {
-    GetOneProduct() {
-        axios.get(`http://localhost/api/GetOneProduct?id=${this.id}`)
-        .then(response => {
-            this.Box = response.data;
-        })
-        .catch(error => {
-        console.log(error);
-        });
-    },
-  },
 
-  mounted() {
-    this.GetOneProduct();
-  },
+const store = useStore();
+const route = useRoute();
+
+const Box = ref([]);
+const id = route.params.id;
+
+console.log(id);
+
+const GetOneProduct = async function () {
+    const res = await axios.get(`http://localhost/api/GetOneProduct?id=${id}`);
+    const data = await res.data;
+    if (data) {
+        Box.value = data;
+    } else {
+        console.log("error");
+    }
 }
+
+const takeId = async function (data) {
+  // if(!store.user.user_id) {
+  //   alert("please go to Login");
+  // }
+  data.user_id = store.user.user_id;
+  const res = await axios.post('http://localhost/api/AddBasket', data);
+  const data2 = await res.data;
+  if (data2) {
+    console.log(data2);
+  } else {
+    console.log("error");
+  }
+}
+
+onMounted (() => {
+    GetOneProduct();
+});
+
 </script>
 
 <template>
@@ -46,8 +62,8 @@ export default {
             <h3>{{Box.price}}</h3>
         </div>
         <div class="button">
-          <button>add to card</button>
-          <button class="command">Commande Maintenant</button>
+          <button @click="takeId(Box)">add to card</button>
+          <Router-Link to="/Command"><button class="command">Commande Maintenant</button></Router-Link>
         </div>
       </div>
     </div>
@@ -159,7 +175,7 @@ export default {
         // cursor: pointer;
       }
       .command {
-        width: 50%;
+          width: 10rem;
       }
     }
   }

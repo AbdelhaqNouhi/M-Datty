@@ -21,7 +21,7 @@ const takeId = async function (data) {
   // if(!store.user.user_id) {
   //   alert("please go to Login");
   // }
-    data.user_id = store.user.user_id;
+  data.user_id = store.user.user_id;
   const res = await axios.post('http://localhost/api/AddBasket', data);
   const data2 = await res.data;
   if (data2) {

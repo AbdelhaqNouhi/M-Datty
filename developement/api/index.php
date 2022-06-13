@@ -84,8 +84,6 @@ $app->GET('/GetBasket', function ($id) {
 });
 
 $app->POST('/AddBasket', function ($data) {
-  // var_dump($data);
-  // die;
   $basket = new Basket();
   $basket->add($data);
 });
