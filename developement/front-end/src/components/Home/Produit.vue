@@ -2,8 +2,11 @@
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
 import { useStore } from '@/stores/counter';
+import { RouterView, useRoute } from 'vue-router';
+import router from '../../router';
 
 const store = useStore();
+const user = store.user;
 
 const Box = ref([]);
 
@@ -17,19 +20,27 @@ const GetThreProduct = async function () {
     }
 }
 
-const takeId = async function (data) {
-  // if(!store.user.user_id) {
-  //   alert("please go to Login");
-  // }
-    data.user_id = store.user.user_id;
-  const res = await axios.post('http://localhost/api/AddBasket', data);
-  const data2 = await res.data;
-  if (data2) {
-    console.log(data2);
-  } else {
-    console.log("error");
+const ckeck = async function (data) {
+  if(!user) {
+    alert("please go to Login");
+  }
+  else {
+    takeId(data);
   }
 }
+
+const takeId = async function (data) {
+
+    data.user_id = store.user.user_id;   
+    const res = await axios.post('http://localhost/api/AddBasket', data);
+    const data2 = await res.data;
+    if (data2) {
+      console.log(data2);
+    } else {
+      console.log("error");
+    } 
+}
+
 
 onMounted (() => {
     GetThreProduct();
@@ -53,7 +64,7 @@ onMounted (() => {
             <div>
               <p>{{box.name}}</p>
             </div>
-            <div @click="takeId(box)" class="card">
+            <div @click="ckeck(box)" class="card">
                 <img src="../../assets/images/icone/shopping-cart-svgrepo.svg" alt="">
             </div>
           </div>

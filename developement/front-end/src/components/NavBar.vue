@@ -12,6 +12,7 @@ const Panier = store.Panier;
 const showPanier = store.showPanier;
 const setUser = store.setUser;
 const cont = store.counter;
+const user = store.user;
 
 
 // data
@@ -75,8 +76,8 @@ const openstore = function () {
       </nav>
       <div class="img-user">
         <div @click="openstore" class="cart">
-          <img src="@/assets/images/icone/ShoppingCart.svg" alt="" />
-          <p>{{cont.length}}</p>
+          <p v-if="user">{{cont.length}}</p>
+          <img src="@/assets/images/icone/ShoppingCart.svg" alt=""/>
         </div>
         <div class="user">
           <div class="user_info">
@@ -273,8 +274,20 @@ header {
 
 .cart {
   // transition: all 0.5s ease;
-  display: flex;
+  // display: flex;
   color: white;
+
+    p {
+        position: absolute;
+        margin-left: 1rem;
+        margin-top: -1rem;
+        background-color: #D4C7A0;
+        border-radius: 100%;
+        width: 1.2rem;
+        text-align: center;
+        font-size: 12px;
+        font-weight: bold;
+      }
   button {
     display: block;
   }
