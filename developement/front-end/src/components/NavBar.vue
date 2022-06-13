@@ -11,13 +11,13 @@ const store = useStore();
 const Panier = store.Panier;
 const showPanier = store.showPanier;
 const setUser = store.setUser;
+const cont = store.counter;
 
 
 // data
 const show = ref(false);
 const menuIcon = ref('close');
 const check = ref(true);
-const aa = ref('');
 
 
 const logout = function () {
@@ -50,7 +50,6 @@ const openstore = function () {
 
 <template>
   <div>
-    <h1 v-if="aa">ggggggggggggggggg</h1>
     <!-- <div class="piblisite">
         <p>​En ce moment, livraison par coursier ( sur Toulouse et banlieue) offerte dès 29€ d'achat !</p>
     </div> -->
@@ -77,6 +76,7 @@ const openstore = function () {
       <div class="img-user">
         <div @click="openstore" class="cart">
           <img src="@/assets/images/icone/ShoppingCart.svg" alt="" />
+          <p>{{cont.length}}</p>
         </div>
         <div class="user">
           <div class="user_info">
@@ -273,6 +273,8 @@ header {
 
 .cart {
   // transition: all 0.5s ease;
+  display: flex;
+  color: white;
   button {
     display: block;
   }

@@ -11,8 +11,6 @@ const route = useRoute();
 const Box = ref([]);
 const id = route.params.id;
 
-console.log(id);
-
 const GetOneProduct = async function () {
     const res = await axios.get(`http://localhost/api/GetOneProduct?id=${id}`);
     const data = await res.data;

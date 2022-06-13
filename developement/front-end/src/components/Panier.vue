@@ -6,6 +6,7 @@ import { useStore } from '@/stores/counter'
 const store = useStore()
 const showPanier = store.showPanier;
 const id = store.user.user_id;
+const e = store.count;
 
 
 const Box = ref([]);
@@ -14,6 +15,7 @@ const GetBasket = async function () {
   const res = await axios.get('http://localhost/api/GetBasket?id=' + id);
   const data = await res.data;
   if (data) {
+    e(data);
     Box.value = data;
   } else {
     console.log("error");

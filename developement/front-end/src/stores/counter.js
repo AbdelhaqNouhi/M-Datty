@@ -3,6 +3,7 @@ import { defineStore } from 'pinia';
 
 export const useStore = defineStore( 'store', {
   state: () => ({
+    counter: JSON.parse( Cookies.get( 'counter' ) || '0' ),
     Panier: false,
     user: JSON.parse(Cookies.get('user') ?? '{}'),
     admin: JSON.parse(Cookies.get('admin') ?? '{}'),
@@ -28,6 +29,11 @@ export const useStore = defineStore( 'store', {
 
     setAdminId() {
       this.admin_id = Cookies.get('id');
+    },
+
+    count (e) {
+      Cookies.set('counter', JSON.stringify(e));
+      this.counter = e;
     }
   },
 
