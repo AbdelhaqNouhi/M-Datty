@@ -22,9 +22,9 @@ export default {
   },
 
   methods: {
-    selectimage(event) {
+    selectimageAdd(event) {
       this.Product.image = event.target.files[0];
-      console.log(this.Product.image);
+      // console.log(this.Product.image);
     },
 
     AddProduct() {
@@ -69,24 +69,42 @@ export default {
       this.Update = product;
     },
 
-    async UpdateProduct() {
-      const res = await fetch("http://localhost/api/UpdateProduct", {
-        method: "PUT",
-        body: JSON.stringify({
-          image: this.Update.image,
-          name: this.Update.name,
-          description: this.Update.description,
-          price: this.Update.price,
-          product_id: this.Update.product_id,
-        }),
-      });
-      const data = await res.json();
-      if (data) {
-        console.log("product updated");
-      } else {
-        console.log("error");
-      }
+    selectimageUpdate(event) {
+      this.Update.image = event.target.files[0];
+      console.log(this.Update.image);
     },
+
+    UpdateProduct() {
+      const formData = new FormData();
+      formData.append("image", this.Update.image);
+      formData.append("name", this.Update.name);
+      formData.append("description", this.Update.description);
+      formData.append("price", this.Update.price);
+      formData.append("product_id", this.Update.product_id);
+      axios.post("http://localhost/api/UpdateProduct", formData)
+        .then((response) => {
+          console.log(response);
+        });
+    },
+
+    // async UpdateProduct() {
+    //   const res = await fetch("http://localhost/api/UpdateProduct", {
+    //     method: "POST",
+    //     body: JSON.stringify({
+    //       image: this.Update.image,
+    //       name: this.Update.name,
+    //       description: this.Update.description,
+    //       price: this.Update.price,
+    //       product_id: this.Update.product_id,
+    //     }),
+    //   });
+    //   const data = await res.json();
+    //   if (data) {
+    //     console.log("product updated");
+    //   } else {
+    //     console.log("error");
+    //   }
+    // },
   },
 
   mounted() {
@@ -166,12 +184,8 @@ export default {
             ></button>
           </div>
           <div class="modal-body">
-            <input
-              type="text"
-              name="image"
-              placeholder="Image"
-              v-model="Update.image"
-            />
+              <label for="pic">choice image</label>
+            <input type="file" id="pic" name="image" hidden @change="selectimageUpdate" />
           </div>
           <div class="modal-body">
             <input
@@ -231,7 +245,7 @@ export default {
           </div>
           <div class="modal-body">
             <label for="pic">choice image</label>
-            <input type="file" id="pic" name="image" hidden @change="selectimage" />
+            <input type="file" id="pic" name="image" hidden @change="selectimageAdd" />
             <!-- <input type="text" name="image" placeholder="Image" v-model="this.Product.image"> -->
           </div>
           <div class="modal-body">

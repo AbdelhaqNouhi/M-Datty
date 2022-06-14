@@ -80,7 +80,7 @@ const openstore = function () {
           <img src="@/assets/images/icone/ShoppingCart.svg" alt=""/>
         </div>
         <div class="user">
-          <div class="user_info">
+          <div v-if="store.user" class="user_info">
             <img src="@/assets/images/aboutus.jpg" alt="" />
             <p>{{store.user?.first_name ?? ""}}</p>
           </div>
@@ -202,7 +202,7 @@ header {
 }
 .img-user {
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem;
   align-items: center;
   margin-left: auto;
 

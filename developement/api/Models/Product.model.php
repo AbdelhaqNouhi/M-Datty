@@ -40,31 +40,45 @@ class ProductModel extends Database
         ]);
         return $stmnt;
     }
-    // {
-     
-    //     $query = 'INSERT INTO products (image, name, description, price) VALUES (:image, :name, :description, :price)';
-    //     // $add = array (
-    //     //     $data['name'],
-    //     //     $data['description'],
-    //     //     $data['price']
-    //     // );
-    //     //bin
-    //     $stmnt = $this->execStatement($query, $add, $image);
-    //     return $stmnt;
-    // }
-    
-    function update($data)
+
+    public function Update($id, $name, $description, $price, $image)
     {
-        $query = 'UPDATE products SET image = ?, name = ?, description = ?, price = ? WHERE product_id = ?';
-        $update = array (
-            $data['image'],
-            $data['name'],
-            $data['description'],
-            $data['price'],
-            $data['id']
+        // var_dump($_POST);
+        // var_dump($_FILES);
+
+
+        if ($image == null) {
+        $query = 'UPDATE products SET name = ?, description = ?, price = ? WHERE product_id = ?';
+        $one = array (
+            'name' => $name,
+            'description' => $description,
+            'price' => $price,
+            'id' => $id
         );
-        $stmnt = $this->execStatement($query, $update);
-        return $stmnt;
+        $stmnt = $this->execStatement($query, array_values($one));
+            if ($stmnt) {
+                echo json_encode(['message' => 'Product updated successfully']);
+            } else {
+                echo json_encode(['message' => 'error']);
+            }
+
+        } else {
+            $query = 'UPDATE products SET name = ?, description = ?, price = ?, image = ? WHERE product_id = ?';
+            $two = [
+                $name,
+                $description,
+                $price,
+                $image,
+                $id
+            ];
+            var_dump($two);
+            $stmnt = $this->execStatement($query, $two);
+                if($stmnt) {
+                    echo json_encode(['message' => 'Product updated successfully']);
+                } else {
+                    echo json_encode(['message' => 'error']);
+                }
+        }
     }
     
     function delete ($data)

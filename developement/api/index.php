@@ -46,7 +46,8 @@ $app->POST('/AddProduct', function ($data) {
   $product->Add($data);
 });
 
-$app->PUT('/UpdateProduct', function ($data) {
+$app->POST('/UpdateProduct', function ($data) {
+  // var_dump($data);
   $product = new Product();
   $product->Update($data);
 });

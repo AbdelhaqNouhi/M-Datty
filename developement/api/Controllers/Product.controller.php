@@ -38,25 +38,25 @@ class Product
   //   }
   // }
 
-  public function update($data)
-  {
-    $update = [
-      'image' => $data->image,
-      'name' => $data->name,
-      'description' => $data->description,
-      'price' => $data->price,
-      'id' => $data->product_id
-    ];
+  // public function update($data)
+  // {
+  //   $update = [
+  //     'image' => $data->image,
+  //     'name' => $data->name,
+  //     'description' => $data->description,
+  //     'price' => $data->price,
+  //     'id' => $data->product_id
+  //   ];
 
-    $this->model = new ProductModel();
-    $this->model->update($update);
+  //   $this->model = new ProductModel();
+  //   $this->model->update($update);
 
-    if ($update) {
-      echo json_encode(['message' => 'Product updated successfully']);
-    } else {
-      echo json_encode(['message' => 'Product not updated']);
-    }
-  }
+  //   if ($update) {
+  //     echo json_encode(['message' => 'Product updated successfully']);
+  //   } else {
+  //     echo json_encode(['message' => 'Product not updated']);
+  //   }
+  // }
 
   public function delete($id)
   {
@@ -69,8 +69,7 @@ class Product
       echo json_encode(['message' => 'Product not deleted']);
     }
   }
-  public function add($data)
-  {
+  public function add() {
     $name = $_POST['name'];
     $description = $_POST['description'];
     $price = $_POST['price'];
@@ -94,6 +93,43 @@ class Product
         $postsModel = new ProductModel();
 
         $postsModel->add(null, $name, $description, $price);
+      }
+  }
+
+  public function update()
+  { 
+    if($_FILES['image'] != null) {
+      $id = $_POST['product_id'];
+      $name = $_POST['name'];
+      $description = $_POST['description'];
+      $price = $_POST['price'];
+      $image = $_FILES['image']['name'];
+
+    } else {
+      $id = $_POST['product_id'];
+      $name = $_POST['name'];
+      $description = $_POST['description'];
+      $price = $_POST['price'];
+    }
+
+
+      $imageFileType = strtolower(pathinfo($image, PATHINFO_EXTENSION));
+      $extensions_arr = array("jpg", "jpeg", "png", "gif");
+
+      if (isset($_FILES['image']) && !empty($_FILES['image']['name'])) {
+        if (in_array($imageFileType, $extensions_arr)) {
+          $file_name = uniqid('', true) . '.' . $imageFileType;
+          $target_path = $file_name;
+          move_uploaded_file($_FILES['image']['tmp_name'], '/app/api/uploads/' . $target_path);
+          $postsModel = new ProductModel();
+          $postsModel->update($id, $name, $description, $price, $target_path);
+          return json_encode(['message' => 'Product updated successfully']);
+        } else {
+          return json_encode(['message' => 'Invalid File Type']);
+        }
+      } else {
+        $postsModel = new ProductModel();
+        $postsModel->update($id, $name, $description, $price, null);
       }
   }
 }
