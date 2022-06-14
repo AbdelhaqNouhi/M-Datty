@@ -1,12 +1,9 @@
 <script setup>
-// import { computed } from '@vue/reactivity';
 import { useStore } from "@/stores/counter";
 import {useRouter} from 'vue-router';
-// import Cookies from 'js-cookie';
 import { ref } from 'vue';
 
 
-// const cookie = Cookies.get('user');
 const store = useStore();
 const Panier = store.Panier;
 const showPanier = store.showPanier;
@@ -192,7 +189,6 @@ header {
   align-items: center;
   width: 100%;
   left: 0;
-  //   height: 100vw;
   transform: translateX(-100%);
   transition: all 0.5s ease-in-out;
 

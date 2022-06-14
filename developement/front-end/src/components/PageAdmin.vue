@@ -86,25 +86,6 @@ export default {
           console.log(response);
         });
     },
-
-    // async UpdateProduct() {
-    //   const res = await fetch("http://localhost/api/UpdateProduct", {
-    //     method: "POST",
-    //     body: JSON.stringify({
-    //       image: this.Update.image,
-    //       name: this.Update.name,
-    //       description: this.Update.description,
-    //       price: this.Update.price,
-    //       product_id: this.Update.product_id,
-    //     }),
-    //   });
-    //   const data = await res.json();
-    //   if (data) {
-    //     console.log("product updated");
-    //   } else {
-    //     console.log("error");
-    //   }
-    // },
   },
 
   mounted() {

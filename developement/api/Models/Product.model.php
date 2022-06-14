@@ -6,7 +6,7 @@ class ProductModel extends Database
     {
         $query = "SELECT * FROM products WHERE product_id = ?";
         $one = [
-             $id
+            $id
         ];
         $stmnt = $this->execStatement($query, $one);
         echo json_encode($stmnt->fetch(PDO::FETCH_ASSOC));
@@ -43,10 +43,6 @@ class ProductModel extends Database
 
     public function Update($id, $name, $description, $price, $image)
     {
-        // var_dump($_POST);
-        // var_dump($_FILES);
-
-
         if ($image == null) {
         $query = 'UPDATE products SET name = ?, description = ?, price = ? WHERE product_id = ?';
         $one = array (

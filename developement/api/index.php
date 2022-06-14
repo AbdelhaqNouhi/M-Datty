@@ -24,8 +24,8 @@ $app->DELETE('/DeleteUser', function ($data) {
   $user->delete($data);
 });
 
-// Prudact
 
+// Prudact
 $app->GET('/GetOneProduct', function ($data) {
   $product = new Product();
   $product->GetOneProduct($data["id"]);
@@ -47,7 +47,6 @@ $app->POST('/AddProduct', function ($data) {
 });
 
 $app->POST('/UpdateProduct', function ($data) {
-  // var_dump($data);
   $product = new Product();
   $product->Update($data);
 });
@@ -56,6 +55,7 @@ $app->post('/DeleteProduct', function ($data) {
   $product = new Product();
   $product->Delete($data);
 });
+
 
 // Commande
 $app->GET('/GetCommande', function () {
@@ -77,6 +77,7 @@ $app->DELETE('/DeleteCommande', function ($data) {
   $commande = new Commande();
   $commande->delete($data);
 });
+
 
 // Basket
 $app->GET('/GetBasket', function ($id) {
