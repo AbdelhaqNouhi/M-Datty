@@ -111,6 +111,9 @@ const openstore = function () {
 }
 .navbar {
   background-color: $header-color;
+  position: fixed;
+  z-index: 100;
+  width: 100%;
 }
 header {
   padding: 0rem 2rem;

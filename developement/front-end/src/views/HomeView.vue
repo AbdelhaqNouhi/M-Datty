@@ -9,6 +9,7 @@ import { ref } from 'vue'
 </script>
 
 <template>
+<NavBar />
   <main id="body">
     <FirstPart />
     <Produit />

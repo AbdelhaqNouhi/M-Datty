@@ -80,7 +80,7 @@
 .help {
     width: 100%;
     display: flex;
-    gap: 4rem;
+    gap: 1rem;
     padding: 1rem 2rem;
     border-radius: 1rem;
 
