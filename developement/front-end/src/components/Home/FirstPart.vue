@@ -32,7 +32,7 @@
         object-fit: cover;
         position: absolute;
         width: 100%;
-        height: 88vh;
+        height: 100%;
     }
 }
 .content{
