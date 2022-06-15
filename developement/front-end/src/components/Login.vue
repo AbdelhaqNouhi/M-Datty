@@ -1,4 +1,5 @@
 <script setup>
+import NavBar from '../components/NavBar.vue'
 import { useStore } from '@/stores/counter';
 import Cookies from 'js-cookie';
 import { useRouter } from 'vue-router';
@@ -32,6 +33,8 @@ const login =  async function () {
 </script>
 
 <template>
+<div>
+    <NavBar />
     <form class="login" action="">
         <div class="info">
             <h1>Connexion</h1>
@@ -50,6 +53,7 @@ const login =  async function () {
             </div>
         </div>
     </form>
+</div>
 </template>
 
 <style lang="scss" scoped>
@@ -63,6 +67,7 @@ const login =  async function () {
 }
 
 .info {
+    margin-top: 4rem;
     padding: 1.5rem;
     width: 100%;
     display: flex;

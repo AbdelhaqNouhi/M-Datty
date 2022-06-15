@@ -1,28 +1,24 @@
 <script setup>
-import NavBar from './components/NavBar.vue';
+// import NavBar from './components/NavBar.vue';
 import Cookies from 'js-cookie';
 // import NavAdmin from './components/NavAdmin.vue';
-import Footer from './components/Footer.vue';
+// import Footer from './components/Footer.vue';
 import Panier from './components/Panier.vue';
 import { useStore } from '@/stores/counter';
 import { RouterView } from 'vue-router';
 
 const store = useStore();
 
-const admin = store.admin.role;
-const user = store.user.role;
-console.log(admin);
-console.log(user);
 
 
 </script>
 
 <template>
-  <NavBar />
-  <NavAdmin />
+  <!-- <NavBar /> -->
+  <!-- <NavAdmin /> -->
   <Panier v-if="store.Panier" />
   <Router-View />
-  <Footer />
+  <!-- <Footer /> -->
 </template>
 
 

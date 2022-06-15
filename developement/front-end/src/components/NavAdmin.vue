@@ -8,16 +8,21 @@ const setAdmin = store.setAdmin;
 </script>
 
 <template>
-      <div class="nav">
-        <div class="username">
-            <img src="../assets/images/img_about.svg" alt="...">
-            <h1>{{store.admin?.last_name ?? ""}} {{store.admin?.first_name ?? ""}}</h1>
+    <div class="nav">
+        <div class="logo">
+            <!-- <img src="../assets/images/icone/logo2.png" alt=""> -->
         </div>
-        <div class="button">
+        <div class="content">
+            <div class="username">
+                <img src="../assets/images/img_about.svg" alt="...">
+                <h1>{{store.admin?.last_name ?? ""}} {{store.admin?.first_name ?? ""}}</h1>
+            </div>
             <div class="add">
-                <Router-Link to="/PageAdmin">Produits</Router-Link>
-                <Router-Link to="/Command">Commande</Router-Link>
                 <button class="dropdown-item" name="update" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Ajoute Produit</button>
+            </div>
+            <div class="mune">
+                <Router-Link to="/PageAdmin">Produits</Router-Link>
+                <Router-Link to="/Command">Commande</Router-Link>        
             </div>
         </div>
     </div>
@@ -27,57 +32,62 @@ const setAdmin = store.setAdmin;
 @import "../assets/Scss/variable";
 @import "../assets/Scss/media";
 
-
-.router-link-active {
-  color: $button-color;
-  border-bottom: solid 2px white;
-}
 .nav {
+    width: 20%;
+    height: 100vh;
     align-items: center;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 4rem;
     background-color: $header-color;
-    padding: 1rem;
-    margin: 2rem;
-    border-radius: 0.5rem;
+    padding: 0 1rem;
 
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+    }
     .username {
         align-items: center;
         display: flex;
         gap: 1rem;
         img {
-            width: 2rem;
+             width: 2rem;
             height: 2rem;
-            border-radius: 4rem;
+            border-radius: 5rem;
+            border: 2px solid white;
         }
         h1 {
             color: white;
             font-size: 14px;
-            font-weight: normal;
         }
     }
-
-    .button {
-        display: flex;
-        gap: 8rem;
-
-    }
-
     .add {
-        align-items: center;
-        display: flex;
-        gap: 5rem;
+        background-color: white;
+        width: 100%;
+        padding: 0.5rem;
+        text-align: center;
+        border-radius:0.3rem;
+
         button {
-            padding: 0.4rem;
-            border: none;
-            border-radius: 0.2rem;
-            color: white;
-            background-color: $button-color;
+            color: black;
         }
-        a {
-            color: white;
-            text-decoration: none;
-        }
+    }
+
+    .mune {
+        width: 100%;
+        gap: 2rem;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+
+            a {
+                padding: 0.5rem;
+                width: 100%;
+                border-bottom: 1px solid white;
+                color: white;
+                text-decoration: none;
+            }
     }
 }
 </style>

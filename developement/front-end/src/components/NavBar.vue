@@ -53,11 +53,11 @@ const openstore = function () {
     </div> -->
     <header class="navbar">
       <div class="logo">
-        <img
+        <!-- <img
           alt="Vue logo"
           class="logo"
           src="@/assets/images/icone/logo2.png"
-        />
+        /> -->
       </div>
       <nav class="menu">
         <Router-Link to="/">Home</Router-Link>
@@ -72,9 +72,9 @@ const openstore = function () {
         <button v-if="store.user" @click="logout" class="login">Log Out</button>
       </nav>
       <div class="img-user">
-        <div @click="openstore" class="cart">
+        <div class="cart">
           <p v-if="user">{{cont.length}}</p>
-          <img src="@/assets/images/icone/ShoppingCart.svg" alt=""/>
+          <Router-Link to="/Panier"><img src="@/assets/images/icone/ShoppingCart.svg" alt=""/></Router-Link>
         </div>
         <div class="user">
           <div v-if="store.user" class="user_info">
@@ -283,8 +283,6 @@ header {
 }
 
 .cart {
-  // transition: all 0.5s ease;
-  // display: flex;
   color: white;
 
     p {
@@ -307,10 +305,11 @@ header {
 
         }
       }
-  button {
-    display: block;
-  }
+  // button {
+  //   display: block;
+  // }
   img {
+    border: none;
     width: 1.3rem;
     height: 1.3rem;
 

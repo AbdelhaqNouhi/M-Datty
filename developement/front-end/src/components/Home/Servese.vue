@@ -81,10 +81,13 @@
 }
 .our {
     font-size: 12px;
-    padding: 4rem 0;
+    padding: 8rem 0;
     display: flex;
     justify-content: center;
 
+    @include mobile {
+        padding: 4rem 0;
+    }
     @include desktop {
         padding: 4rem 0;
     }

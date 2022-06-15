@@ -1,4 +1,5 @@
 <script setup>
+import NavBar from '../components/NavBar.vue'
 import FirstPart from '../components/Home/FirstPart.vue'
 import Produit from '../components/Home/Produit.vue'
 import Servese from '../components/Home/Servese.vue'
@@ -20,6 +21,5 @@ import { ref } from 'vue'
 </template>
 
 <style lang="scss" scoped>
-
 
 </style>

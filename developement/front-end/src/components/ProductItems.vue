@@ -1,4 +1,5 @@
 <script setup>
+import NavBar from '../components/NavBar.vue'
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
 import { useStore } from '@/stores/counter';
@@ -42,6 +43,7 @@ onMounted (() => {
 </script>
 
 <template>
+<NavBar />
   <div class="parent">
     <div class="product">
       <div class="img">
@@ -61,7 +63,6 @@ onMounted (() => {
         </div>
         <div class="button">
           <button @click="takeId(Box)">add to card</button>
-          <Router-Link to="/Command"><button class="command">Commande Maintenant</button></Router-Link>
         </div>
       </div>
     </div>
@@ -153,27 +154,19 @@ onMounted (() => {
     .descriptions {
       flex-wrap: wrap;
     }
-
-    // .price {
-
-    // }
-
     .button {
       width: 25rem;
       display: flex;
       gap: 4rem;
       button {
-        width: 20%;
         height: 2.5rem;
+        width: 10rem;
         background-color: $header-color;
         color: white;
         border: none;
         border-radius: 0.3rem;
         font-size: 12px;
         // cursor: pointer;
-      }
-      .command {
-          width: 10rem;
       }
     }
   }

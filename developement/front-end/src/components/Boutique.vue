@@ -1,4 +1,5 @@
 <script setup>
+import NavBar from '../components/NavBar.vue'
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
 import { useStore } from '@/stores/counter';
@@ -21,7 +22,7 @@ const takeId = async function (data) {
   // if(!store.user.user_id) {
   //   alert("please go to Login");
   // }
-  data.user_id = store.user.user_id;
+    data.user_id = store.user.user_id;
   const res = await axios.post('http://localhost/api/AddBasket', data);
   const data2 = await res.data;
   if (data2) {
@@ -38,6 +39,7 @@ onMounted (() => {
 </script>
 
 <template>
+<NavBar />
 <div class="parent">
   <div class="produits">
       <div v-for="box in Box" class="produit">
@@ -70,6 +72,7 @@ onMounted (() => {
 <style lang="scss" scoped>
 @import "../assets/Scss/variable";
 @import "../assets/Scss/media";
+
 
 .parent{
     padding: 5rem 0;

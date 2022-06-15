@@ -6,6 +6,7 @@
 <template>
     <div class="first">
         <img src="../../assets/images/aboutus.jpg" alt="" />
+        <div class="bg-opacity"></div>
         <div class="content">
             <div>
                 <h1>MaisonDatty</h1>
@@ -27,6 +28,15 @@
     width: 100%;
     height: 88vh;
     color: white;
+    .bg-opacity{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        opacity: 0.3;
+    }
 
     img {
         object-fit: cover;

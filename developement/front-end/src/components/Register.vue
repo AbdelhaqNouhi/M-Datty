@@ -1,4 +1,5 @@
 <script setup>
+import NavBar from '../components/NavBar.vue'
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';
 
@@ -31,6 +32,7 @@ const register = async function () {
 </script>
 
 <template>
+<NavBar />
     <form @click.prevent="register" class="register" action="">
         <div class="info">
             <h1>S'inscrire</h1>
@@ -68,6 +70,7 @@ const register = async function () {
     justify-content: center;
 }
 .info {
+    margin-top: 6rem;
     padding: 1.5rem;
     width: 100%;
     display: flex;

@@ -95,56 +95,58 @@ export default {
 </script>
 
 <template>
-  <NavAdmin />
-  <div class="product">
-    <table border="1px solid black">
-      <tr class="title">
-        <th>Image</th>
-        <th>Nome</th>
-        <th>Descriptions</th>
-        <th>Prix</th>
-        <th>Id</th>
-        <th>More</th>
-      </tr>
-      <tr v-for="box in Box" :key="i" class="list">
-        <td class="img"><img :src="`http://localhost/uploads/` + box.image" alt="" /></td>
-        <td>{{ box.name }}</td>
-        <td>{{ box.description }}</td>
-        <td>{{ box.price }}</td>
-        <td>{{ box.product_id }}</td>
-        <td>
-          <a data-bs-toggle="dropdown">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="bi bi-three-dots point"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"
-              />
-            </svg>
-          </a>
-          <ul class="dropdown-menu">
-            <button
-              class="dropdown-item"
-              name="delete"
-              @click="DeleteProduct(box.product_id)"
-            >
-              Delete
-            </button>
-            <button
-              @click="FindProduct(box.product_id)"
-              class="dropdown-item"
-              name="update"
-              data-bs-toggle="modal"
-              data-bs-target="#staticBackdrops"
-            >
-              Update
-            </button>
-          </ul>
-        </td>
-      </tr>
-    </table>
+  <div class="all">
+    <NavAdmin />
+    <div class="product">
+      <table border="1px solid black">
+        <tr class="title">
+          <th>Image</th>
+          <th>Nome</th>
+          <th>Descriptions</th>
+          <th>Prix</th>
+          <th>Id</th>
+          <th>More</th>
+        </tr>
+        <tr v-for="box in Box" :key="i" class="list">
+          <td class="img"><img :src="`http://localhost/uploads/` + box.image" alt="" /></td>
+          <td>{{ box.name }}</td>
+          <td>{{ box.description }}</td>
+          <td>{{ box.price }}</td>
+          <td>{{ box.product_id }}</td>
+          <td>
+            <a data-bs-toggle="dropdown">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="bi bi-three-dots point"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"
+                />
+              </svg>
+            </a>
+            <ul class="dropdown-menu">
+              <button
+                class="dropdown-item"
+                name="delete"
+                @click="DeleteProduct(box.product_id)"
+              >
+                Delete
+              </button>
+              <button
+                @click="FindProduct(box.product_id)"
+                class="dropdown-item"
+                name="update"
+                data-bs-toggle="modal"
+                data-bs-target="#staticBackdrops"
+              >
+                Update
+              </button>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </div>
   </div>
   <form @submit.prevent="UpdateProduct(Update.product_id)">
     <div
@@ -271,10 +273,15 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/Scss/variable";
 @import "../assets/Scss/media";
+
+.all {
+  display: flex;
+}
 .product {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  margin: 2rem;
+  margin: 4rem;
   border-radius: 5rem;
 }
 table {
