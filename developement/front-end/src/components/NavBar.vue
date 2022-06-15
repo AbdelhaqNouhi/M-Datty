@@ -113,8 +113,7 @@ const openstore = function () {
   background-color: $header-color;
   position: fixed;
   z-index: 100;
-  width: 100%;
-}
+  width: 100%;}
 header {
   padding: 0rem 2rem;
   display: flex;
@@ -132,6 +131,18 @@ header {
 
     @include desktop {
       display: none;
+    }
+  }
+}
+
+.logo {
+
+  img {
+
+    width: 80%;
+
+    @include desktop {
+      width: 100%;
     }
   }
 }
@@ -279,20 +290,34 @@ header {
     p {
         position: absolute;
         margin-left: 1rem;
-        margin-top: -1rem;
+        margin-top: -0.6rem;
         background-color: #D4C7A0;
         border-radius: 100%;
-        width: 1.2rem;
+        width: 0.9rem;
+        height: 0.9rem;
         text-align: center;
-        font-size: 12px;
+        font-size: 10px;
         font-weight: bold;
+
+        @include desktop {
+          margin-top: -1rem;
+          width: 1.2rem;
+          height: 1.2rem;
+          font-size: 12px;
+
+        }
       }
   button {
     display: block;
   }
   img {
-    width: 1.6rem;
-    height: 1.6rem;
+    width: 1.3rem;
+    height: 1.3rem;
+
+    @include desktop {
+      width: 1.6rem;
+      height: 1.6rem;
+    }
   }
 }
 .admin {

@@ -81,7 +81,7 @@
 }
 .our {
     font-size: 12px;
-    padding: 8rem 0;
+    padding: 4rem 0;
     display: flex;
     justify-content: center;
 
