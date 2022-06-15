@@ -273,7 +273,6 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/Scss/variable";
 @import "../assets/Scss/media";
-
 .all {
   display: flex;
 }

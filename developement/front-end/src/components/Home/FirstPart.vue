@@ -5,7 +5,7 @@
 
 <template>
     <div class="first">
-        <img src="../../assets/images/aboutus.jpg" alt="" />
+        <img src="../../assets/images/background.jpg" alt="" />
         <div class="bg-opacity"></div>
         <div class="content">
             <div>
@@ -26,7 +26,7 @@
 
 .first {
     width: 100%;
-    height: 88vh;
+    height: 100vh;
     color: white;
     .bg-opacity{
         position: absolute;

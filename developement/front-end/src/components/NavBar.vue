@@ -53,11 +53,11 @@ const openstore = function () {
     </div> -->
     <header class="navbar">
       <div class="logo">
-        <!-- <img
+        <img
           alt="Vue logo"
           class="logo"
-          src="@/assets/images/icone/logo2.png"
-        /> -->
+          src="@/assets/images/icone/logo.png"
+        />
       </div>
       <nav class="menu">
         <Router-Link to="/">Home</Router-Link>
@@ -115,14 +115,14 @@ const openstore = function () {
   z-index: 100;
   width: 100%;}
 header {
-  padding: 0rem 2rem;
+  padding: 0.2rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
 
   @include desktop {
-    padding: 0rem 5rem;
+    padding: 0.2rem 5rem;
   }
   button {
     display: block;
@@ -139,10 +139,10 @@ header {
 
   img {
 
-    width: 80%;
+    width: 8rem;
 
     @include desktop {
-      width: 100%;
+      width:10rem;
     }
   }
 }
