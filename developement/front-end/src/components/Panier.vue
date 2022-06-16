@@ -49,6 +49,7 @@ const DeletePanier = async function (id) {
 
 onMounted (() => {
   GetBasket();
+
 });
 
 

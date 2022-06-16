@@ -1,9 +1,36 @@
 <script setup>
+import { onMounted } from 'vue';
+
 const props = defineProps({
   item: Object,
+    index: Number,
 });
+
+
 const increment = () => props.item.Quantite++;
-const decrement = () => props.item.Quantite--;
+const decrement = () => {
+    while (props.item.Quantite > 1) {
+        props.item.Quantite--;
+    }
+    // props.item.Quantite--;
+} 
+
+// const total = function () {
+//     let qte=props.item.Quantite;
+//     let pr=props.item.price;
+//     console.log(`totale ${parseInt(qte)*parseInt(pr)}`);
+    
+//     props.index = parseInt(props.item.price)*parseInt(props.item.Quantite);
+//     // console.log(props.index);
+  
+
+// }
+
+// console.log(props.item.Quantite, props.item.Prix);
+// onMounted (() => {
+//   total();
+// });
+
 </script>
 <template>
   <div class="product">
@@ -33,7 +60,7 @@ const decrement = () => props.item.Quantite--;
         </div>
         <div class="total">
             <h3>Prix Total</h3>
-            <p>{{ item.price * item.Quantite }}</p>
+            <p>{{parseInt(props.item.Quantite) * parseInt(props.item.price)}} DH</p>
         </div>
     </div>
     <div @click="DeletePanier(item.product_id)" class="close">
