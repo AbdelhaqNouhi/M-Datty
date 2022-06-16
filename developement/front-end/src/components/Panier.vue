@@ -10,7 +10,20 @@ const id = store.user.user_id;
 const e = store.count;
 
 
+const aa = ref(0);
+
 const Box = ref([]);
+
+
+const incriment = function () {
+  aa.value++;
+}
+
+const decriment = function () {
+  while (aa.value > 0) {
+    aa.value--;
+  }
+}
 
 const GetBasket = async function () {
   const res = await axios.get('http://localhost/api/GetBasket?id=' + id);
@@ -62,13 +75,15 @@ onMounted (() => {
               <label>Quantité</label>
             </div>
             <div class="count">
-              <button>-</button>
-              <button>+</button>
+              <button @click="decriment">-</button>
+              <p>{{ aa }}</p>
+              <button @click="incriment">+</button>
             </div>
           </div>
           <div class="price">
             <label>Prix</label>
             <p>{{box.price }}</p>
+            <h1>{{ total }}</h1>
           </div>
         </div>
           <div @click="DeletePanier(box.product_id)" class="close">
@@ -193,6 +208,7 @@ onMounted (() => {
 
       p {
         font-size: 14px;
+        margin: auto;
 
         @include tablet {
           font-size: 16px;
@@ -237,7 +253,7 @@ onMounted (() => {
        }
       .count {
         display: flex;
-        gap: 1rem;
+        gap: 0.6rem;
       }
       button {
         text-align: center;
@@ -245,7 +261,9 @@ onMounted (() => {
         width: 25px;
         height: 25px;
         border: none;
-        background-color: $button_color;
+        // background-color: $button_color;
+        font-weight: bold;
+        font-size: 24px;
         border-radius: 0.3rem;
 
         @include desktop {

@@ -101,6 +101,10 @@ const openstore = function () {
 @import "@/assets/Scss/variable";
 @import "@/assets/Scss/media";
 
+// .router-link-active {
+//   color: $button-color;
+//   border-bottom: solid 2px white;
+// }
 .piblisite {
   font-size: 13px;
   height: 2.5rem;
@@ -276,10 +280,6 @@ header {
   border-radius: 0.2rem;
   color: white;
   background-color: $button-color;
-}
-.router-link-active {
-  color: $button-color;
-  border-bottom: solid 2px white;
 }
 
 .cart {
