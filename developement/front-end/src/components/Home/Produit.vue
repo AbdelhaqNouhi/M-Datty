@@ -13,6 +13,7 @@ const Box = ref([]);
 const GetThreProduct = async function () {
     const res = await axios.get('http://localhost/api/ThreProduct');
     const data = await res.data;
+    
     if (data) {
         Box.value = data;
     } else {
@@ -30,7 +31,7 @@ const ckeck = async function (data) {
 }
 
 const takeId = async function (data) {
-
+    
     data.user_id = store.user.user_id;   
     const res = await axios.post('http://localhost/api/AddBasket', data);
     const data2 = await res.data;
