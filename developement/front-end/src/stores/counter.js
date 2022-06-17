@@ -7,6 +7,7 @@ export const useStore = defineStore( 'store', {
     Panier: false,
     user: JSON.parse(Cookies.get('user') ?? '{}'),
     admin: JSON.parse(Cookies.get('admin') ?? '{}'),
+    total: 0,
   }),
   actions: {
     setUser (user) {

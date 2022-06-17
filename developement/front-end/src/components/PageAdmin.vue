@@ -22,19 +22,42 @@ export default {
   },
 
   methods: {
+
     selectimageAdd(event) {
       this.Product.image = event.target.files[0];
-      // console.log(this.Product.image);
+      console.log({selec : this.Product.image});
     },
+
+    // AddProduct() {
+    //   const formData = new FormData();
+    //   formData.append("name", this.Product.name);
+    //   formData.append("description", this.Product.description);
+    //   formData.append("price", this.Product.price);
+    //   formData.append("image", this.Product.image);
+
+    //   // console.log(this.Product.image);
+    //   axios.post("http://localhost/api/AddProduct", formData)
+    //     .then((response) => {
+    //       console.log(response);
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    // },
 
     AddProduct() {
       const formData = new FormData();
-      formData.append("image", this.Product.image, this.Product.image.name);
       formData.append("name", this.Product.name);
       formData.append("description", this.Product.description);
       formData.append("price", this.Product.price);
+      formData.append("image", this.Product.image);
+      console.log({image : this.Product.image});
 
-      axios.post("http://localhost/api/AddProduct", formData)
+      axios.post("http://localhost/api/AddProduct", formData,{
+        // headers: {
+        //   "Content-Type": "multipart/form-data",
+        // },
+      })
         .then((response) => {
           console.log(response);
         });
@@ -81,6 +104,7 @@ export default {
       formData.append("description", this.Update.description);
       formData.append("price", this.Update.price);
       formData.append("product_id", this.Update.product_id);
+      
       axios.post("http://localhost/api/UpdateProduct", formData)
         .then((response) => {
           console.log(response);
@@ -167,8 +191,8 @@ export default {
             ></button>
           </div>
           <div class="modal-body">
-              <label for="pic">choice image</label>
-            <input type="file" id="pic" name="image" hidden @change="selectimageUpdate" />
+              <label for="pic-update">choice image</label>
+            <input type="file" id="pic-update" name="image" hidden @change="selectimageUpdate" />
           </div>
           <div class="modal-body">
             <input
@@ -227,8 +251,8 @@ export default {
             ></button>
           </div>
           <div class="modal-body">
-            <label for="pic">choice image</label>
-            <input type="file" id="pic" name="image" hidden @change="selectimageAdd" />
+            <label for="pic-add">choice image</label>
+            <input type="file" id="pic-add" name="image" hidden @change="selectimageAdd" />
             <!-- <input type="text" name="image" placeholder="Image" v-model="this.Product.image"> -->
           </div>
           <div class="modal-body">

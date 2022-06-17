@@ -1,4 +1,5 @@
 <script setup>
+import axios from 'axios';
 import NavBar from '../components/NavBar.vue'
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';
@@ -9,26 +10,42 @@ const phone = ref('');
 const email = ref('');
 const password = ref('');
 
-
 const register = async function () {
-    const res = await fetch('http://localhost/api/AddAdmin', {
-        method: 'POST',
-        body: JSON.stringify({
-            first_name: first_name.value,
-            last_name: last_name.value,
-            phone: phone.value,
-            email: email.value,
-            password: password.value,
-        }),
+    const res = await axios.post('http://localhost/api/Register', {
+    first_name: first_name.value,
+    last_name: last_name.value,
+    phone: phone.value,
+    email: email.value,
+    password: password.value,
     });
-    const data = await res.json();
-    if (!data.error) {
-        // router.push('/');
-        console.log('ok');
+    const data = await res.data;
+    if (data) {
+    console.log(data);
     } else {
-        console.log('error');
+    console.log("error");
     }
 }
+
+
+// const register = async function () {
+//     const res = await fetch('http://localhost/api/AddAdmin', {
+//         method: 'POST',
+//         body: JSON.stringify({
+//             first_name: first_name.value,
+//             last_name: last_name.value,
+//             phone: phone.value,
+//             email: email.value,
+//             password: password.value,
+//         }),
+//     });
+//     const data = await res.json();
+//     if (!data.error) {
+//         // router.push('/');
+//         console.log('ok');
+//     } else {
+//         console.log('error');
+//     }
+// }
 </script>
 
 <template>

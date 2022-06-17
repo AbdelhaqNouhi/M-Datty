@@ -31,13 +31,15 @@ class Product
     }
   }
   public function add() {
+    // var_dump($_FILES);
+    // var_dump($_POST);
+    // exit;
     $name = $_POST['name'];
     $description = $_POST['description'];
     $price = $_POST['price'];
-      $Image = $_FILES['image']['name'];
+    $Image = $_FILES['image']['name'];
       $imageFileType = strtolower(pathinfo($Image, PATHINFO_EXTENSION));
       $extensions_arr = array("jpg", "jpeg", "png", "gif");
-
       if (!empty($_FILES['image']['name'])) {
         if (in_array($imageFileType, $extensions_arr)) {
           $file_name = uniqid('', true) . '.' . $imageFileType;

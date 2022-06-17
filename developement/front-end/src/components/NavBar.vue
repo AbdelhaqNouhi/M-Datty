@@ -105,14 +105,14 @@ const openstore = function () {
 //   color: $button-color;
 //   border-bottom: solid 2px white;
 // }
-.piblisite {
-  font-size: 13px;
-  height: 2.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: $button-color;
-}
+// .piblisite {
+//   font-size: 13px;
+//   height: 2.5rem;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   background-color: $button-color;
+// }
 .navbar {
   background-color: $header-color;
   position: fixed;

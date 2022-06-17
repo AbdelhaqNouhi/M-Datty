@@ -6,12 +6,9 @@ import axios from 'axios';
 import { useStore } from '@/stores/counter'
 
 const store = useStore()
-// const showPanier = store.showPanier;
 const id = store.user.user_id;
 const e = store.count;
-
-
-// const aa = ref(0);
+const total = store.total;
 
 const items = ref([]);
 
@@ -56,39 +53,30 @@ onMounted (() => {
 </script>
 <template>
 <NavBar />
-<div class="containerPanier">
 <div class="parent">
   <div class="panier">
-      <div class="title">
+      <div class="card">
         <h1>Panier</h1>
+        <ProductCard v-for="item in items" :item="item" @delete="DeletePanier"/>
       </div>
-      <ProductCard v-for="item in items" :item="item"/>
-      <div class="total">
-        <div class="text">
-          <label>SOUS-TOTAL</label>
-          <p>55555555555</p>
+        <div class="total">
+          <h5>Récapitulatif de la commande</h5>
+            <div class="text">
+              <label>SOUS-TOTAL</label>
+              <p>{{store.total}} MAD</p>
+            </div>
+            <div class="btn">
+              <router-link to="/Command"><button>FINALISER LA COMMAND</button></router-link>
+            </div>
         </div>
-        <div class="btn">
-          <button>FINALISER LA COMMAND</button>
-        </div>
-
-      </div>
     </div>
   </div>
-</div>
 </template>
 
 <style lang="scss" scoped>
 @import "../assets/Scss/variable";
 @import "../assets/Scss/media";
 
-
-.containerPanier{
-  width: 100%;
-  height: auto;
-  display: flex;
-  justify-content: center;
-}
 .router-link-active {
   color: $button-color;
   border-bottom: none;
@@ -96,50 +84,57 @@ onMounted (() => {
 .parent {
   border-radius: 0.3rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  width: 100%;
+  // width: 100%;
   background: white;
+  align-items: center;
 
-  @include  tablet {
-    width: 100%;
-  }
-
-  @include  lg-desktop {
-    width: 70%;
-  }
 }
 
 .panier {
-  margin: 10rem 0;
+  width: 90%;
+  margin-top: 8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+
+  @include desktop {
+    display: flex;
+    flex-direction: row;
+    margin: 10rem 0;
+    width: 80%;
+  }
+}
+
+.card {
   width: 100%;
   padding: 1rem;
   border-radius: 0.5rem;
   background-color: $secondary-bg-color;
-
-  // :
-  .title {
-    padding: 0.5rem;
-     h1 {
-      font-size: 1.5rem;
-     }
-  }
+  display: flex;
+  align-items: center;
+}
 .total {
+  padding: 1rem;
   width: 100%;
-  margin: 4rem 0;
+  height: 50vh;
+  border-radius: 0.5rem;
+  background-color: $secondary-bg-color;
   display: flex;
   flex-direction: column;
+  gap: 3rem;
 
   @include desktop {
-    width: 50%;
-    margin-left: auto;
+    width: 40%;
   }
+}
 
   .text {
-    padding: 1rem;
     align-items: center;
-    background-color: white;
-    height: 4rem;
+    border-bottom: 1px solid black;
+    height: 2.5rem;
     display: flex;
     justify-content: space-between;
 
@@ -152,12 +147,11 @@ onMounted (() => {
     
 
     button {
+      border-radius: 0.5rem;
       width: 100%;
       height: 3rem;
       background-color: $header-color;
       color: white;
     }
   }
-}
-}
 </style>
