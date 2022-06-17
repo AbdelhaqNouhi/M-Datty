@@ -50,30 +50,30 @@ const register = async function () {
 
 <template>
 <NavBar />
-    <form @click.prevent="register" class="register" action="">
+    <form class="register" action="">
         <div class="info">
             <h1>S'inscrire</h1>
             <div class="input">
                 <label>Nome</label>
-                <input type="text" name="" placeholder="Nome" v-model="first_name">
+                <input type="text" name="" placeholder="Nome" v-model="first_name" required>
             </div>
             <div class="input">
                 <label>Prenome</label>
-                <input type="text" name="" placeholder="Prenome" v-model="last_name">
+                <input type="text" name="" placeholder="Prenome" v-model="last_name" required>
             </div>
             <div class="input">
                 <label>Phone</label>
-                <input type="number" name="" placeholder="Phone" v-model="phone">
+                <input type="number" name="" placeholder="Phone" v-model="phone" required>
             </div>
             <div class="input">
                 <label>E-mail</label>
-                <input type="email" name="" placeholder="E-mail" v-model="email">
+                <input type="email" name="" placeholder="E-mail" v-model="email" required>
             </div>
             <div class="input">
                 <label>Password</label>
-                <input type="password" name="" placeholder="Password" v-model="password">
+                <input type="password" name="" placeholder="Password" v-model="password" required>
             </div>
-            <input type="button" name="" value="S'inscrire">
+            <input @click="register" type="button" name="" value="S'inscrire">
         </div>
     </form>
 </template>

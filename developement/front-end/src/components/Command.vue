@@ -1,10 +1,28 @@
 <script setup>
+import axios from 'axios';
+import { onMounted, ref } from 'vue';
 import NavBar from './NavBar.vue';
 import { useStore } from '@/stores/counter';
 
 const store = useStore();
-
+const id = store.user.user_id;
 const total = store.total;
+
+const items = ref([]);
+
+const GetBasket = async function () {
+    const res = await axios.get('http://localhost/api/GetBasket?id=' + id);
+    const data = await res.data;
+    if (data) {
+        items.value = data;
+    } else {
+        console.log("error");
+    }
+    }
+
+onMounted (() => {
+    GetBasket();
+});
 
 </script>
 
@@ -42,25 +60,25 @@ const total = store.total;
         </div>
     </div>
     <div class="card_t">
-        <div class="product_info">
-            <h5>Récapitulatif de la commande</h5>
+        <h5>Récapitulatif de la commande</h5>
+        <div v-for="item in items" class="product_info">
             <div class="product_img">
-                <!-- <img :src="`http://localhost/uploads/` + item.image" alt="" /> -->
-                <img src="../assets/images/aboutus.jpg" alt="">
+                <img :src="`http://localhost/uploads/` + item.image" alt="" />
             </div>
-            <div class="name">
-                <p>aaaa</p>
-                <p>aaaaaa</p>
-            </div>
-            <div class="price">
-                <label>Prix</label>
-                <p>aaaaaaaaa</p>
+            <div class="np">
+                <div class="name">
+                    <p>{{ item.name }}</p>
+                </div>
+                <div class="price">
+                    <label>Prix</label>
+                    <p>{{ item.price }}</p>
+                </div>
             </div>
         </div>
         <div class="total_prix">
             <div class="text">
                 <label>SOUS-TOTAL</label>
-                <p>{{store.total}} MAD</p>
+                <p>{{total}} MAD</p>
             </div>
             <div class="btn">
                 <router-link to="/Command"><button>FINALISER LA COMMAND</button></router-link>
@@ -80,13 +98,17 @@ const total = store.total;
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 1rem;
 
     @include desktop {
-        padding: 8rem;
+        padding: 8rem 5rem;
         display: flex;
         flex-direction: row;
         width: 100%;
+    }
+    @include lg-desktop {
+        padding: 8rem;
     }
 }
 
@@ -94,27 +116,21 @@ const total = store.total;
     width: 100%;
     padding: 2rem 1rem;
     display: flex;
-    justify-content: center;
     flex-direction: column;
-    gap: 4rem;
+    gap: 2rem;
     background-color: $secondary-bg-color;
     border: none;
     border-radius: 0.5rem;
 
+    @include tablet {
+        width: 80%;
+    }
+
     @include desktop {
-        width: 70%;
+        width: 80%;
         padding: 2rem;
     }
 }
-    .total {
-        display: flex;
-        justify-content: space-around;
-
-        p {
-            font-size: 18px;
-            font-weight: bold;
-        }
-    }
     .info {
         display: flex;
         flex-direction: column;
@@ -133,12 +149,10 @@ const total = store.total;
             @include desktop {
                 display: flex;
                 flex-direction: row;
-                gap: 8rem;
             }
             @include lg-desktop {
                 display: flex;
                 flex-direction: row;
-                gap: 4rem;
             }
 
             input {
@@ -156,12 +170,10 @@ const total = store.total;
             @include desktop {
                 display: flex;
                 flex-direction: row;
-                gap: 8rem;
             }
             @include lg-desktop {
                 display: flex;
                 flex-direction: row;
-                gap: 4rem;
             }
 
             input {
@@ -182,23 +194,6 @@ const total = store.total;
         }
 
         .city {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-
-            @include desktop {
-                display: flex;
-                flex-direction: row;
-                gap: 8rem;
-            }
-            @include lg-desktop {
-                display: flex;
-                flex-direction: row;
-                gap: 10rem;
-            }
-            
-
             textarea {
                 width: 100%;
                 border-radius: 0.2rem;
@@ -214,12 +209,10 @@ const total = store.total;
             @include desktop {
                 display: flex;
                 flex-direction: row;
-                gap: 8rem;
             }
             @include lg-desktop {
                 display: flex;
                 flex-direction: row;
-                gap: 4rem;
             }
 
             input {
@@ -234,14 +227,6 @@ const total = store.total;
         // width: 100%;
         display: flex;
         justify-content: space-between;
-
-        @include desktop {
-            gap: 1rem;
-        }
-        @include lg-desktop {
-            width: 100%;
-            gap: 4rem;
-        }
 
         .cancel{
             width: 6rem;
@@ -260,47 +245,95 @@ const total = store.total;
         }
     }
 .card_t {
+    margin-bottom: auto;
     width: 100%;
-    padding: 2rem;
+    height: 100%;
+    padding: 1rem;
     display: flex;
-    gap: 5rem;
+    gap: 1rem;
     flex-direction: column;
     background-color: $secondary-bg-color;
     border-radius: 0.5rem;
 
+    @include tablet {
+        width: 80%;
+    }
+
     @include desktop {
-        width: 30%;
+        width: 50%;
+    }
+
+    h5 {
+        text-align: center;
     }
 
     .product_info {
         display: flex;
-        flex-direction: column;
-        gap: 2rem;
+        gap: 3rem;
     }
         .product_img {
-            width: 5rem;
+            width: 20%;
 
-            // @include mobile {
-            //     width: 35%;
-            // }
-            // @include tablet {
-            //     width: 20%;
-            // }
+            @include mobile {
+                width: 30%;
+            }
+            @include tablet {
+                width: 20%;
+            }
 
-            // @include desktop {
-            //     width: 20%;
-            // }
+            @include desktop {
+                width: 33%;
+            }
+
+            @include lg-desktop {
+                width: 25%;
+            }
             img {
                 border-radius: 0.2rem;
                 width: 100%;
             }
         }
 
-    .total_prix {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-        justify-content: space-around;
+        .np {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1rem;
+
+            label {
+                font-weight: bold;
+            }
+        }
+
+   .total_prix {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+  .text {
+    align-items: center;
+    border-bottom: 1px solid black;
+    height: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+
+    label {
+        font-size: 16px;
+      font-weight: bold;
     }
+  }
+  .btn {
+      width: 100%;
+
+    button {
+      border-radius: 0.5rem;
+      width: 100%;
+      height: 3rem;
+      background-color: $header-color;
+      color: white;
+    }
+  }
 }
 </style>
