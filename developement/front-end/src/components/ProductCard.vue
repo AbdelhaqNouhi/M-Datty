@@ -1,4 +1,5 @@
 <script setup>
+import axios from 'axios';
 import { computed } from '@vue/reactivity';
 import { useStore } from '@/stores/counter';
 
@@ -9,11 +10,22 @@ const props = defineProps({
 
 defineEmits(["delete"]);
 
-const increment = () => props.item.Quantite++;
+const increment = () => {
+  props.item.Quantite++;
+
+  const res =  axios.post('http://localhost/api/UpdateBasket', {
+      Quantite: props.item.Quantite,
+    });
+}
+
 const decrement = () => {
     if (props.item.Quantite > 1) {
         props.item.Quantite--;
     }
+
+    const res =  axios.post('http://localhost/api/UpdateBasket', {
+      Quantite: props.item.Quantite,
+    });
 }
 
 const result = computed(() => {
@@ -21,22 +33,6 @@ const result = computed(() => {
     store.total += res;
     return res;
 });
-
-// const totat = computed (() => )
-// const total = parseInt(props.item.Quantite) * parseInt(props.item.price)
-
-// const total = function () {
-//     let qte=props.item.Quantite;
-//     let pr=props.item.price;
-//     console.log(`totale ${parseInt(qte)*parseInt(pr)}`);
-    
-//     props.index = parseInt(props.item.price)*parseInt(props.item.Quantite);
-//     // console.log(props.index);
-  
-
-// }
-
-// console.log(props.item.Quantite, props.item.Prix);
 
 </script>
 <template>

@@ -29,14 +29,12 @@ class BasketModel extends Database
 
     function update($data)
     {
-        $query = 'UPDATE basket SET image = ?, name = ?, description = ?, price = ? WHERE basket_id = ?';
+        $query = 'UPDATE basket SET Quantite = ? WHERE id = ?';
         $update = array (
-            $data['image'],
-            $data['name'],
-            $data['description'],
-            $data['price'],
-            $data['id']
+            $data['Quantite'],
         );
+        // var_dump($update);
+        // die();
         $stmnt = $this->execStatement($query, $update);
         return $stmnt;
     }

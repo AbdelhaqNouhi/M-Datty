@@ -32,12 +32,10 @@ class Basket
 
     public function update($data)
     {
+        // var_dump($data);
+        // die();
         $update = [
-            'image' => $data->image,
-            'name' => $data->name,
-            'description' => $data->description,
-            'price' => $data->price,
-            'id' => $data->basket_id
+            'Quantite' => $data['Quantite'],
         ];
 
         $this->model = new BasketModel();

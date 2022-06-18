@@ -11,6 +11,30 @@ const total = store.total;
 const items = ref([]);
 const itemsUser = ref([]);
 
+const ville = ref('');
+const adress = ref('');
+const quantite = ref('');
+
+const AddCommande = async function () {
+    console.log(items.value);
+    console.log(itemsUser.value);
+    const res = await axios.post('http://localhost/api/AddCommande', {
+        product_name: items.name,
+        user_name: itemsUser.first_name,
+        phone: itemsUser.phone,
+        ville: ville.value,
+        adress: adress.value,
+        quantite: items.Quantite,
+        total_prix: total,
+    });
+    const data = await res.data;
+    if (data) {
+        console.log(data);
+    } else {
+        console.log("error");
+    }
+}
+
 const GetBasket = async function () {
     const res = await axios.get('http://localhost/api/GetBasket?id=' + id);
     const data = await res.data;
@@ -50,17 +74,17 @@ onMounted (() => {
             </div>
             <div class="social">
                 <input type="tel" name="phone" placeholder="Phone" v-model="itemsUser.phone">
-                <input type="text" name="ville" placeholder="Ville">
+                <input type="text" name="ville" placeholder="Ville" v-model="ville">
             </div>
         </div>
         <div class="adress">
             <div class="city">
-                <textarea name="adress" id="" cols="30" rows="3" placeholder="Adress"></textarea>
+                <textarea name="adress" id="" cols="30" rows="3" placeholder="Adress" v-model="adress"></textarea>
             </div>
         </div>
         <div class="button">
             <button class="cancel">Cancel</button>
-            <button class="save">FINALISER LA COMMAND</button>
+            <button @click="AddCommande" class="save">FINALISER LA COMMAND</button>
         </div>
     </div>
     <div class="card_t">

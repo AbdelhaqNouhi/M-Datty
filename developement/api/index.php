@@ -95,7 +95,7 @@ $app->POST('/AddBasket', function ($data) {
   $basket->add($data);
 });
 
-$app->PUT('/UpdateBasket', function ($data) {
+$app->POST('/UpdateBasket', function ($data) {
   $basket = new Basket();
   $basket->update($data);
 });
