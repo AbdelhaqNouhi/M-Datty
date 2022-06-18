@@ -14,7 +14,6 @@ const GetUser = async function () {
     const data = await res.data;
     if (data) {
         items.value = data;
-        console.log(items.value);
     } else {
         console.log("error");
     }
@@ -32,24 +31,18 @@ onMounted (() => {
         <div class="PageUser">
             <div class="info">
                 <h1>personal info</h1>
+                <!-- <h1>{{items}}</h1> -->
                 <div class="username">
-                    <input type="text" name="nom" placeholder="Nom">
-                    <input type="text" name="prenome" placeholder="Prenom">
+                    <input type="text" name="prenome" placeholder="Prenom" v-model="items.first_name">
+                    <input type="text" name="nom" placeholder="Nom de famille" v-model="items.last_name">
                 </div>
                 <div class="social">
-                    <input type="email" name="email" placeholder="E-mail">
-                    <input type="tel" name="phone" placeholder="Phone">
+                    <input type="email" name="email" placeholder="E-mail" v-model="items.email">
+                    <input type="tel" name="phone" placeholder="Phone" v-model="items.phone">
                 </div>
-            </div>
-            <div class="adress">
-                <h1>Adresse</h1>
                 <div class="city">
-                    <input type="text" name="rue" placeholder="Rue">
+                    <input type="text" name="adress" placeholder="Adress">
                     <input type="text" name="ville" placeholder="Ville">
-                </div>
-                <div class="pays">
-                    <input type="text" name="code" placeholder="Code postal">
-                    <input type="text" name="pays" placeholder="Pays">
                 </div>
             </div>
             <div class="button">
@@ -84,7 +77,7 @@ onMounted (() => {
     }
 
     @include desktop {
-        margin: 7rem;
+        margin: 10rem 15rem;
     }
 
     h1 {
@@ -94,7 +87,7 @@ onMounted (() => {
     .info {
         display: flex;
         flex-direction: column;
-        gap: 2rem;
+        gap: 4rem;
     }
    .username {
         // width: 100%;
@@ -143,16 +136,6 @@ onMounted (() => {
             padding: 0.8rem;
         }
     }
-}
-.adress {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-
-    h1 {
-        font-weight: normal;
-    }
-
     .city {
         display: flex;
         flex-direction: column;
@@ -169,29 +152,6 @@ onMounted (() => {
             gap: 6rem;
         }
         
-
-        input {
-            width: 100%;
-            border-radius: 0.2rem;
-            border: none;
-            padding: 0.8rem;
-        }
-    }
-    .pays {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-
-        @include desktop {
-            display: flex;
-            flex-direction: row;
-            gap: 4rem;
-        }
-        @include lg-desktop {
-            display: flex;
-            flex-direction: row;
-            gap: 6rem;
-        }
 
         input {
             width: 100%;

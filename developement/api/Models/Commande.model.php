@@ -10,15 +10,20 @@ class CommandeModel extends Database
         return $stmnt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    function  add($data)
+    function add($data)
     {
-        $query = 'INSERT INTO commandes (image, name, description, price) VALUE (?, ?, ?, ?)';
+        $query = 'INSERT INTO commandes (product_name, user_name, phone, ville, adress, quantite, total_prix) VALUE (?, ?, ?, ?, ?, ?, ?)';
         $add = array (
-            $data ['image'],
-            $data ['name'],
-            $data ['description'],
-            $data ['price'],
+            $data ['product_name'],
+            $data ['user_name'],
+            $data ['phone'],
+            $data ['ville'],
+            $data ['adress'],
+            $data ['quantite'],
+            $data ['total_prix']
         );
+        // var_dump($add);
+        // die();
         $stmnt = $this->execStatement($query, $add);
         return $stmnt;
     }

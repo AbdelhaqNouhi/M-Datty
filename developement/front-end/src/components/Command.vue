@@ -9,19 +9,31 @@ const id = store.user.user_id;
 const total = store.total;
 
 const items = ref([]);
+const itemsUser = ref([]);
 
 const GetBasket = async function () {
     const res = await axios.get('http://localhost/api/GetBasket?id=' + id);
     const data = await res.data;
     if (data) {
         items.value = data;
+        } else {
+            console.log("error");
+        }
+    }
+
+const GetUser = async function () {
+    const res = await axios.get('http://localhost/api/GetUsers?id=' + id);
+    const data = await res.data;
+    if (data) {
+        itemsUser.value = data;
     } else {
         console.log("error");
     }
-    }
+}
 
 onMounted (() => {
     GetBasket();
+    GetUser();
 });
 
 </script>
@@ -30,28 +42,20 @@ onMounted (() => {
 <NavBar />
 <div class="parent">
     <div class="PageUser">
-        <!-- <div class="total">
-            <p>TOTAL PRIX:</p>
-            <p>{{total}} MAD</p>
-        </div> -->
         <div class="info">
             <h1>personal info</h1>
             <div class="username">
-                <input type="text" name="prenome" placeholder="Prenom">
-                <input type="text" name="nom" placeholder="Nom de famille">
+                <input type="text" name="prenome" placeholder="Prenom" v-model="itemsUser.first_name">
+                <input type="text" name="nom" placeholder="Nom de famille" v-model="itemsUser.last_name">
             </div>
             <div class="social">
-                <input type="email" name="email" placeholder="E-mail">
-                <input type="tel" name="phone" placeholder="Phone">
+                <input type="tel" name="phone" placeholder="Phone" v-model="itemsUser.phone">
+                <input type="text" name="ville" placeholder="Ville">
             </div>
         </div>
         <div class="adress">
             <div class="city">
                 <textarea name="adress" id="" cols="30" rows="3" placeholder="Adress"></textarea>
-            </div>
-            <div class="pays">
-                <input type="text" name="code" placeholder="Code postal">
-                <input type="text" name="ville" placeholder="Ville">
             </div>
         </div>
         <div class="button">
@@ -196,27 +200,6 @@ onMounted (() => {
                 padding: 0.8rem;
             }
         }
-        .pays {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-
-            @include desktop {
-                display: flex;
-                flex-direction: row;
-            }
-            @include lg-desktop {
-                display: flex;
-                flex-direction: row;
-            }
-
-            input {
-                width: 100%;
-                border-radius: 0.2rem;
-                border: none;
-                padding: 0.8rem;
-            }
-        }
     }
     .button {
         // width: 100%;
@@ -321,21 +304,5 @@ onMounted (() => {
           font-size: 16px;
         font-weight: bold;
       }
-
-//   .text {
-//     display: flex;
-
-//   }
-//   .btn {
-//       width: 100%;
-
-//     button {
-//       border-radius: 0.5rem;
-//       width: 100%;
-//       height: 3rem;
-//       background-color: $header-color;
-//       color: white;
-//     }
-//   }
 }
 </style>

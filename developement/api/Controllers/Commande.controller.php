@@ -16,13 +16,17 @@ class Commande
 
     public function add($data)
     {
+        // var_dump($data);
+        // die();
         $add = [
-            'image' => $data['image'],
-            'name' => $data['name'],
-            'description' => $data['description'],
-            'price' => $data['price']
+            'product_name' => $data['product_name'],
+            'user_name' => $data['user_name'],
+            'phone' => $data['phone'],
+            'ville' => $data['ville'],
+            'adress' => $data['adress'],
+            'quantite' => $data['quantite'],
+            'total_prix' => $data['total_prix']
         ];
-
         $this->model = new CommandeModel();
         $this->model->add($add);
 
