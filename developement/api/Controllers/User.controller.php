@@ -22,8 +22,8 @@ class User
   }
 
 public function add($data)
- {
-   $add = [
+{
+  $add = [
       'first_name' => $data['first_name'],
       'last_name' => $data['last_name'],
       'email' => $data['email'],
@@ -38,7 +38,13 @@ public function add($data)
     } else {
       echo json_encode(['message' => 'User not added']);
     }
- }
+}
+
+public function get($id) {
+    $this->model = new UserModel();
+    $res = $this->model->get($id);
+    echo json_encode($res);
+}
 
   public function update($data)
   {

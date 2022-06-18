@@ -77,10 +77,10 @@ const openstore = function () {
           <Router-Link to="/Panier"><img src="@/assets/images/icone/ShoppingCart.svg" alt=""/></Router-Link>
         </div>
         <div class="user">
-          <div v-if="store.user" class="user_info">
+          <Router-Link to="PageUser"><div v-if="store.user" class="user_info">
             <img src="@/assets/images/aboutus.jpg" alt="" />
             <p>{{store.user?.first_name ?? ""}}</p>
-          </div>
+          </div></Router-Link>
           <Router-Link to="/Login"><button v-if="!store.user" class="login">Login</button></Router-Link>
           <button v-if="store.user" @click="logout" class="login">Log Out</button>
         </div>

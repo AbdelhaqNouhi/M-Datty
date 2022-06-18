@@ -26,6 +26,16 @@ class UserModel extends Database
     return $stmnt;
   }
 
+  function get ($id) {
+    $query = 'SELECT * from users WHERE user_id = ?';
+    $check = array (
+      $id ['id']
+    );
+    $stmnt = $this->execStatement($query, $check);  
+    $res = $stmnt->fetch(PDO::FETCH_ASSOC);
+    return $res;
+  }
+
   function update($data)
   {
     $query = 'UPDATE users SET first_name = ?, last_name = ?, email = ?, phone = ?, password = ? WHERE user_id = ?';

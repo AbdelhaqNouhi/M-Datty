@@ -1,34 +1,61 @@
 <script setup>
+import NavBar from './NavBar.vue';
+import axios from 'axios';
+import { onMounted, ref } from 'vue';
+import { useStore } from '@/stores/counter';
+
+const store = useStore();
+const id = store.user.user_id;
+
+const items = ref([]);
+
+const GetUser = async function () {
+    const res = await axios.get('http://localhost/api/GetUsers?id=' + id);
+    const data = await res.data;
+    if (data) {
+        items.value = data;
+        console.log(items.value);
+    } else {
+        console.log("error");
+    }
+}
+
+onMounted (() => {
+    GetUser();
+});
 
 </script>
 
 <template>
-    <div class="PageUser">
-        <div class="info">
-            <h1>personal info</h1>
-            <div class="username">
-                <input type="text" name="nom" placeholder="Nom">
-                <input type="text" name="prenome" placeholder="Prenom">
+<NavBar />
+    <div class="parent">
+        <div class="PageUser">
+            <div class="info">
+                <h1>personal info</h1>
+                <div class="username">
+                    <input type="text" name="nom" placeholder="Nom">
+                    <input type="text" name="prenome" placeholder="Prenom">
+                </div>
+                <div class="social">
+                    <input type="email" name="email" placeholder="E-mail">
+                    <input type="tel" name="phone" placeholder="Phone">
+                </div>
             </div>
-            <div class="social">
-                <input type="email" name="email" placeholder="E-mail">
-                <input type="tel" name="phone" placeholder="Phone">
+            <div class="adress">
+                <h1>Adresse</h1>
+                <div class="city">
+                    <input type="text" name="rue" placeholder="Rue">
+                    <input type="text" name="ville" placeholder="Ville">
+                </div>
+                <div class="pays">
+                    <input type="text" name="code" placeholder="Code postal">
+                    <input type="text" name="pays" placeholder="Pays">
+                </div>
             </div>
-        </div>
-        <div class="adress">
-            <h1>Adresse</h1>
-            <div class="city">
-                <input type="text" name="rue" placeholder="Rue">
-                <input type="text" name="ville" placeholder="Ville">
+            <div class="button">
+                <button class="cancel">Cancel</button>
+                <button class="save">Save change</button>
             </div>
-            <div class="pays">
-                <input type="text" name="code" placeholder="Code postal">
-                <input type="text" name="pays" placeholder="Pays">
-            </div>
-        </div>
-        <div class="button">
-            <button class="cancel">Cancel</button>
-            <button class="save">Save change</button>
         </div>
     </div>
 </template>
@@ -37,36 +64,38 @@
 @import "../assets/Scss/variable";
 @import "../assets/Scss/media";
 
-.PageUser {
-    margin: 1rem;
-    padding: 2rem 1rem;
+.parent {
     display: flex;
     justify-content: center;
-    flex-direction: column;
-    gap: 4rem;
-    background-color: $secondary-bg-color;
-    border: none;
-    border-radius: 0.5rem;
-
-    @include desktop {
-        margin: 5rem;
-        padding: 2rem 4rem; 
-    }
-
-    @include lg-desktop {
-        padding: 2rem 8rem;
-        
-    }
 }
-.info {
+.PageUser {
+    width: 100%;
+    margin: 6rem 1rem;
+    padding: 2rem;
+    background-color: $secondary-bg-color;
     display: flex;
     flex-direction: column;
+    border: none;
+    border-radius: 0.5rem;
     gap: 2rem;
+
+    @include tablet {
+        margin: 6rem 4rem;
+    }
+
+    @include desktop {
+        margin: 7rem;
+    }
 
     h1 {
         font-weight: normal;
     }
 
+    .info {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
    .username {
         // width: 100%;
         display: flex;
@@ -76,12 +105,12 @@
         @include desktop {
             display: flex;
             flex-direction: row;
-            gap: 8rem;
+            gap: 4rem;
         }
         @include lg-desktop {
             display: flex;
             flex-direction: row;
-            gap: 10rem;
+            gap: 6rem;
         }
 
         input {
@@ -99,12 +128,12 @@
         @include desktop {
             display: flex;
             flex-direction: row;
-            gap: 8rem;
+            gap: 4rem;
         }
         @include lg-desktop {
             display: flex;
             flex-direction: row;
-            gap: 10rem;
+            gap: 6rem;
         }
 
         input {
@@ -132,12 +161,12 @@
         @include desktop {
             display: flex;
             flex-direction: row;
-            gap: 8rem;
+            gap: 4rem;
         }
         @include lg-desktop {
             display: flex;
             flex-direction: row;
-            gap: 10rem;
+            gap: 6rem;
         }
         
 
@@ -156,12 +185,12 @@
         @include desktop {
             display: flex;
             flex-direction: row;
-            gap: 8rem;
+            gap: 4rem;
         }
         @include lg-desktop {
             display: flex;
             flex-direction: row;
-            gap: 10rem;
+            gap: 6rem;
         }
 
         input {
@@ -182,7 +211,7 @@
         gap: 1rem;
     }
     @include lg-desktop {
-        width: 42%;
+        width: 46%;
         margin-left: auto;
         gap: 10rem;
     }

@@ -14,6 +14,11 @@ $app->POST('/Register', function ($data) {
   $user->add($data);
 });
 
+$app->GET('/GetUsers', function ($id) {
+  $user = new User();
+  $user->get($id);
+});
+
 $app->PUT('/UpdateUser', function ($data) {
   $user = new User();
   $user->update($data);
