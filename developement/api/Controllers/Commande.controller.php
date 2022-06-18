@@ -16,8 +16,6 @@ class Commande
 
     public function add($data)
     {
-        // var_dump($data);
-        // die();
         $add = [
             'product_name' => $data['product_name'],
             'user_name' => $data['user_name'],

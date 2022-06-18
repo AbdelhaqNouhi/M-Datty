@@ -32,6 +32,7 @@ class BasketModel extends Database
         $query = 'UPDATE basket SET Quantite = ? WHERE id = ?';
         $update = array (
             $data['Quantite'],
+            $data['id']
         );
         // var_dump($update);
         // die();

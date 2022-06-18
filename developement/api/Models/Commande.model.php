@@ -22,10 +22,8 @@ class CommandeModel extends Database
             $data ['quantite'],
             $data ['total_prix']
         );
-        // var_dump($add);
-        // die();
         $stmnt = $this->execStatement($query, $add);
-        return $stmnt;
+        var_dump($stmnt);
     }
 
     function update($data)

@@ -11,28 +11,47 @@ const total = store.total;
 const items = ref([]);
 const itemsUser = ref([]);
 
+// const product_name = ref(items.value.product_name);
 const ville = ref('');
 const adress = ref('');
-const quantite = ref('');
+// const quantite = ref('');
 
 const AddCommande = async function () {
     console.log(items.value);
     console.log(itemsUser.value);
-    const res = await axios.post('http://localhost/api/AddCommande', {
-        product_name: items.name,
-        user_name: itemsUser.first_name,
-        phone: itemsUser.phone,
-        ville: ville.value,
-        adress: adress.value,
-        quantite: items.Quantite,
-        total_prix: total,
+    const promises = items.value.map(async(product) => {
+        const data = {
+            product_name: product.name,
+            user_name: itemsUser.value.first_name + itemsUser.value.last_name,
+            phone: parseInt(itemsUser.value.phone),
+            ville: ville.value,
+            adress: adress.value,
+            quantite: product.Quantite,
+            total_prix: total,
+            product_id: product.product_id,
+            user_id: id,
+        };
+        const res = await axios.post('http://localhost/api/AddCommande', data);
+        return  res.data;
     });
-    const data = await res.data;
-    if (data) {
-        console.log(data);
-    } else {
-        console.log("error");
-    }
+    const results = await Promise.all(promises);
+    console.log(results);
+    // const res = await axios.post('http://localhost/api/AddCommande', {
+    //     // product_name: items.name,
+    //     product_name: items.value.name,
+    //     user_name: itemsUser.first_name,
+    //     phone: itemsUser.phone,
+    //     ville: ville.value,
+    //     adress: adress.value,
+    //     quantite: items.Quantite,
+    //     total_prix: total,
+    // });
+    // const data = await res.data;
+    // if (data) {
+    //     console.log(data);
+    // } else {
+    //     console.log("error");
+    // }
 }
 
 const GetBasket = async function () {

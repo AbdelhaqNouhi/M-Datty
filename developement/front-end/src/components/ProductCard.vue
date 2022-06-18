@@ -12,8 +12,10 @@ defineEmits(["delete"]);
 
 const increment = () => {
   props.item.Quantite++;
+    console.log(props.item.id);
 
   const res =  axios.post('http://localhost/api/UpdateBasket', {
+      id: props.item.id,
       Quantite: props.item.Quantite,
     });
 }
@@ -24,6 +26,7 @@ const decrement = () => {
     }
 
     const res =  axios.post('http://localhost/api/UpdateBasket', {
+      id: props.item.id,
       Quantite: props.item.Quantite,
     });
 }
