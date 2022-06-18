@@ -56,7 +56,7 @@ onMounted (() => {
         </div>
         <div class="button">
             <button class="cancel">Cancel</button>
-            <button class="save">Sauvegarder</button>
+            <button class="save">FINALISER LA COMMAND</button>
         </div>
     </div>
     <div class="card_t">
@@ -76,13 +76,8 @@ onMounted (() => {
             </div>
         </div>
         <div class="total_prix">
-            <div class="text">
-                <label>SOUS-TOTAL</label>
-                <p>{{total}} MAD</p>
-            </div>
-            <div class="btn">
-                <router-link to="/Command"><button>FINALISER LA COMMAND</button></router-link>
-            </div>
+            <label>SOUS-TOTAL</label>
+            <p>{{total}} MAD</p>
         </div>
     </div>
 </div>
@@ -229,19 +224,25 @@ onMounted (() => {
         justify-content: space-between;
 
         .cancel{
-            width: 6rem;
             border-radius: 0.2rem;
             padding: 0.6rem;
             background-color: var(--corvid-background-color,rgba(var(--bg,var(--color_17)),var(--alpha-bg,1)));
 
+            @include desktop {
+                width: 6rem;
+            }
+
         }
         .save{
-            width: 12rem;
             border: none;
             border-radius: 0.2rem;
             padding: 0.6rem;
             background-color: $header-color;
             color: white;
+
+            @include desktop {
+                width: 48%;
+            }
         }
     }
 .card_t {
@@ -306,34 +307,35 @@ onMounted (() => {
         }
 
    .total_prix {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    width: 100%;
-}
-
-  .text {
+    padding: 1rem;
     align-items: center;
-    border-bottom: 1px solid black;
-    height: 2.5rem;
     display: flex;
     justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    height: 25%;
+    box-shadow: 1px 1px 0px 0px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid black;
+}
+      label {
+          font-size: 16px;
+        font-weight: bold;
+      }
 
-    label {
-        font-size: 16px;
-      font-weight: bold;
-    }
-  }
-  .btn {
-      width: 100%;
+//   .text {
+//     display: flex;
 
-    button {
-      border-radius: 0.5rem;
-      width: 100%;
-      height: 3rem;
-      background-color: $header-color;
-      color: white;
-    }
-  }
+//   }
+//   .btn {
+//       width: 100%;
+
+//     button {
+//       border-radius: 0.5rem;
+//       width: 100%;
+//       height: 3rem;
+//       background-color: $header-color;
+//       color: white;
+//     }
+//   }
 }
 </style>
