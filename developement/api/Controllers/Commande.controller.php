@@ -2,13 +2,12 @@
 
 class Commande
 {
-    public function all()
+    public function get()
     {
         $this->model = new CommandeModel();
-        echo json_encode($this->model->fetch());
-
-        if ($this->model->fetch()) {
-            echo json_encode(['message' => 'Commande fetched successfully']);
+        $res = $this->model->get();
+        if ($res) {
+            echo json_encode($res);
         } else {
             echo json_encode(['message' => 'Commande not fetched']);
         }

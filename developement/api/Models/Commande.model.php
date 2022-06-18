@@ -2,7 +2,7 @@
 
 class CommandeModel extends Database
 {
-    function fetch()
+    function get()
     {
         $query = 'SELECT * from commandes
         order by commandes.commande_id desc';
@@ -23,7 +23,7 @@ class CommandeModel extends Database
             $data ['total_prix']
         );
         $stmnt = $this->execStatement($query, $add);
-        var_dump($stmnt);
+        return $stmnt;
     }
 
     function update($data)

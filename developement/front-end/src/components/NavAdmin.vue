@@ -21,7 +21,7 @@ const setAdmin = store.setAdmin;
                 </div>
                 <div class="mune">
                     <Router-Link to="/PageAdmin">Produits</Router-Link>
-                    <Router-Link to="/Command">Commande</Router-Link>        
+                    <Router-Link to="/AdminCommand">Commande</Router-Link>        
                 </div>
             </div>
         </div>

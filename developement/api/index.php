@@ -65,7 +65,7 @@ $app->post('/DeleteProduct', function ($data) {
 // Commande
 $app->GET('/GetCommande', function () {
   $commande = new Commande();
-  $commande->all();
+  $commande->get();
 });
 
 $app->POST('/AddCommande', function ($data) {
