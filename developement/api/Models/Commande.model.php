@@ -26,25 +26,13 @@ class CommandeModel extends Database
         return $stmnt;
     }
 
-    function update($data)
-    {
-        $query = 'UPDATE commandes SET image = ?, name = ?, description = ?, price = ? WHERE commande_id = ?';
-        $update = array (
-            $data ['image'],
-            $data ['name'],
-            $data ['description'],
-            $data ['price'],
-            $data ['id']
-        );
-        $stmnt = $this->execStatement($query, $update);
-        return $stmnt;
-    }
-
     function delete($data)
     {
-        $id = $data->id;
         $query = 'DELETE FROM commandes WHERE commande_id = ?';
-        $stmnt = $this->execStatement($query, [$id]);
+        $delete = array(
+            $data['id']
+        );
+        $stmnt = $this->execStatement($query, $delete);
         return $stmnt;
     }
 }

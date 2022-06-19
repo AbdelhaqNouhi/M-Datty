@@ -34,30 +34,6 @@ class Commande
         }
     }
 
-    public function update($data)
-    {
-        // var_dump($data);
-        // die();
-        $update = [
-            'image' => $data->image,
-            'name' => $data->name,
-            'description' => $data->description,
-            'price' => $data->price,
-            'id' => $data->commande_id
-        ];
-        // var_dump($update);
-        // die();
-
-        $this->model = new CommandeModel();
-        $this->model->update($update);
-
-        if ($update) {
-            echo json_encode(['message' => 'Commande updated successfully']);
-        } else {
-            echo json_encode(['message' => 'Commande not updated']);
-        }
-    }
-
     public function delete($data)
     {
         $this->model = new CommandeModel();

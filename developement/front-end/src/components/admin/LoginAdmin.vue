@@ -1,5 +1,5 @@
 <script setup>
-import router from '../router';
+import router from '../../router';
 import Cookies from 'js-cookie';
 import { useStore } from '@/stores/counter';
 import { ref } from 'vue';
@@ -53,8 +53,8 @@ const login = async function () {
 </template>
 
 <style lang="scss" scoped>
-@import "../assets/Scss/variable";
-@import "../assets/Scss/media";
+@import "../../assets/Scss/variable";
+@import "../../assets/Scss/media";
 .login {
     padding: 4rem 2rem;
     display: flex;

@@ -73,12 +73,7 @@ $app->POST('/AddCommande', function ($data) {
   $commande->add($data);
 });
 
-$app->PUT('/UpdateCommande', function ($data) {
-  $commande = new Commande();
-  $commande->update($data);
-});
-
-$app->DELETE('/DeleteCommande', function ($data) {
+$app->POST('/DeleteCommande', function ($data) {
   $commande = new Commande();
   $commande->delete($data);
 });

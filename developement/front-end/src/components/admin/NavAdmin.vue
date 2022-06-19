@@ -10,9 +10,9 @@ const setAdmin = store.setAdmin;
 <template>
     <div class="nav">
         <div class="logo">
-            <img src="../assets/images/icone/logo.png" alt="">
+            <img src="../../assets/images/icone/logo.png" alt="">
             <div class="username">
-                <img src="../assets/images/img_about.svg" alt="...">
+                <img src="../../assets/images/aboutus.jpg" alt="...">
                 <h1>{{store.admin?.last_name ?? ""}} {{store.admin?.first_name ?? ""}}</h1>
             </div>
             <div class="content">
@@ -29,8 +29,8 @@ const setAdmin = store.setAdmin;
 </template>
 
 <style lang="scss" scoped>
-@import "../assets/Scss/variable";
-@import "../assets/Scss/media";
+@import "../../assets/Scss/variable";
+@import "../../assets/Scss/media";
 
 
 

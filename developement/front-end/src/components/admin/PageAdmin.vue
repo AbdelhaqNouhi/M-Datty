@@ -1,6 +1,6 @@
 <script>
 import axios from "axios";
-import NavAdmin from "./NavAdmin.vue";
+import NavAdmin from "../admin/NavAdmin.vue";
 export default {
   name: "PageAdmin",
 
@@ -27,24 +27,6 @@ export default {
       this.Product.image = event.target.files[0];
       console.log({selec : this.Product.image});
     },
-
-    // AddProduct() {
-    //   const formData = new FormData();
-    //   formData.append("name", this.Product.name);
-    //   formData.append("description", this.Product.description);
-    //   formData.append("price", this.Product.price);
-    //   formData.append("image", this.Product.image);
-
-    //   // console.log(this.Product.image);
-    //   axios.post("http://localhost/api/AddProduct", formData)
-    //     .then((response) => {
-    //       console.log(response);
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
-    // },
-
     AddProduct() {
       const formData = new FormData();
       formData.append("name", this.Product.name);
@@ -54,9 +36,6 @@ export default {
       console.log({image : this.Product.image});
 
       axios.post("http://localhost/api/AddProduct", formData,{
-        // headers: {
-        //   "Content-Type": "multipart/form-data",
-        // },
       })
         .then((response) => {
           console.log(response);
@@ -295,8 +274,8 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-@import "../assets/Scss/variable";
-@import "../assets/Scss/media";
+@import "../../assets/Scss/variable";
+@import "../../assets/Scss/media";
 .all {
   display: flex;
 }
@@ -347,8 +326,9 @@ td:last-child {
   }
 }
 .modal-dialog {
-  padding: 1rem;
+  padding: 4rem 0;
   margin: auto;
+  max-width: 550px;
 }
 .modal-content {
   background-color: #d1d5db;

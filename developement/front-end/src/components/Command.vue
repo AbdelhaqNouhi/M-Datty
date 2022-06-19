@@ -36,22 +36,6 @@ const AddCommande = async function () {
     });
     const results = await Promise.all(promises);
     console.log(results);
-    // const res = await axios.post('http://localhost/api/AddCommande', {
-    //     // product_name: items.name,
-    //     product_name: items.value.name,
-    //     user_name: itemsUser.first_name,
-    //     phone: itemsUser.phone,
-    //     ville: ville.value,
-    //     adress: adress.value,
-    //     quantite: items.Quantite,
-    //     total_prix: total,
-    // });
-    // const data = await res.data;
-    // if (data) {
-    //     console.log(data);
-    // } else {
-    //     console.log("error");
-    // }
 }
 
 const GetBasket = async function () {
