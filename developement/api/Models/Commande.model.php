@@ -28,6 +28,7 @@ class CommandeModel extends Database
 
     function delete($data)
     {
+        die();
         $query = 'DELETE FROM commandes WHERE commande_id = ?';
         $delete = array(
             $data['id']
