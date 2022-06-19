@@ -6,9 +6,10 @@ import { onMounted, ref } from 'vue';
 import { useStore } from '@/stores/counter';
 
 const store = useStore();
+const user = store.user;
 
 const Box = ref([]);
-const succes = false;
+const succes = ref(false) ;
 
 const GetProduct = async function () {
     const res = await axios.get('http://localhost/api/GetProduct');
@@ -20,16 +21,32 @@ const GetProduct = async function () {
     }
 }
 
+const ckeck = async function (data) {
+  if(!user) {
+    router.push('/login');
+    alert("please go to Login");
+  }
+  else {
+    takeId(data);
+  }
+}
+
 const takeId = async function (data) {
     data.user_id = store.user.user_id;
   const res = await axios.post('http://localhost/api/AddBasket', data);
   const data2 = await res.data;
   if (data2) {
-    succes = true;
+    store.count(parseInt(store.counter) + 1);
+    alert("Added to Basket");
   } else {
     console.log("error");
   }
 }
+
+
+setTimeout(() => {
+  succes.value = false;
+3});
 
 onMounted (() => {
     GetProduct();
@@ -40,9 +57,9 @@ onMounted (() => {
 <template>
 <NavBar />
 <div class="parent">
-  <div v-if="succes" class="alert">
+  <!-- <div v-if="succes" class="alert">
       <p>Add Panier Successfully</p>
-  </div>
+  </div> -->
   <div class="produits">
       <div v-for="box in Box" class="produit">
         <div class="image">
@@ -53,7 +70,7 @@ onMounted (() => {
             <div>
               <p>{{box.name}}</p>
             </div>
-            <div @click="takeId(box)" class="card">
+            <div @click="ckeck(box)" class="card">
               <img src="../assets/images/icone/shopping-cart-svgrepo.svg" alt="">
             </div>
           </div>
@@ -71,23 +88,50 @@ onMounted (() => {
 @import "../assets/Scss/variable";
 @import "../assets/Scss/media";
 
-.alert {
-  background-color: rgb(117, 239, 117);
-  width: 20%;
-  padding: 1rem;
-  margin-left: auto;
-  text-align: center;
+// .alert {
+//   background-color: rgb(117, 239, 117);
+//   width: 30%;
+//   padding: 1rem;
+//   // margin: auto;
+//   margin-left: 61%;
+//   // position: absolute;
+//   position: fixed;
 
-  p {
-  
-    font-size: 16px;
-  }
-}
+//   @include tablet {
+//     margin-left: 71%;
+//     // margin-left: auto;
+//     width: 25%;
+//     padding: 0.7rem;
+//   }
+//   @include desktop {
+//     margin-left: 80%;
+//     width: 20%;
+//     padding: 0.7rem;
+//   }
+//   @include lg-desktop {
+//     margin-left: 80%;
+//     width: 20%;
+//     padding: 0.7rem;
+//   }
+
+//   p {
+//     font-size: 14px;
+//   }
+// }
 
 .parent{
-  padding: 5rem 0;
+  position: relative;
+    padding: 4rem 0;
     display: flex;
     flex-direction: column;
+
+    @include tablet {
+      padding: 4rem 0;
+    }
+
+    @include desktop {
+      padding: 5rem 0;
+    }
 }
 .produits {
   display: grid;
@@ -103,17 +147,21 @@ onMounted (() => {
 
 
   @include tablet {
-    margin: 2rem;
+    margin: 4rem 2rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
   }
 
   @include desktop {
-  margin: 4rem 8rem;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+    margin: 4rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  @include lg-desktop {
+    margin: 4rem 8rem;
   }
 }
 .produit {

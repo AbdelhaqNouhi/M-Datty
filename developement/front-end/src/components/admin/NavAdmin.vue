@@ -4,7 +4,9 @@ import {useRouter} from 'vue-router';
 
 
 const store = useStore();
+const router = useRouter();
 const setAdmin = store.setAdmin;
+
 </script>
 
 <template>
@@ -35,8 +37,10 @@ const setAdmin = store.setAdmin;
 
 
 .nav {
-    width: 20%;
+    width: 15%;
     height: 100vh;
+    position: fixed;
+   
     align-items: center;
     display: flex;
     justify-content: center;

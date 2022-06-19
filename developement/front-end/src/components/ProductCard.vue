@@ -148,7 +148,7 @@ const result = computed(() => {
     .total {
         margin-top: auto;
         height: 2.5rem;
-        background-color: #e9ecef;
+        background-color: $secondary-bg-color;
         align-items: center;
         text-align: center;
         display: none;

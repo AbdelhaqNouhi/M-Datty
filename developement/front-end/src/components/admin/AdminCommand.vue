@@ -19,7 +19,8 @@ const DeleteCommande = async function (id) {
   const res = await axios.post('http://localhost/api/DeleteCommande', {id});
   const data = await res.data;
   if (data) {
-    console.log(data);
+    GetCommande();
+    alert("Delete Commande Successfully");
   } else {
       console.log("error");
   }
@@ -32,7 +33,7 @@ GetCommande();
 </script>
 
 <template>
-<div class="all">
+<div class="all"><div class="rr"></div>
     <NavAdmin />
     <div class="product">
       <p>Commandes</p>
@@ -88,6 +89,9 @@ GetCommande();
 @import "../../assets/Scss/media";
 .all {
   display: flex;
+}
+.rr {
+  width: 20%;
 }
 p {
   font-size: 24px;

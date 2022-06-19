@@ -27,6 +27,7 @@ const login =  async function () {
     if (!data.error) {
         setUser(data);
         router.push('/');
+        alert("Login Successful");
     } else {
         check.value = true;
     }

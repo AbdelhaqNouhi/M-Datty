@@ -26,7 +26,7 @@ class Basket
         if ($add) {
             echo json_encode(['message' => 'Basket added successfully']);
         } else {
-            echo json_encode(['message' => 'Basket found']);
+            echo json_encode(['message' => 'Basket not added']);
         }
     }
 

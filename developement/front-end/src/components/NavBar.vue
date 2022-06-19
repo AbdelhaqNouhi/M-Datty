@@ -1,14 +1,14 @@
 <script setup>
 import { useStore } from "@/stores/counter";
 import {useRouter} from 'vue-router';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 
 const store = useStore();
 const Panier = store.Panier;
 const showPanier = store.showPanier;
 const setUser = store.setUser;
-const cont = store.counter;
+// const cont = store.counter;
 const user = store.user;
 
 
@@ -73,7 +73,7 @@ const openstore = function () {
       </nav>
       <div class="img-user">
         <div class="cart">
-          <p v-if="user">{{cont.length}}</p>
+          <p v-if="user">{{store.counter}}</p>
           <Router-Link to="/Panier"><img src="@/assets/images/icone/ShoppingCart.svg" alt=""/></Router-Link>
         </div>
         <div class="user">
@@ -102,8 +102,8 @@ const openstore = function () {
 @import "@/assets/Scss/media";
 
 // .router-link-active {
-//   color: $button-color;
-//   border-bottom: solid 2px white;
+  // color: $button-color;
+  // border-bottom: solid 2px white;
 // }
 // .piblisite {
 //   font-size: 13px;

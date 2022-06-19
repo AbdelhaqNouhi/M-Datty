@@ -4,6 +4,7 @@ import Footer from '../components/Footer.vue'
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';
+import router from '../router';
 
 const first_name = ref('');
 const last_name = ref('');
@@ -21,9 +22,10 @@ const register = async function () {
     });
     const data = await res.data;
     if (data) {
-    console.log(data);
+        router.push('/login');
+        alert('Vous êtes inscrit avec succès');
     } else {
-    console.log("error");
+        alert('Erreur lors de l\'inscription');
     }
 }
 

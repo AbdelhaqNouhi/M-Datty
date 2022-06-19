@@ -38,8 +38,8 @@ export default {
       axios.post("http://localhost/api/AddProduct", formData,{
       })
         .then((response) => {
-          console.log(response);
-        });
+          this.GetProduct();
+        })
     },
 
     GetProduct() {
@@ -60,7 +60,8 @@ export default {
       });
       const data = await res.json();
       if (data) {
-        console.log("product deleted");
+        this.GetProduct();
+        alert("Product Deleted");
       } else {
         console.log("error");
       }
@@ -86,7 +87,7 @@ export default {
       
       axios.post("http://localhost/api/UpdateProduct", formData)
         .then((response) => {
-          console.log(response);
+          this.GetProduct();
         });
     },
   },
@@ -98,8 +99,8 @@ export default {
 </script>
 
 <template>
-  <div class="all">
     <NavAdmin />
+  <div class="all"><div class="rr"></div>
     <div class="product">
       <p>Produits</p>
       <table border="1px solid black">
@@ -280,13 +281,17 @@ export default {
 .all {
   display: flex;
 }
+.rr {
+  width: 20%;
+}
 p {
   font-size: 24px;
   font-weight: bold;
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
   color: $button-color;
 }
 .product {
+  // position: absolute;
   width: 100%;
   display: flex;
   flex-direction: column;

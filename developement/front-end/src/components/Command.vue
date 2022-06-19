@@ -4,6 +4,7 @@ import Footer from './Footer.vue';
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
 import { useStore } from '@/stores/counter';
+import router from '../router';
 
 const store = useStore();
 const id = store.user.user_id;
@@ -12,10 +13,8 @@ const total = store.total;
 const items = ref([]);
 const itemsUser = ref([]);
 
-// const product_name = ref(items.value.product_name);
 const ville = ref('');
 const adress = ref('');
-// const quantite = ref('');
 
 const AddCommande = async function () {
     console.log(items.value);
@@ -36,7 +35,10 @@ const AddCommande = async function () {
         return  res.data;
     });
     const results = await Promise.all(promises);
-    console.log(results);
+    if(results) {
+        router.push('/');
+        alert('Commande ajoutée avec succès');
+    }
 }
 
 const GetBasket = async function () {

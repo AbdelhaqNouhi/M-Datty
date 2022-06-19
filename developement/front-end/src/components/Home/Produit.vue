@@ -23,6 +23,7 @@ const GetThreProduct = async function () {
 
 const ckeck = async function (data) {
   if(!user) {
+    router.push('/login');
     alert("please go to Login");
   }
   else {
@@ -36,7 +37,7 @@ const takeId = async function (data) {
     const res = await axios.post('http://localhost/api/AddBasket', data);
     const data2 = await res.data;
     if (data2) {
-      console.log(data2);
+      store.count(parseInt(store.counter) + 1);
     } else {
       console.log("error");
     } 

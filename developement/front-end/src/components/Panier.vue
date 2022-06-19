@@ -13,21 +13,12 @@ const total = store.total;
 
 const items = ref([]);
 
-// const updateQuantiti = function (id) {
-//    const res = axios.post('http://localhost/api/UpdateBasket', id);
-//     const data = res.data;
-//     if(data) {
-//       console.log(data);
-//     } else {
-//       console.log('error');
-//     }
-// }
 
 const GetBasket = async function () {
   const res = await axios.get('http://localhost/api/GetBasket?id=' + id);
   const data = await res.data;
   if (data) {
-    e(data);
+    e(data.length);
     items.value = data;
   } else {
     console.log("error");
@@ -39,9 +30,11 @@ const DeletePanier = async function (id) {
   const res = await axios.post('http://localhost/api/DeleteBasket', { id: id });
   const data = await res.data;
   if (data) {
-    console.log(data);
+    store.count(parseInt(store.counter) - 1);
+    GetBasket();
+    alert("Delete Panier Successfully");
   } else {
-    console.log("error");
+    alert("product not added try again");
   }
 }
 

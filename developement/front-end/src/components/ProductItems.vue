@@ -25,14 +25,17 @@ const GetOneProduct = async function () {
 
 const takeId = async function (data) {
   if(!store.user.user_id) {
+    router.push('/login');
     alert("please go to Login");
   }
   data.user_id = store.user.user_id;
   const res = await axios.post('http://localhost/api/AddBasket', data);
   const data2 = await res.data;
   if (data2) {
+    store.count(parseInt(store.counter) + 1);
+    alert("Added to Basket");
   } else {
-    console.log("error");
+    alert("bad ro added try again");
   }
 }
 

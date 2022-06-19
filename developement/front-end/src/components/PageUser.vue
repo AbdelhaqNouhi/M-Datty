@@ -16,7 +16,7 @@ const GetUser = async function () {
     if (data) {
         items.value = data;
     } else {
-        console.log("error");
+        alert('please login');
     }
 }
 
