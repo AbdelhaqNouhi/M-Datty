@@ -5,7 +5,7 @@ import Produit from '../components/Home/Produit.vue'
 import Servese from '../components/Home/Servese.vue'
 import AboutUs from '../components/Home/AboutUs.vue'
 import Contact from '../components/Home/Contact.vue'
-import { ref } from 'vue'
+import Footer from '../components/Footer.vue'
 
 </script>
 
@@ -18,6 +18,7 @@ import { ref } from 'vue'
     <AboutUs />
     <Contact id="Contact" />
   </main>
+  <Footer />
 </template>
 
 <style lang="scss" scoped>

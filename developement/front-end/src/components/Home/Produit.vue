@@ -145,7 +145,7 @@ onMounted (() => {
 }
 .description{
   height: 8rem;
-  background-color: #E5E5E5;
+  background-color: $secondary-bg-color;
   padding: 1rem;
   border-radius: 0.3rem;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
@@ -153,7 +153,8 @@ onMounted (() => {
 
   h1{
     padding: 1rem 0 0 0;
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: bold;
   }
   .a{
     display: flex;
@@ -163,7 +164,12 @@ onMounted (() => {
       width: 2rem;
       margin-left: auto;
       border: none;
-      background-color: #E5E5E5;
+
+      img {
+        width: 100%;
+        height: 100%;
+        background-color: $secondary-bg-color;
+      }
     }
   }
 }

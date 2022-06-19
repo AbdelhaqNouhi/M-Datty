@@ -5,7 +5,7 @@
 <template>
   <div class="footer">
     <div class="logo">
-      <img src="@/assets/images/icone/logo2.png" alt="" />
+      <img src="@/assets/images/icone/logo.png" alt="" />
       <div class="paiment">
         <img src='@/assets/images/footer/Visa.png' alt="">
         <img src="@/assets/images/footer/MasterCard.png" alt="">
@@ -55,8 +55,7 @@
     background-color: $header-color;
 
   @include desktop {
-    padding: 1rem 5rem;
-    height: 14rem;
+    padding: 2rem 5rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -69,24 +68,29 @@
 
 
   @include desktop {
-    padding-top: 1rem;
-    display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 4rem;
+  }
+
+   img {
+    width: 8rem;
+
+    @include desktop {
+      width:10rem;
+    }
   }
 }
     .paiment {
-      // margin: auto;
       align-items: center;
       display: flex;
-      gap: 2rem;
+      gap: 1.5rem;
 
       @include desktop {
-        margin: auto;
-      }
+        }
 
       img {
         height: 1rem;
+        width: 2rem;
       }
     }
 .group {
@@ -133,7 +137,7 @@
 .adress {
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 3.5rem;
   align-items: center;
 
 
@@ -144,12 +148,10 @@
   }
 
     p {
-      margin-top: auto;
       font-size: 12px;
     }
 
   .a {
-    margin: auto;
     display: flex;
     gap: 8rem;
 

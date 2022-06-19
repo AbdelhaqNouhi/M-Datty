@@ -101,6 +101,7 @@ export default {
   <div class="all">
     <NavAdmin />
     <div class="product">
+      <p>Produits</p>
       <table border="1px solid black">
         <tr class="title">
           <th>Image</th>
@@ -278,6 +279,12 @@ export default {
 @import "../../assets/Scss/media";
 .all {
   display: flex;
+}
+p {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: $button-color;
 }
 .product {
   width: 100%;

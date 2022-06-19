@@ -35,6 +35,7 @@ GetCommande();
 <div class="all">
     <NavAdmin />
     <div class="product">
+      <p>Commandes</p>
     <table border="1px solid black">
         <tr class="title">
             <th>product_name</th>
@@ -87,6 +88,12 @@ GetCommande();
 @import "../../assets/Scss/media";
 .all {
   display: flex;
+}
+p {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: $button-color;
 }
 .product {
   width: 100%;

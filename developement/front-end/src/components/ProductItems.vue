@@ -1,5 +1,6 @@
 <script setup>
 import NavBar from '../components/NavBar.vue'
+import Footer from '../components/Footer.vue'
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
 import { useStore } from '@/stores/counter';
@@ -67,6 +68,7 @@ onMounted (() => {
       </div>
     </div>
   </div>
+<Footer />
 </template>
 
 <style lang="scss" scoped>

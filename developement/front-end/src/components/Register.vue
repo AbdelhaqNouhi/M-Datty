@@ -1,6 +1,7 @@
 <script setup>
-import axios from 'axios';
 import NavBar from '../components/NavBar.vue'
+import Footer from '../components/Footer.vue'
+import axios from 'axios';
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';
 
@@ -26,26 +27,6 @@ const register = async function () {
     }
 }
 
-
-// const register = async function () {
-//     const res = await fetch('http://localhost/api/AddAdmin', {
-//         method: 'POST',
-//         body: JSON.stringify({
-//             first_name: first_name.value,
-//             last_name: last_name.value,
-//             phone: phone.value,
-//             email: email.value,
-//             password: password.value,
-//         }),
-//     });
-//     const data = await res.json();
-//     if (!data.error) {
-//         // router.push('/');
-//         console.log('ok');
-//     } else {
-//         console.log('error');
-//     }
-// }
 </script>
 
 <template>
@@ -76,6 +57,7 @@ const register = async function () {
             <input @click="register" type="button" name="" value="S'inscrire">
         </div>
     </form>
+<Footer />
 </template>
 
 <style lang="scss" scoped>

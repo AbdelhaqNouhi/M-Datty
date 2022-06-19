@@ -1,5 +1,6 @@
 <script setup>
 import NavBar from '../components/NavBar.vue'
+import Footer from '../components/Footer.vue'
 import { useStore } from '@/stores/counter';
 import Cookies from 'js-cookie';
 import { useRouter } from 'vue-router';
@@ -53,6 +54,7 @@ const login =  async function () {
             </div>
         </div>
     </form>
+    <Footer />
 </div>
 </template>
 

@@ -1,5 +1,6 @@
 <script setup>
 import NavBar from '../components/NavBar.vue'
+import Footer from '../components/Footer.vue'
 import ProductCard from './ProductCard.vue';
 import { onMounted, ref } from 'vue';
 import axios from 'axios';
@@ -52,8 +53,8 @@ onMounted (() => {
 </script>
 <template>
 <NavBar />
-<div class="parent">
-  <div class="panier">
+  <div class="parent">
+    <div class="panier">
       <div class="card">
         <h1>Panier</h1>
         <ProductCard v-for="item in items" :item="item" @delete="DeletePanier"/>
@@ -70,6 +71,7 @@ onMounted (() => {
         </div>
     </div>
   </div>
+<Footer />
 </template>
 
 <style lang="scss" scoped>
