@@ -8,6 +8,7 @@ import { useStore } from '@/stores/counter';
 const store = useStore();
 
 const Box = ref([]);
+const succes = false;
 
 const GetProduct = async function () {
     const res = await axios.get('http://localhost/api/GetProduct');
@@ -20,14 +21,11 @@ const GetProduct = async function () {
 }
 
 const takeId = async function (data) {
-  // if(!store.user.user_id) {
-  //   alert("please go to Login");
-  // }
     data.user_id = store.user.user_id;
   const res = await axios.post('http://localhost/api/AddBasket', data);
   const data2 = await res.data;
   if (data2) {
-    console.log(data2);
+    succes = true;
   } else {
     console.log("error");
   }
@@ -42,15 +40,13 @@ onMounted (() => {
 <template>
 <NavBar />
 <div class="parent">
+  <div v-if="succes" class="alert">
+      <p>Add Panier Successfully</p>
+  </div>
   <div class="produits">
       <div v-for="box in Box" class="produit">
         <div class="image">
           <Router-Link :to="{ name: 'ProductItems', params: { id: box.product_id }}" ><img :src="`http://localhost/uploads/` + box.image" alt="" /></Router-Link>
-          <!-- <Router-Link to="/ProductItems"><img :src="`http://localhost/uploads/` + box.image" alt="" /></Router-Link> -->
-          <!-- <router-link class="text-white hover:cursor-pointer bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center" >read more</router-link> -->
-          <!-- <div class="top-right">
-            <button>Nouveauté</button>
-          </div> -->
         </div>
         <div class="description">
           <div class="a">
@@ -75,14 +71,26 @@ onMounted (() => {
 @import "../assets/Scss/variable";
 @import "../assets/Scss/media";
 
+.alert {
+  background-color: rgb(117, 239, 117);
+  width: 20%;
+  padding: 1rem;
+  margin-left: auto;
+  text-align: center;
+
+  p {
+  
+    font-size: 16px;
+  }
+}
 
 .parent{
-    padding: 5rem 0;
+  padding: 5rem 0;
     display: flex;
     flex-direction: column;
 }
 .produits {
-    display: grid;
+  display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 10rem;
     margin: 4rem;
@@ -102,7 +110,7 @@ onMounted (() => {
   }
 
   @include desktop {
-  margin: 5rem 8rem;
+  margin: 4rem 8rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
