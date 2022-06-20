@@ -82,6 +82,7 @@ const result = computed(() => {
 @import "../assets/Scss/variable";
 @import "../assets/Scss/media";
   .product {
+    width: 100%;
     color: black;
     background-color: white;
     // padding: 0.5rem;

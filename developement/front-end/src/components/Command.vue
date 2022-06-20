@@ -17,8 +17,6 @@ const ville = ref('');
 const adress = ref('');
 
 const AddCommande = async function () {
-    console.log(items.value);
-    console.log(itemsUser.value);
     const promises = items.value.map(async(product) => {
         const data = {
             product_name: product.name,
@@ -128,7 +126,6 @@ onMounted (() => {
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 1rem;
 
     @include desktop {
