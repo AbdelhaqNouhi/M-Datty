@@ -7,7 +7,7 @@ import axios from 'axios';
 import { useStore } from '@/stores/counter'
 
 const store = useStore()
-const id = store.user.user_id;
+// const id = store.user.user_id;
 const e = store.count;
 const total = store.total;
 

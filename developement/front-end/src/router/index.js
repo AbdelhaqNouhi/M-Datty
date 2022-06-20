@@ -12,6 +12,7 @@ import ProductItems from '../components/ProductItems.vue'
 import AboutUs from '../components/Home/AboutUs.vue'
 import Panier from '../components/Panier.vue'
 import Command from '../components/Command.vue'
+import Cookies from 'js-cookie'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -50,7 +51,7 @@ const router = createRouter({
       path: '/Register',
       name: 'Register',
       component: Register,
-    }, 
+    },
 
     {
       path: '/PageUser',
@@ -81,7 +82,7 @@ const router = createRouter({
       name: 'ProductItems',
       component: ProductItems,
     },
-    
+
     {
       path: '/Panier',
       name: 'Panier',
@@ -96,4 +97,18 @@ const router = createRouter({
   ]
 });
 
-export default router
+
+// router.beforeEach((to, from, next) => {
+//   if (to.name == "Register" || to.name == "Login" || to.name == "/" || to.name == "LoginAdmin") {
+//     next();
+//   } else {
+//     if (false) {
+//       next();
+//     } else {
+//       console.log("gezuführt");
+//       next("Home");
+//     }
+//   }
+})
+
+export default router;

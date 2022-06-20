@@ -126,9 +126,11 @@ onMounted (() => {
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 1rem;
 
     @include desktop {
+        align-items: baseline;
         padding: 8rem 5rem;
         display: flex;
         flex-direction: row;
@@ -154,6 +156,7 @@ onMounted (() => {
     }
 
     @include desktop {
+        height: 100%;
         width: 80%;
         padding: 2rem;
     }
