@@ -32,15 +32,18 @@ const ckeck = async function (data) {
 }
 
 const takeId = async function (data) {
-    data.user_id = store.user.user_id;
-  const res = await axios.post('http://localhost/api/AddBasket', data);
-  const data2 = await res.data;
-  if (data2) {
-    store.count(parseInt(store.counter) + 1);
-    alert("Added to Basket");
-  } else {
-    console.log("error");
-  }
+  data.user_id = store.user.user_id;
+  await axios.post('http://localhost/api/AddBasket', data)
+  .then(function (response) {
+    if(response.data.message === "Basket added successfully") {
+      store.count(parseInt(store.counter) + 1);
+      alert("produit ajoute a votre panier");
+      GetProduct();
+    }
+    else {
+       alert("Produit déjà trouvé dans votre panier");
+    }
+  })
 }
 
 
@@ -136,12 +139,12 @@ onMounted (() => {
 .produits {
   display: grid;
     grid-template-columns: repeat(1, 1fr);
-    gap: 10rem;
+    gap: 5rem 2rem;
     margin: 4rem;
 
     @include mobile {
       display: grid;
-      gap: 2rem;
+      gap: 5rem 2rem;
       margin: 2rem;
     }
 
@@ -150,7 +153,7 @@ onMounted (() => {
     margin: 4rem 2rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    gap: 5rem 2rem;
   }
 
   @include desktop {
@@ -161,7 +164,9 @@ onMounted (() => {
   }
 
   @include lg-desktop {
-    margin: 4rem 8rem;
+    display: grid;
+    gap: 5rem 2rem;
+
   }
 }
 .produit {
@@ -172,15 +177,15 @@ onMounted (() => {
 }
 .image {
   width: 100%;
-  height: 100%;
   position: relative;
   text-align: center;
   color: white;
   border-radius: 0.3rem;
 
     img {
-        width: 100%;
-        height: 100%;
+      width: 100%;
+      height: 60vh;
+        // height: 100%;
         border-radius: 0.3rem;
         box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
     }

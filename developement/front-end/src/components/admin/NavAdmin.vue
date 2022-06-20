@@ -79,14 +79,15 @@ const setAdmin = store.setAdmin;
         gap: 4rem;
     }
     .add {
-        background-color: white;
+        background-color: $button-color;
         width: 100%;
         padding: 0.5rem;
         text-align: center;
         border-radius:0.3rem;
 
         button {
-            color: black;
+            background-color: $button-color;
+            color: white;
         }
     }
 

@@ -34,13 +34,17 @@ const ckeck = async function (data) {
 const takeId = async function (data) {
     
     data.user_id = store.user.user_id;   
-    const res = await axios.post('http://localhost/api/AddBasket', data);
-    const data2 = await res.data;
-    if (data2) {
-      store.count(parseInt(store.counter) + 1);
-    } else {
-      console.log("error");
-    } 
+    await axios.post('http://localhost/api/AddBasket', data)
+    .then(function (response) {
+        if(response.data.message === "Basket added successfully") {
+            store.count(parseInt(store.counter) + 1);
+            alert("produit ajoute a votre panier");
+            GetThreProduct();
+        }
+        else {
+            alert("Produit déjà trouvé dans votre panier");
+        }
+    })
 }
 
 
@@ -116,7 +120,6 @@ onMounted (() => {
 }
 .image {
   width: 100%;
-  height: 100%;
   position: relative;
   text-align: center;
   color: white;
@@ -124,7 +127,8 @@ onMounted (() => {
 
     img {
         width: 100%;
-        height: 100%;
+        height: 60vh;
+
         border-radius: 0.3rem;
         box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
     }

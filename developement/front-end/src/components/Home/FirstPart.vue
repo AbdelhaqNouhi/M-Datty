@@ -11,10 +11,11 @@
                 <h1>MaisonDatty</h1>
             </div>
             <div>
-                <p>UN DÉLICE POUR LES PAPILLES -</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br/> Dicta voluptates dolor repellat voluptatibus nemo.</p>
+                <!-- <p>UN DÉLICE POUR LES PAPILLES</p> -->
             </div>
             <div>
-                <button>Button</button>
+                <button>Acheter en ligne</button>
             </div>
         </div>
     </div>
@@ -34,7 +35,7 @@
         width: 100%;
         height: 100%;
         background-color: black;
-        opacity: 0.5;
+        opacity: 0.3;
     }
 
     img {
@@ -45,21 +46,20 @@
     }
 }
 .content{
-    padding: 10rem 0rem;
+    padding: 12rem 5rem;
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    // align-items: center;
     p {
-        padding: 3rem 0;
+        padding: 2rem 0;
     }
 
     button {
-        font-weight: bold;
         color: white;
         background-color: var(--corvid-background-color,rgba(var(--bg,var(--color_17)),var(--alpha-bg,1)));
         border: solid 2px white;
-        border-radius: 0.6rem ;
+        border-radius: 0.3rem ;
         width: 10rem;
         height: 2.5rem;
     }

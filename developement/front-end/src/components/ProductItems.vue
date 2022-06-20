@@ -29,14 +29,17 @@ const takeId = async function (data) {
     alert("please go to Login");
   }
   data.user_id = store.user.user_id;
-  const res = await axios.post('http://localhost/api/AddBasket', data);
-  const data2 = await res.data;
-  if (data2) {
-    store.count(parseInt(store.counter) + 1);
-    alert("Added to Basket");
-  } else {
-    alert("bad ro added try again");
-  }
+  await axios.post('http://localhost/api/AddBasket', data)
+  .then(function (response) {
+    if(response.data.message === "Basket added successfully") {
+      store.count(parseInt(store.counter) + 1);
+      alert("produit ajoute a votre panier");
+      GetOneProduct();
+    }
+    else {
+      alert("Produit déjà trouvé dans votre panier");
+    }
+  })
 }
 
 onMounted (() => {
@@ -78,30 +81,20 @@ onMounted (() => {
 @import "../assets/Scss/media";
 
 .parent {
-  padding: 4rem 1rem;
-
-  @include tablet {
-    padding: 4rem 8rem;
-  }
-
-  @include desktop {
-    padding: 4rem 8rem;
-  }
-
-  @include lg-desktop {
-    padding: 4rem 14rem;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .product {
+  width: 60%;
+  margin: 8rem;
   padding: 1rem;
   background-color: $secondary-bg-color;
   border-radius: 0.5rem;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  align-items: center;
-  gap: 2rem;
 
   @include tablet {
     padding: 2rem;
@@ -111,12 +104,11 @@ onMounted (() => {
     display: flex;
     align-items: center;
     flex-direction: row;
+    gap: 4rem;
   }
 
   .img {
-    width: 100%;
-    position: relative;
-    text-align: center;
+    width: 70%;
     color: white;
 
     @include tablet {
@@ -128,18 +120,13 @@ onMounted (() => {
 
     img {
       width: 100%;
-      height: 20rem;
+      height: 45vh;
       border-radius: 0.3rem;
-
-      @include lg-desktop {
-        width: 100%;
-        height: 25rem;
-      }
     }
   }
 
   .info {
-    width: 100%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;

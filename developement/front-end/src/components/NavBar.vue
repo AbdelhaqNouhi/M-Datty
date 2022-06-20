@@ -168,10 +168,10 @@ header {
   top: 100%;
   z-index: 1;
   background-color: #4e4a42;
-  padding: 5rem;
+  padding: 2rem;
   flex-direction: column;
   font-size: 14px;
-  gap: 3rem;
+  gap: 2rem;
   align-items: center;
   width: 100%;
   left: 0;
@@ -200,10 +200,10 @@ header {
   top: 100%;
   z-index: 1;
   background-color: #4e4a42;
-  padding: 5rem;
+  padding: 2rem;
   flex-direction: column;
   font-size: 14px;
-  gap: 3rem;
+  gap: 2rem;
   align-items: center;
   width: 100%;
   left: 0;
