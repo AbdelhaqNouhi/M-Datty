@@ -12,14 +12,9 @@ import ProductItems from '../components/ProductItems.vue'
 import AboutUs from '../components/Home/AboutUs.vue'
 import Panier from '../components/Panier.vue'
 import Command from '../components/Command.vue'
-import { useStore } from '@/stores/counter';
+import Cookies from "js-cookie";
 
-
-const store = useStore();
-
-const user = store.user;
-const admin = store.admin;
-const routes= [
+const routes = [
   {
     path: '/',
     name: 'Home',
@@ -104,16 +99,26 @@ const router = createRouter({
 });
 
 
-router.beforeEach((to,from ,next) => {
-  if (to.name == "Home" || to.name=="regi") {
+router.beforeEach((to, from, next) => {
+  if (to.name == "Home" || to.name == "Register" || to.name == "Login" || to.name == "LoginAdmin") {
     next();
-  } else {
-    if (user || admin) {
+  } 
+  else if (to.name == "PageAdmin") {
+    console.log("admin");
+    if (JSON.parse(Cookies.get('admin')) != null) {
+      next();
+    } else {
+       next("/LoginAdmin");
+    }
+  }
+  else  {
+    console.log("user");
+    if (JSON.parse(Cookies.get('user')) != null) {
       next();
     } else {
       next("/");
     }
   }
-})
+});
 
 export default router;
