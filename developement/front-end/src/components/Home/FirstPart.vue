@@ -39,7 +39,7 @@
         width: 100%;
         background-color: black;
         opacity: 0.3;
-        height: 60%;
+        height: 70%;
 
         @include desktop {
             height: 100%;
@@ -50,7 +50,7 @@
         object-fit: cover;
         position: absolute;
         width: 100%;
-        height: 60%;
+        height: 70%;
 
         @include desktop {
             height: 100%;

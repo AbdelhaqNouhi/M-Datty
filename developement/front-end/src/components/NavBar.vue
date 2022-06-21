@@ -210,6 +210,20 @@ header {
   transform: translateX(-100%);
   transition: all 0.5s ease-in-out;
 
+  a {
+    font-size: 16px;
+    color: white;
+    text-decoration: none;
+  }
+  button {
+    width: 6rem;
+    height: 1.6rem;
+    color: white;
+    background-color: #D4C7A0;
+    border: none;
+    border-radius: 0.2rem;
+  }
+
   @include desktop {
     display: none;
   }
