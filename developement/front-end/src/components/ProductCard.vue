@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { computed } from '@vue/reactivity';
 import { useStore } from '@/stores/counter';
+import { onMounted } from 'vue';
 
 const store = useStore();
 const props = defineProps({
@@ -9,10 +10,11 @@ const props = defineProps({
 });
 
 defineEmits(["delete"]);
-
+let index = -1;
 const increment = () => {
   props.item.Quantite++;
-    console.log(props.item.id);
+  store.totals[index] = result.value;
+
 
   const res =  axios.post('http://localhost/api/UpdateBasket', {
       id: props.item.id,
@@ -23,6 +25,7 @@ const increment = () => {
 const decrement = () => {
     if (props.item.Quantite > 1) {
         props.item.Quantite--;
+        store.totals[index] = result.value;
     }
 
     const res =  axios.post('http://localhost/api/UpdateBasket', {
@@ -33,8 +36,13 @@ const decrement = () => {
 
 const result = computed(() => {
     const res = parseInt(props.item.Quantite) * parseInt(props.item.price) 
-    store.total += res;
     return res;
+});
+computed(() => {
+    store.total += result.value;
+});
+onMounted(() => {
+    index = store.totals.push(result.value)-1;
 });
 
 </script>
@@ -104,11 +112,26 @@ const result = computed(() => {
       }
 
       @include desktop {
+        width: 35%;
+      }
+      @include lg-desktop {
         width: 20%;
       }
+
       img {
         border-radius: 0.2rem;
         width: 100%;
+        height: 15vh;
+
+        @include tablet {
+          height: 22vh;
+        }
+        @include desktop {
+          height: 23vh;
+        }
+        // @include lg-desktop {
+        //   height: 22vh;
+        // }
       }
     }
     label {
@@ -140,7 +163,7 @@ const result = computed(() => {
 
         @include desktop {
             margin-top: 1rem;
-            gap: 5.7rem;
+            // gap: 5.7rem;
             display: flex;
             flex-direction: column;
         }

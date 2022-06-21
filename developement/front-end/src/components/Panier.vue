@@ -2,14 +2,14 @@
 import NavBar from '../components/NavBar.vue'
 import Footer from '../components/Footer.vue'
 import ProductCard from './ProductCard.vue';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, computed } from 'vue';
 import axios from 'axios';
 import { useStore } from '@/stores/counter'
 
 const store = useStore()
 const id = store.user.user_id;
 const e = store.count;
-const total = store.total;
+const total = computed(() => store.totals.reduce((a, b) => a + b, 0));
 
 const items = ref([]);
 
@@ -56,7 +56,7 @@ onMounted (() => {
           <h5>Récapitulatif de la commande</h5>
             <div class="text">
               <label>SOUS-TOTAL</label>
-              <p>{{store.total}} MAD</p>
+              <p>{{total}} MAD</p>
             </div>
             <div class="btn">
               <router-link to="/Command"><button>FINALISER LA COMMAND</button></router-link>
@@ -113,7 +113,6 @@ onMounted (() => {
 .total {
   padding: 1rem;
   width: 100%;
-  height: 50vh;
   border-radius: 0.5rem;
   background-color: $secondary-bg-color;
   display: flex;
@@ -122,6 +121,7 @@ onMounted (() => {
 
   @include desktop {
     width: 40%;
+    height: 40vh;
   }
 }
 

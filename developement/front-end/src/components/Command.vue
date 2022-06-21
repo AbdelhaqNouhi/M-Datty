@@ -2,13 +2,13 @@
 import NavBar from './NavBar.vue';
 import Footer from './Footer.vue';
 import axios from 'axios';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, computed } from 'vue';
 import { useStore } from '@/stores/counter';
 import router from '../router';
 
 const store = useStore();
 const id = store.user.user_id;
-const total = store.total;
+const total = computed(() => store.totals.reduce((a, b) => a + b, 0));
 
 const items = ref([]);
 const itemsUser = ref([]);
@@ -306,6 +306,7 @@ onMounted (() => {
             img {
                 border-radius: 0.2rem;
                 width: 100%;
+                height: 15vh;
             }
         }
 
