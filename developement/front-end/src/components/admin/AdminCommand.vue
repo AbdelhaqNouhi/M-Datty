@@ -2,7 +2,10 @@
 import NavAdmin from "../admin/NavAdmin.vue";
 import axios from "axios";
 import { ref, onMounted } from "vue";
+import { useStore } from "../../stores/counter";
 
+const store = useStore();
+const user = store.user;
 const items = ref([]);
 
 const GetCommande = async function () {
@@ -27,8 +30,11 @@ const DeleteCommande = async function (id) {
 };
 
 
-onMounted(() => {
-GetCommande();
+onMounted (() => {
+    if(user.role !== 'admin') {
+      router.push('/')
+    }
+    GetCommande();
 });
 </script>
 

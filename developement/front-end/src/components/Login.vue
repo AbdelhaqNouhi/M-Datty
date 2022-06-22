@@ -26,9 +26,16 @@ const login =  async function () {
     const data = await res.json();
     if (!data.error) {
         setUser(data);
+        if(data.role == "admin"){
+        router.push('/PageAdmin');
+        alert("Login Successful");
+        }
+        else if (data.role == "user"){
         router.push('/');
         alert("Login Successful");
-    } else {
+        }
+    }
+    else {
         check.value = true;
     }
 }

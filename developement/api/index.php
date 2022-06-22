@@ -99,14 +99,3 @@ $app->POST('/DeleteBasket', function ($data) {
   $basket = new Basket();
   $basket->delete($data);
 });
-
-//  Admin
-$app->POST('/LoginAdmin', function ($data) {
-  $admin = new Admin();
-  $admin->login($data);
-});
-
-$app->POST('/AddAdmin', function ($data) {
-  $admin = new Admin();
-  $admin->add($data);
-});

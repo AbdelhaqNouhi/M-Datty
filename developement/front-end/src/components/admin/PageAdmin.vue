@@ -1,101 +1,83 @@
-<script>
+<script setup>
 import axios from "axios";
 import NavAdmin from "../admin/NavAdmin.vue";
-export default {
-  name: "PageAdmin",
+import {ref, onMounted} from 'vue'
+import { useStore } from "../../stores/counter";
+import router from "../../router";
 
-  data() {
-    return {
-      Box: [],
-      Update: [],
-      Product: {
-        image: "",
-        name: "",
-        description: "",
-        price: "",
-      },
-    };
-  },
+const store = useStore();
+const user = store.user;
 
-  components: {
-    NavAdmin,
-  },
 
-  methods: {
+const Box = ref([]);
+const Update = ref([]);
+const image = ref('');
+const name = ref('');
+const description = ref('');
+const price = ref('');
 
-    selectimageAdd(event) {
-      this.Product.image = event.target.files[0];
-      console.log({selec : this.Product.image});
-    },
-    AddProduct() {
-      const formData = new FormData();
-      formData.append("name", this.Product.name);
-      formData.append("description", this.Product.description);
-      formData.append("price", this.Product.price);
-      formData.append("image", this.Product.image);
-      console.log({image : this.Product.image});
+const selectimageAdd = function (event) {
+  image.value = event.target.files[0];
+}
+const AddProduct = function () {
+  const formData = new FormData();
+  formData.append("name", name.value);
+  formData.append("description", description.value);
+  formData.append("price", price.value);
+  formData.append("image", image.value);
 
-      axios.post("http://localhost/api/AddProduct", formData,{
+  axios.post("http://localhost/api/AddProduct", formData,{
+  })
+      .then((response) => {
+        GetProduct();
       })
-        .then((response) => {
-          this.GetProduct();
-        })
-    },
+  }
 
-    GetProduct() {
+const GetProduct = function() {
       axios.get("http://localhost/api/GetProduct")
       .then((response) => {
-        this.Box = response.data;
+        Box.value = response.data;
       });
-    },
+  }
 
-    async DeleteProduct(id) {
-      const product_id = id;
-      console.log(product_id);
-      const res = await fetch("http://localhost/api/DeleteProduct", {
-        method: "POST",
-        body: JSON.stringify({
-          data: product_id,
-        }),
-      });
-      const data = await res.json();
-      if (data) {
-        this.GetProduct();
-        alert("Product Deleted");
-      } else {
-        console.log("error");
+const DeleteProduct = function (id) {
+  console.log(id);
+  const product_id = id;
+  axios.post("ttp://localhost/api/DeleteProduct" + product_id)
+    .then((response) => {
+      GetProduct();
+    })
+}
+const FindProduct = function (id) {
+  const product = Box.value.find((e) => e.product_id == id);
+  Update.value = product;
+}
+const selectimageUpdate = function (event) {
+  Update.value.image = event.target.files[0];
+}
+
+const UpdateProduct = function () {
+  const formData = new FormData();
+  formData.append("image", Update.image);
+  formData.append("name", Update.name);
+  formData.append("description", Update.description);
+  formData.append("price", Update.price);
+  formData.append("product_id", Update.product_id);
+
+  axios.post("http://localhost/api/UpdateProduct", formData)
+  .then((response) => {
+    GetProduct();
+  })
+
+}
+
+  onMounted (() => {
+      if(user.role !== 'admin') {
+        router.push('/')
       }
-    },
+      GetProduct();
+  });
 
-    async FindProduct(id) {
-      const product = this.Box.find((e) => e.product_id == id);
-      this.Update = product;
-    },
-
-    selectimageUpdate(event) {
-      this.Update.image = event.target.files[0];
-      console.log(this.Update.image);
-    },
-
-    UpdateProduct() {
-      const formData = new FormData();
-      formData.append("image", this.Update.image);
-      formData.append("name", this.Update.name);
-      formData.append("description", this.Update.description);
-      formData.append("price", this.Update.price);
-      formData.append("product_id", this.Update.product_id);
-      
-      axios.post("http://localhost/api/UpdateProduct", formData)
-        .then((response) => {
-          this.GetProduct();
-        });
-    },
-  },
-
-  mounted() {
-    this.GetProduct();
-  },
-};
 </script>
 
 <template>
@@ -153,7 +135,7 @@ export default {
       </table>
     </div>
   </div>
-  <form @submit.prevent="UpdateProduct(Update.product_id)">
+  <form @submit.prevent="UpdateProduct">
     <div
       class="modal fade"
       id="staticBackdrops"
@@ -215,8 +197,8 @@ export default {
   <!-- ---------------------Add------------------------ -->
   <form @submit.prevent="AddProduct">
     <div
-      class="modal fade"
-      id="staticBackdrop"
+      class="modal"
+      id="staticBackdrops"
       data-bs-backdrop="static"
       aria-labelledby="staticBackdropLabel"
     >
@@ -241,7 +223,7 @@ export default {
               type="text"
               name="nome"
               placeholder="Nome"
-              v-model="this.Product.name"
+              v-model="name.value"
             />
           </div>
           <div class="modal-body">
@@ -249,7 +231,7 @@ export default {
               type="text"
               name="description"
               placeholder="descriptions"
-              v-model="this.Product.description"
+              v-model="description.value"
             />
           </div>
           <div class="modal-body">
@@ -257,7 +239,7 @@ export default {
               type="text"
               name="prix"
               placeholder="Prix"
-              v-model="this.Product.price"
+              v-model="price.value"
             />
           </div>
           <div class="modal-footer">
@@ -287,7 +269,7 @@ export default {
 p {
   font-size: 24px;
   font-weight: bold;
-  // margin-bottom: 20px;
+  margin-bottom: 20px;
   color: $button-color;
 }
 .product {
@@ -307,29 +289,24 @@ th {
   border: 1px solid #dddddd;
   text-align: left;
   padding-left: 1rem;
-
   img {
     width: 120px;
     height: 100px;
   }
 }
-
 th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 1rem;
 }
-
 tr,
 th {
   background-color: $secondary-bg-color;
 }
-
 td:last-child {
   width: 2rem;
   height: 2rem;
   padding: 1rem;
-
   ul {
     padding: 0.5rem;
   }
@@ -354,7 +331,6 @@ td:last-child {
 .modal-body {
   text-align: center;
   padding: 1rem 0;
-
   label {
     background-color: white;
     text-align: center;
@@ -363,7 +339,6 @@ td:last-child {
     border-radius: 0.3;
     // color: white;
   }
-
   input {
     width: 100%;
     padding: 0.5rem;
@@ -375,7 +350,6 @@ td:last-child {
   padding: 1rem 0;
   border: none;
   border-radius: 0.2rem;
-
   input {
     color: white;
     padding: 0.5rem;

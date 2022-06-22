@@ -287,7 +287,7 @@ onMounted (() => {
         gap: 3rem;
     }
         .product_img {
-            width: 20%;
+            width: 25%;
 
             @include mobile {
                 width: 30%;

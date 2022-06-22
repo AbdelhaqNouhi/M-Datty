@@ -102,7 +102,7 @@ onMounted(() => {
     margin: 1rem 0;
 
     .product_img {
-      width: 25%;
+      width: 35%;
 
       @include mobile {
         width: 35%;

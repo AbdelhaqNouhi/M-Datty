@@ -7,7 +7,6 @@ import Register from '../components/Register.vue'
 import PageUser from '../components/PageUser.vue'
 import PageAdmin from '../components/admin/PageAdmin.vue'
 import AdminCommand from '../components/admin/AdminCommand.vue'
-import LoginAdmin from '../components/admin/LoginAdmin.vue'
 import ProductItems from '../components/ProductItems.vue'
 import AboutUs from '../components/Home/AboutUs.vue'
 import Panier from '../components/Panier.vue'
@@ -58,12 +57,6 @@ const routes = [
   },
 
   {
-    path: '/LoginAdmin',
-    name: 'LoginAdmin',
-    component: LoginAdmin,
-  },
-
-  {
     path: '/PageAdmin',
     name: 'PageAdmin',
     component: PageAdmin,
@@ -98,21 +91,11 @@ const router = createRouter({
   routes,
 });
 
-
 router.beforeEach((to, from, next) => {
-  if (to.name == "Home" || to.name == "Register" || to.name == "Login" || to.name == "LoginAdmin") {
+  if (to.name == "Home" || to.name == "Register" || to.name == "Login" || to.name == "Boutique") {
     next();
-  } 
-  else if (to.name == "PageAdmin") {
-    console.log("admin");
-    if (JSON.parse(Cookies.get('admin')) != null) {
-      next();
-    } else {
-       next("/LoginAdmin");
-    }
   }
   else  {
-    console.log("user");
     if (JSON.parse(Cookies.get('user')) != null) {
       next();
     } else {

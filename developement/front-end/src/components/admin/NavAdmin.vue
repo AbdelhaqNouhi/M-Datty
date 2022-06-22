@@ -2,11 +2,15 @@
 import { useStore } from "@/stores/counter";
 import {useRouter} from 'vue-router';
 
-
 const store = useStore();
 const router = useRouter();
-const setAdmin = store.setAdmin;
 
+const setUser = store.setUser;
+
+const logout = function () {
+    setUser(null);
+    router.push('/loginAdmin')
+}
 </script>
 
 <template>
@@ -15,16 +19,19 @@ const setAdmin = store.setAdmin;
             <img src="../../assets/images/icone/logo.png" alt="">
             <div class="username">
                 <img src="../../assets/images/aboutus.jpg" alt="...">
-                <h1>{{store.admin?.last_name ?? ""}} {{store.admin?.first_name ?? ""}}</h1>
+                <h1>{{store.user?.last_name ?? ""}} {{store.user?.first_name ?? ""}}</h1>
             </div>
             <div class="content">
                 <div class="add">
-                    <button class="dropdown-item" name="update" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Ajoute Produit</button>
+                    <button class="dropdown-item" name="update" data-bs-toggle="modal" data-bs-target="#staticBackdrops">Ajoute Produit</button>
                 </div>
                 <div class="mune">
                     <Router-Link to="/PageAdmin">Produits</Router-Link>
                     <Router-Link to="/AdminCommand">Commande</Router-Link>        
                 </div>
+            </div>
+            <div class="logout">
+                <button @click="logout"><img src="../../assets/images/icone/logout-admin.svg" alt=""/><p>LogOut</p></button>
             </div>
         </div>
     </div>
@@ -105,6 +112,28 @@ const setAdmin = store.setAdmin;
                 color: white;
                 text-decoration: none;
             }
+    }
+}
+
+.logout {
+    text-align: center;
+    align-items: center;
+    display: flex;
+    gap: 0.5rem;
+    width: 5rem;
+    height: 5rem;
+    // margin-top: auto;
+    margin-right: 4rem;
+    img {
+        height: 2rem ;
+    }
+    button {
+        background-color: $header-color;
+        border: none;
+    }
+    p {
+        font-size: 14px;
+        font-weight: bold;
     }
 }
 </style>
