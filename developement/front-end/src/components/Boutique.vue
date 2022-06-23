@@ -21,7 +21,7 @@ const GetProduct = async function () {
     }
 }
 
-const ckeck = async function (data) {
+const ckeck = function (data) {
   if(!user) {
     router.push('/login');
     alert("please go to Login");
@@ -41,7 +41,7 @@ const takeId = async function (data) {
       GetProduct();
     }
     else {
-       alert("Produit déjà trouvé dans votre panier");
+      alert("Produit déjà trouvé dans votre panier");
     }
   })
 }

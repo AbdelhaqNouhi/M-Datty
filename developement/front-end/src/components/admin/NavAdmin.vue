@@ -23,7 +23,7 @@ const logout = function () {
             </div>
             <div class="content">
                 <div class="add">
-                    <button class="dropdown-item" name="update" data-bs-toggle="modal" data-bs-target="#staticBackdrops">Ajoute Produit</button>
+                    <button class="dropdown-item" name="add" data-bs-toggle="modal" data-bs-target="#staticBackdropes">Ajoute Produit</button>
                 </div>
                 <div class="mune">
                     <Router-Link to="/PageAdmin">Produits</Router-Link>

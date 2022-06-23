@@ -14,7 +14,7 @@ const total = computed(() => store.totals.reduce((a, b) => a + b, 0));
 const items = ref([]);
 
 
-const GetBasket = async function () {
+const GetPanier = async function () {
   const res = await axios.get('http://localhost/api/GetBasket?id=' + id);
   const data = await res.data;
   if (data) {
@@ -31,7 +31,7 @@ const DeletePanier = async function (id) {
   const data = await res.data;
   if (data) {
     store.count(parseInt(store.counter) - 1);
-    GetBasket();
+    GetPanier();
     alert("Delete Panier Successfully");
   } else {
     alert("product not added try again");
@@ -39,7 +39,7 @@ const DeletePanier = async function (id) {
 }
 
 onMounted (() => {
-  GetBasket();
+  GetPanier();
 });
 
 

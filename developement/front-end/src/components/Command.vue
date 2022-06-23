@@ -35,8 +35,16 @@ const AddCommande = async function () {
     });
     const results = await Promise.all(promises);
     if(results) {
+        DeletePanier();
         router.push('/');
         alert('Commande ajoutée avec succès');
+    }
+}
+
+const DeletePanier = async function () {
+    const res = await axios.post ('http://localhost/api/DeleteAllBasket', { id: id });
+    if (res) {
+        GetBasket();
     }
 }
 

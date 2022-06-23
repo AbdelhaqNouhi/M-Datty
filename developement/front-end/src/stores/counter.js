@@ -18,9 +18,9 @@ export const useStore = defineStore( 'store', {
       this.Panier = !this.Panier;
       return this.Panier;
     },
-    lecturepanier(){
-      return this.Panier;
-    },
+    // lecturepanier(){
+    //   return this.Panier;
+    // },
 
     count (e) {
       Cookies.set('counter', e);

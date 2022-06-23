@@ -23,6 +23,7 @@ const logout = function () {
   Router.push('/');
 }
 
+
 const openMenu = function () {
   if(!show.value){
     menuIcon.value = 'open';
@@ -35,14 +36,14 @@ const closeMenu = function () {
     check.value = true;
 }
 
-const openstore = function () {
-    if(menuIcon.value === 'close'){
-        showPanier();
-        show.value =! show.value;
-    } else {
-      aa.value;
-    }
-}
+// const openstore = function () {
+//     if(menuIcon.value === 'close'){
+//         showPanier();
+//         show.value =! show.value;
+//     } else {
+//       aa.value;
+//     }
+// }
 
 </script>
 

@@ -19,19 +19,21 @@ const price = ref('');
 const selectimageAdd = function (event) {
   image.value = event.target.files[0];
 }
-const AddProduct = function () {
+const AddProduct = async function () {
   const formData = new FormData();
   formData.append("name", name.value);
   formData.append("description", description.value);
   formData.append("price", price.value);
   formData.append("image", image.value);
 
-  axios.post("http://localhost/api/AddProduct", formData,{
-  })
-      .then((response) => {
-        GetProduct();
-      })
+  const res = await axios.post("http://localhost/api/AddProduct", formData);
+  const data = await res.data;
+  if (data) {
+    GetProduct();
+  } else {
+    console.log('error');
   }
+}
 
 const GetProduct = function() {
       axios.get("http://localhost/api/GetProduct")
@@ -40,13 +42,15 @@ const GetProduct = function() {
       });
   }
 
-const DeleteProduct = function (id) {
-  console.log(id);
-  const product_id = id;
-  axios.post("ttp://localhost/api/DeleteProduct" + product_id)
-    .then((response) => {
-      GetProduct();
-    })
+const DeleteProduct = async function (id) {
+  // const product_id = id;
+  const res = await axios.post('http://localhost/api/DeleteProduct', {id: id});
+  const data = await res.data;
+  if (data) {
+    GetProduct();
+  } else {
+    console.log('error');
+  }
 }
 const FindProduct = function (id) {
   const product = Box.value.find((e) => e.product_id == id);
@@ -56,19 +60,22 @@ const selectimageUpdate = function (event) {
   Update.value.image = event.target.files[0];
 }
 
-const UpdateProduct = function () {
+const UpdateProduct = async function () {
+  console.log(Update.value);
   const formData = new FormData();
-  formData.append("image", Update.image);
-  formData.append("name", Update.name);
-  formData.append("description", Update.description);
-  formData.append("price", Update.price);
-  formData.append("product_id", Update.product_id);
+  formData.append("image", Update.value.image);
+  formData.append("name", Update.value.name);
+  formData.append("description", Update.value.description);
+  formData.append("price", Update.value.price);
+  formData.append("product_id", Update.value.product_id);
 
-  axios.post("http://localhost/api/UpdateProduct", formData)
-  .then((response) => {
+  const res = await axios.post("http://localhost/api/UpdateProduct", formData);
+  const data = await res.data;
+  if (data) {
     GetProduct();
-  })
-
+  } else {
+    console.log('error');
+  }
 }
 
   onMounted (() => {
@@ -198,7 +205,7 @@ const UpdateProduct = function () {
   <form @submit.prevent="AddProduct">
     <div
       class="modal"
-      id="staticBackdrops"
+      id="staticBackdropes"
       data-bs-backdrop="static"
       aria-labelledby="staticBackdropLabel"
     >
