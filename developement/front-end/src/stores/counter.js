@@ -6,7 +6,6 @@ export const useStore = defineStore( 'store', {
     counter:  Cookies.get( 'counter' ) || 0 ,
     Panier: false,
     user: JSON.parse(Cookies.get('user') ?? '{}'),
-    // admin: JSON.parse(Cookies.get('admin') ?? '{}'),
     totals: [],
   }),
   actions: {
@@ -15,11 +14,6 @@ export const useStore = defineStore( 'store', {
           this.user = user;
     },
 
-    // setAdmin (admin) {
-    //   Cookies.set('admin', JSON.stringify(admin));
-    //   this.admin = admin;
-    // },
-
     showPanier() {
       this.Panier = !this.Panier;
       return this.Panier;
@@ -27,10 +21,6 @@ export const useStore = defineStore( 'store', {
     lecturepanier(){
       return this.Panier;
     },
-
-    // setAdminId() {
-    //   this.admin_id = Cookies.get('id');
-    // },
 
     count (e) {
       Cookies.set('counter', e);

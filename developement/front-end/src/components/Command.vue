@@ -6,6 +6,7 @@ import { onMounted, ref, computed } from 'vue';
 import { useStore } from '@/stores/counter';
 import router from '../router';
 
+// difiend store
 const store = useStore();
 const id = store.user.user_id;
 const total = computed(() => store.totals.reduce((a, b) => a + b, 0));
@@ -25,7 +26,7 @@ const AddCommande = async function () {
             ville: ville.value,
             adress: adress.value,
             quantite: product.Quantite,
-            total_prix: total,
+            total_prix: total.value,
             product_id: product.product_id,
             user_id: id,
         };
