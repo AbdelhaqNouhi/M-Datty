@@ -58,4 +58,16 @@ class Basket
             echo json_encode(['message' => 'Basket not deleted']);
         }
     } 
+
+    public function deleteAll($id)
+    {
+        $this->model = new BasketModel();
+        $this->model->deleteAll($id);
+
+        if ($id) {
+            echo json_encode(['message' => 'Basket delete successfully']);
+        } else {
+            echo json_encode(['message' => 'Basket not deleted']);
+        }
+    }
 }

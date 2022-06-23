@@ -82,7 +82,7 @@ class ProductModel extends Database
 
         $query = 'DELETE FROM products WHERE product_id = ?';
         $delete = array (
-            $data['data']
+            $data['id']
         );
         $stmnt = $this->execStatement($query, $delete);
         return $stmnt;

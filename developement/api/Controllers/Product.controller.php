@@ -31,9 +31,6 @@ class Product
     }
   }
   public function add() {
-    // var_dump($_FILES);
-    // var_dump($_POST);
-    // exit;
     $name = $_POST['name'];
     $description = $_POST['description'];
     $price = $_POST['price'];

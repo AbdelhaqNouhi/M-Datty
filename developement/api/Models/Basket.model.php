@@ -49,4 +49,14 @@ class BasketModel extends Database
         $stmnt = $this->execStatement($query, $delete);
         return $stmnt;
     }   
+
+    function deleteAll ($id)
+    {
+        $query = 'DELETE FROM basket WHERE user_id = ?';
+        $delete = array(
+            $id['id']
+        );
+        $stmnt = $this->execStatement($query, $delete);
+        return $stmnt;
+    }
 }

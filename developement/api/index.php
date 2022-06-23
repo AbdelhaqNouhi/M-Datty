@@ -99,3 +99,8 @@ $app->POST('/DeleteBasket', function ($data) {
   $basket = new Basket();
   $basket->delete($data);
 });
+
+$app->POST('/DeleteAllBasket', function ($id) {
+  $basket = new Basket();
+  $basket->deleteAll($id);
+});
