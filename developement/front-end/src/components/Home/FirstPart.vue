@@ -12,7 +12,6 @@
             </div>
             <div>
                 <p>Lorem ipsum dolor sit amet, consectetur</p>
-                <!-- <p>UN DÉLICE POUR LES PAPILLES</p> -->
             </div>
             <div>
                 <button>Acheter en ligne</button>
